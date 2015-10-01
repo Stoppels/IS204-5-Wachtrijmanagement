@@ -26,7 +26,7 @@ Verder onderhouden we met name communicatie met EWA projectleider *Gideon Bazen*
 
 ### Teamleden
 
-Ons team bestaat uit zes enthousiaste studenten.
+Ons team bestaat uit vijf enthousiaste studenten.
 
 | Student         | E-mail |
 | --------        | -------- |
@@ -35,7 +35,6 @@ Ons team bestaat uit zes enthousiaste studenten.
 | R. Zammit       | Ryan.Zammit@hva.nl |
 | S. Banen        | Sjoerd.Banen@hva.nl |
 | S. Schenk       | Stefan.Schenk@hva.nl |
-| S. de Vos       | Sander.de.Vos@hva.nl |
 
 ### License
 
