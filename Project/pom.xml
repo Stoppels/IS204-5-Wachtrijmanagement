@@ -101,7 +101,7 @@
 	</repositories>
 
 	<build>
-		<finalName>Clown</finalName>
+		<finalName>Project-EWA</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
