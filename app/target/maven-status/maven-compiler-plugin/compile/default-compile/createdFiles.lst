@@ -1,5 +1,0 @@
-model\JsonLine$Timestamp.class
-model\JsonLine$Bbox.class
-model\JsonLine$Position.class
-model\JsonLine.class
-database\Connector.class
