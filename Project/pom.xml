@@ -101,7 +101,7 @@
 	</repositories>
 
 	<build>
-		<finalName>WEBappMVCSpring</finalName>
+		<finalName>Clown</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -110,6 +110,11 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
+                                        <stylesheetfile>${basedir}/resources/base.css</stylesheetfile>
+                                        <stylesheetfile>${basedir}/resources/layout.css</stylesheetfile>
+                                        <stylesheetfile>${basedir}/resources/main.css</stylesheetfile>
+                                        <stylesheetfile>${basedir}/resources/normalize.css</stylesheetfile>
+                                        <stylesheetfile>${basedir}/resources/skeleton.css</stylesheetfile>
 				</configuration>
 			</plugin>
 		</plugins>

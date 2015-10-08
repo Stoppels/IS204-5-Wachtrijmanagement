@@ -7,7 +7,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>${paginaTitel}</title>
-        <link href="<c:url value="/resources/style.css" />" rel="stylesheet" >
+        <link href="<c:url value="/resources/css/base.css" />" rel="stylesheet" >
+        <link href="<c:url value="/resources/css/layout.css" />" rel="stylesheet" >
+        <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" >
+        <link href="<c:url value="/resources/css/normalize.css" />" rel="stylesheet" >
+        <link href="<c:url value="/resources/css/skeleton.css" />" rel="stylesheet" >
+        <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet" >
     </head>
     <body>
         <h2>${paginaTitel}</h2>
