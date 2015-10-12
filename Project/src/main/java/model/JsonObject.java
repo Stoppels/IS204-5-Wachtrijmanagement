@@ -7,7 +7,7 @@ package model;
  *
  * @author Stefan
  */
-public class JsonLine {
+public class JsonObject {
 
     int track_id;
     Timestamp timestamp;
@@ -19,7 +19,7 @@ public class JsonLine {
     /**
      *
      */
-    public JsonLine() {
+    public JsonObject() {
         this.position = null;
         this.bbox = null;
     }
@@ -33,7 +33,7 @@ public class JsonLine {
      * @param position
      * @param bbox
      */
-    public JsonLine(int track_id, Timestamp timestamp, int event_type, int alive_status, Position position, Bbox bbox) {
+    public JsonObject(int track_id, Timestamp timestamp, int event_type, int alive_status, Position position, Bbox bbox) {
         this.track_id = track_id;
         this.timestamp = timestamp;
         this.event_type = event_type;

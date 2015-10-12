@@ -20,7 +20,7 @@ public class Connector {
     private ResultSet result = null;
     private int affectedRows = -1;
     Connection conn = null;
-
+    
     public void startConnection() {
         try {
 
