@@ -18,26 +18,26 @@ import java.model.JsonObject;
 public class JsonController {
 
     String filename = "recording001_short.json";
-    ArrayList<JsonObject> list;
+    ArrayList<JsonObject> jsonList;
 
     public JsonController(String filename) {
         this.filename = filename;
-        this.list = new ArrayList<JsonObject>();
+        this.jsonList = new ArrayList<JsonObject>();
     }
     
     // reads JSON file
     public ArrayList<JsonObject> read(String filename) {
-        this.list = readJsonFileToArrayList(filename);
-        return this.list;
+        this.jsonList = readJsonFileToArrayList(filename);
+        return this.jsonList;
     }
     
     // reads without converting JSON file
     public ArrayList<JsonObject> read() {
-        if (this.list.isEmpty()) {
+        if (this.jsonList.isEmpty()) {
             System.out.println("Reads empty ArrayList from JsonController");
             return null;
         }
-        return this.list;
+        return this.jsonList;
     }
 
     private static ArrayList<JsonObject> readJsonFileToArrayList(String filename) {
