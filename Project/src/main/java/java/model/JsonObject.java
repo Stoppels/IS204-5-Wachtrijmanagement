@@ -1,7 +1,7 @@
 /*
  * A JsonLine object represents on line of JSON from an EAGLE JSON file
  */
-package model;
+package java.model;
 
 /**
  *
