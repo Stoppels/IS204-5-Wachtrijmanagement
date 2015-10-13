@@ -31,7 +31,7 @@
                 <div class="header-container">
                     <div class="content-logo">
 
-                        <div class="company-name">EWA-5 | Wachtrijmanagement</div>
+                        <a href=""><div class="company-name">EWA-5 | Wachtrijmanagement</div></a>
                     </div>
                     <div class="block-menu">
                         <select class="navegation_resp" onchange="location.hash = this.options[this.selectedIndex].value;">
@@ -85,9 +85,9 @@
                 <article class="contentsection">
                     <div class="profile">
                         <div class="pofile-item">
-                            <div class="profile-element element-1">
+                            <a href="${pageContext.request.contextPath}/map"><div class="profile-element element-1">
                             </div>
-                            <div class="profile-title">Op elk apparaat</div>
+                            <div class="profile-title">Zie plattegrond</div></a>
                         </div>
                         <div class="pofile-item">
                             <div class="profile-element element-2">
