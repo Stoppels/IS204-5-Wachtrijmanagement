@@ -14,14 +14,12 @@ public class Main {
     public static void main(String[] args) {
         
         JsonController jsoncon = new JsonController("recording001_short.json");
+//        System.out.println(jsoncon);
         
-        jsoncon.read();
-        
-        jsoncon.toString();
         
         PersonController perscon = new PersonController();
-//        perscon.convertJSONtoPerson(jsoncon.get());
-//        perscon.getAmountPersons();
+        perscon.convertJSONtoPerson(jsoncon.getList());
+        System.out.println(perscon);
         
     }
 }

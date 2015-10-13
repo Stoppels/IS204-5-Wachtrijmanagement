@@ -106,4 +106,9 @@ public class JsonObject {
     public Bbox getBbox() {
         return bbox;
     }
+
+    @Override
+    public String toString() {
+        return "JsonObject: " + this.track_id + " " + this.timestamp + "\n";
+    }
 }

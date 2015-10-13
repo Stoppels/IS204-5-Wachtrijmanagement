@@ -40,6 +40,10 @@ public class PersonController {
         return amountPersons;
     }
 
+    public ArrayList<PersonObject> getList() {
+        return list;
+    }
+
     public ArrayList<PersonObject> convertJSONtoPerson(ArrayList<JsonObject> jsonList) {
 
         // verdeel arraylist over PersonObjects op basis van trackid
@@ -56,13 +60,13 @@ public class PersonController {
             }
             if (count == first.length) {
                 list.add(new PersonObject(new ArrayList<JsonObject>()));
+                list.get(count-1).add(jsonObject);
                 second = new int[first.length + 1];
                 for (int i = 0; i < first.length; i++) {
                     second[i] = first[i];
                 }
                 first = second;
                 first[count - 1] = jsonObject.getTrack_id();
-                System.out.println(first[count]);
             }
             // create personObject for each unique track id
         }
@@ -70,4 +74,10 @@ public class PersonController {
         return list;
     }
 
+    @Override
+    public String toString() {
+        return "PERSONOBJECT\n"
+                + "\n"
+                + getList();
+    }
 }

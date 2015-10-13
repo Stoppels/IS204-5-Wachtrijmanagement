@@ -98,8 +98,6 @@ public class Timestamp {
             this.nano = nano;
         }
         
-        
-
         @Override
         public String toString() {
             return this.year + this.month + this.date + "T" + this.hour + this.minute + this.second + this.nano;

@@ -22,21 +22,14 @@ public class JsonController {
 
     public JsonController(String filename) {
         this.filename = filename;
-        this.jsonList = new ArrayList<JsonObject>();
+        this.jsonList = read(filename);
     }
     
     // reads without converting JSON file
-    public ArrayList<JsonObject> get() {
+    public ArrayList<JsonObject> getList() {
         if (this.jsonList.isEmpty()) {
-            System.out.println("Reads empty ArrayList from JsonController");
-            return null;
+            this.jsonList = read(this.filename);
         }
-        return this.jsonList;
-    }
-    
-    // reads JSON file
-    public ArrayList<JsonObject> read() {
-        this.jsonList = read(this.filename);
         return this.jsonList;
     }
 
@@ -89,7 +82,7 @@ public class JsonController {
     @Override
     public String toString() {
         return "JSONCONTROLLER\n"
-                + ""
-                + get();
+                + "\n"
+                + getList();
     }
 }

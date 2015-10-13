@@ -12,23 +12,25 @@ import java.util.ArrayList;
  * @author Stefan
  */
 public class PersonObject {
-    
+
     private int personId;
     private ArrayList<JsonObject> jsonList;
 
     public PersonObject(ArrayList<JsonObject> jsonList) {
         this.jsonList = jsonList;
-        this.personId = jsonList.get(0).getTrack_id();
     }
-    
+
     public void add(JsonObject jsonObject) {
         this.jsonList.add(jsonObject);
     }
-    
+
     public void sort() {
         // sort by timestamp
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "PersonObject: " + this.personId + " lines: " + this.jsonList.size() + "\n";
+    }
+
 }
