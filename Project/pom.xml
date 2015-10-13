@@ -116,11 +116,13 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <stylesheetfile>${basedir}/resources/base.css</stylesheetfile>
-                    <stylesheetfile>${basedir}/resources/layout.css</stylesheetfile>
-                    <stylesheetfile>${basedir}/resources/main.css</stylesheetfile>
-                    <stylesheetfile>${basedir}/resources/normalize.css</stylesheetfile>
-                    <stylesheetfile>${basedir}/resources/skeleton.css</stylesheetfile>
+<!--                    <stylesheetfile>${basedir}/resources/css/base.css</stylesheetfile>
+                    <stylesheetfile>${basedir}/resources/css/layout.css</stylesheetfile>
+                    <stylesheetfile>${basedir}/resources/css/main.css</stylesheetfile>
+                    <stylesheetfile>${basedir}/resources/css/normalize.css</stylesheetfile>
+                    <stylesheetfile>${basedir}/resources/css/skeleton.css</stylesheetfile>
+                    <scriptfile>${basedir}/resources/js/canvas.js</scriptfile>-->
+
                 </configuration>
             </plugin>
         </plugins>

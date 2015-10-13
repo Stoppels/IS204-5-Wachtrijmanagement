@@ -17,11 +17,15 @@ public class PersonObject {
     private ArrayList<JsonObject> jsonList;
 
     public PersonObject(ArrayList<JsonObject> jsonList) {
+        this.personId = 0;
         this.jsonList = jsonList;
     }
 
     public void add(JsonObject jsonObject) {
         this.jsonList.add(jsonObject);
+        if (this.personId == 0) {
+            this.personId = this.jsonList.get(0).getTrack_id();
+        }
     }
 
     public void sort() {
@@ -30,7 +34,7 @@ public class PersonObject {
 
     @Override
     public String toString() {
-        return "PersonObject: " + this.personId + " lines: " + this.jsonList.size() + "\n";
+        return "PersonObject - personId: " + this.personId + " nr of lines: " + this.jsonList.size() + "\n";
     }
 
 }

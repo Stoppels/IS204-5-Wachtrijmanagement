@@ -13,10 +13,11 @@ public class Main {
     
     public static void main(String[] args) {
         
+        // Maakt een JsonController om JSON files te verwerken
         JsonController jsoncon = new JsonController("recording001_short.json");
 //        System.out.println(jsoncon);
         
-        
+        // Maakt een PersonController om JsonObjects tot PersonObjects te verwerken
         PersonController perscon = new PersonController();
         perscon.convertJSONtoPerson(jsoncon.getList());
         System.out.println(perscon);

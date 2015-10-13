@@ -21,7 +21,7 @@
             <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" >
             <link href="<c:url value="/resources/css/normalize.css" />" rel="stylesheet" >
             <link href="<c:url value="/resources/css/skeleton.css" />" rel="stylesheet" >
-
+            
         </head>
         <body>
             <!--[if lt IE 7]>
@@ -70,9 +70,12 @@
 
             <div id="banner" class="parallax"><div id="intro" class="banner-background"></div>
                 <div id="contentBox" align="center" >
-                    <!-- hier komt de map -->
 
-                    Hier komt de plattegrond
+                    <div class="profile-title">Plattegrond</div><br>
+                    <canvas id="myCanvas">
+
+                        <script src="<c:url value="/resources/js/canvas.js" />" type="text/javascript"></script>
+                    </canvas>
                 </div>
             </div>
 
