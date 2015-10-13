@@ -1,7 +1,11 @@
 /*
  * A JsonLine object represents on line of JSON from an EAGLE JSON file
  */
-package java.model;
+package Model;
+
+import Resources.Bbox;
+import Resources.Position;
+import Resources.Timestamp;
 
 /**
  *

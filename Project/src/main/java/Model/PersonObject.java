@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java.model;
+package Model;
 
 import java.util.ArrayList;
 
@@ -19,6 +19,10 @@ public class PersonObject {
     public PersonObject(ArrayList<JsonObject> jsonList) {
         this.jsonList = jsonList;
         this.personId = jsonList.get(0).getTrack_id();
+    }
+    
+    public void add(JsonObject jsonObject) {
+        this.jsonList.add(jsonObject);
     }
     
     public void sort() {

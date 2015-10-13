@@ -3,44 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java.controller;
+package Controller;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.model.JsonObject;
+import Model.JsonObject;
 
 /**
  *
  * @author Stefan
  */
 public class JsonController {
-
-    String filename = "recording001_short.json";
-    ArrayList<JsonObject> jsonList;
+    
+    private String filename = "recording001_short.json";
+    private ArrayList<JsonObject> jsonList;
 
     public JsonController(String filename) {
         this.filename = filename;
         this.jsonList = new ArrayList<JsonObject>();
     }
     
-    // reads JSON file
-    public ArrayList<JsonObject> read(String filename) {
-        this.jsonList = readJsonFileToArrayList(filename);
-        return this.jsonList;
-    }
-    
     // reads without converting JSON file
-    public ArrayList<JsonObject> read() {
+    public ArrayList<JsonObject> get() {
         if (this.jsonList.isEmpty()) {
             System.out.println("Reads empty ArrayList from JsonController");
             return null;
         }
         return this.jsonList;
     }
+    
+    // reads JSON file
+    public ArrayList<JsonObject> read() {
+        this.jsonList = read(this.filename);
+        return this.jsonList;
+    }
 
-    private static ArrayList<JsonObject> readJsonFileToArrayList(String filename) {
+    public static ArrayList<JsonObject> read(String filename) {
         
         BufferedReader br = null;
         JsonObject jsonObject;
@@ -84,5 +84,12 @@ public class JsonController {
             }
         }
         return jsonObjects;
+    }
+
+    @Override
+    public String toString() {
+        return "JSONCONTROLLER\n"
+                + ""
+                + get();
     }
 }
