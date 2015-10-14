@@ -18,6 +18,17 @@ public class Bbox {
     private float y2;
     private float z2;
 
+    public Bbox(String bbox){
+        bbox = bbox.replace("[","");
+        bbox = bbox.replace("]","");
+        x1 = Float.parseFloat(bbox.split(",")[0]);
+        y1 = Float.parseFloat(bbox.split(",")[1]);
+        z1 = Float.parseFloat(bbox.split(",")[2]);
+        x2 = Float.parseFloat(bbox.split(",")[3]);
+        y2 = Float.parseFloat(bbox.split(",")[4]);
+        z2 = Float.parseFloat(bbox.split(",")[5]);        
+    }
+    
     public Bbox(float x1, float y1, float z1, float x2, float y2, float z2) {
         this.x1 = x1;
         this.y1 = y1;

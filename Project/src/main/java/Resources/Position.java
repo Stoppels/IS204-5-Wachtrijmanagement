@@ -13,6 +13,13 @@ public class Position {
 
         private double x;
         private double y;
+        
+        public Position (String position){
+        position = position.replace("[","");
+        position = position.replace("]","");
+            x = Double.parseDouble(position.split(",")[0]);
+            y = Double.parseDouble(position.split(",")[1]);
+        }
 
         public Position(double x, double y) {
             this.x = x;
