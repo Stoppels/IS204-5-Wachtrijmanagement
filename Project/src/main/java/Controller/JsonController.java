@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 import Model.JsonObject;
+import java.io.File;
 
 /**
  *
@@ -42,7 +43,7 @@ public class JsonController {
         try {
             String string;
             String[] stringArray;
-            br = new BufferedReader(new FileReader("Json\\" + filename));
+            br = new BufferedReader(new FileReader("Json" + File.separator + filename));
 
             // extracting values from one line of JSON, puts it in JsonLine obj
             while ((string = br.readLine()) != null) {
