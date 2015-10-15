@@ -2,6 +2,7 @@
 package database;
 
 import Model.JsonObject;
+import Model.PersonObject;
 import Resources.Bbox;
 import Resources.Position;
 import Resources.Timestamp;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-public class JsonLineRun {
+public class JsonLineSelect {
     
     private ResultSet result;
     private Connector dbLink;
@@ -20,11 +21,10 @@ public class JsonLineRun {
     private static final String SELECT_STATEMENT 
             = "SELECT track_id , time_stamp , event_type , alive_status , "
             + "position , bbox"
-            + "FROM JsonLine"
-            + "WHERE time_stamp = ? AND track_id = ? "
-            + "OR event_type = ?";
+            + "FROM JsonLine";
     
-    public JsonLineRun (){
+    public JsonLineSelect (){
+        dbLink = new Connector();
     }
     
     public void retrieveConnection(){
@@ -32,19 +32,24 @@ public class JsonLineRun {
         conn = dbLink.getConnection();
     }
     
-    public ArrayList <JsonObject> retrieveData() throws SQLException{
+    public ArrayList <PersonObject> retrieveData() throws SQLException{
         PreparedStatement statement = conn.prepareStatement(SELECT_STATEMENT);
         result = statement.getResultSet();
-        ArrayList <JsonObject> list = new ArrayList();
         result.beforeFirst();
+        ArrayList <PersonObject> list = new ArrayList();
+        ArrayList <JsonObject> listJ = new ArrayList();
         while (result.next() == true){
-        list.add(new JsonObject(result.getInt(1),
+                listJ.add(new JsonObject(result.getInt(1),
                 new Timestamp(result.getString(2)),
                 result.getInt(3),
                 result.getInt(4),
                 new Position(result.getString(5)),
                 new Bbox(result.getString(6))));
+                
         }
+
+            
+        
         return list;
     }
     
