@@ -22,5 +22,10 @@ public class Main {
         perscon.convertJSONtoPerson(jsoncon.getList());
         System.out.println(perscon);
         
+
+        int listNr = 5;
+        for (int i = 0; i < perscon.getList().get(listNr).getJsonList().size(); i++) {
+            System.out.println(perscon.getList().get(listNr).getJsonList().get(i).toString());
+        }
     }
 }

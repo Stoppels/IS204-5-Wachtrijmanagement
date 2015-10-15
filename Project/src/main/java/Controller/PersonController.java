@@ -29,10 +29,16 @@ public class PersonController {
     }
 
     public Timestamp getStart() {
+        if (list.isEmpty()) {
+            return null;
+        }
         return start;
     }
 
     public Timestamp getEnd() {
+        if (list.isEmpty()) {
+            return null;
+        }
         return end;
     }
 
@@ -42,6 +48,12 @@ public class PersonController {
 
     public ArrayList<PersonObject> getList() {
         return list;
+    }
+    
+    private void setStartEndTime() {
+        if (!list.isEmpty()) {
+            // get start end from biggest smallest 
+        }
     }
 
     public ArrayList<PersonObject> convertJSONtoPerson(ArrayList<JsonObject> jsonList) {

@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Resources.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -28,9 +29,24 @@ public class PersonObject {
         }
     }
 
+    public ArrayList<JsonObject> getJsonList() {
+        return jsonList;
+    }
+
     public void sort() {
         // sort by timestamp
     }
+    
+//    public Timestamp getStartTime() {
+//        if (jsonList.isEmpty()) {
+//            return null;
+//        } 
+//        Timestamp t = jsonList.get(0).getTimestamp();
+//        for (JsonObject jsonObject : jsonList) {
+//            
+//        }
+//        return 
+//    }
 
     @Override
     public String toString() {
