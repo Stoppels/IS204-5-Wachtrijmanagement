@@ -35,7 +35,7 @@
                     </div>
                     <div class="block-menu">
                         <select class="navegation_resp" onchange="location.hash = this.options[this.selectedIndex].value;">
-                            <option value="#intro" selected="selected">Intro</option>
+                            <a href="${pageContext.request.contextPath}/map">Plattegrond</a>
                             <option value="#over" class="second_item">Over</option>
                             <option value="#grafiek" class="second_item">Grafieken</option>
 
@@ -45,9 +45,9 @@
                         <nav>
                             <ol class="contentMenu">
                                 <li>
-                                    <a href="#intro"><div class="menubtn homebtn">
-                                            <div class="contentbtn">intro</div>
-                                            <div class="contentbtn2">intro</div>
+                                    <a href="${pageContext.request.contextPath}/map"><div class="menubtn homebtn">
+                                            <div class="contentbtn">plattegrond</div>
+                                            <div class="contentbtn2">plattegrond</div>
                                         </div></a>
                                 </li>
                                 <li>

@@ -21,13 +21,13 @@
             <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" >
             <link href="<c:url value="/resources/css/normalize.css" />" rel="stylesheet" >
             <link href="<c:url value="/resources/css/skeleton.css" />" rel="stylesheet" >
-            
+
         </head>
         <body>
             <!--[if lt IE 7]>
                 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
             <![endif]-->
-            <div id="header" class="parentContainer container">
+<!--            <div id="header" class="parentContainer container">
                 <div class="header-container">
                     <div class="content-logo">
 
@@ -35,7 +35,7 @@
                     </div>
                     <div class="block-menu">
                         <select class="navegation_resp" onchange="location.hash = this.options[this.selectedIndex].value;">
-                            <option value="#intro" selected="selected">Plattegrond</option>
+                            <a href="${pageContext.request.contextPath}/">home</a>
                             <option value="#over" class="second_item">Over</option>
                             <option value="#grafiek" class="second_item">Grafieken</option>
 
@@ -45,9 +45,9 @@
                         <nav>
                             <ol class="contentMenu">
                                 <li>
-                                    <a href="#intro"><div class="menubtn homebtn">
-                                            <div class="contentbtn">plattegrond</div>
-                                            <div class="contentbtn2">plattegrond</div>
+                                    <a href="${pageContext.request.contextPath}/"><div class="menubtn homebtn">
+                                            <div class="contentbtn">home</div>
+                                            <div class="contentbtn2">home</div>
                                         </div></a>
                                 </li>
                                 <li>
@@ -66,65 +66,13 @@
                         </nav>
                     </div>
                 </div>
-            </div> <!-- end header-->
+            </div>  end header-->
+            
+        <canvas id="myCanvas">
+            <script src="<c:url value="/resources/js/canvas.js" />" type="text/javascript"></script>
+        </canvas>
 
-            <div id="banner" class="parallax"><div id="intro" class="banner-background"></div>
-                <div id="contentBox" align="center" >
-
-                    <div class="profile-title">Plattegrond</div><br>
-                    <canvas id="myCanvas">
-
-                        <script src="<c:url value="/resources/js/canvas.js" />" type="text/javascript"></script>
-                    </canvas>
-                </div>
-            </div>
-
-            <!-- end banner -->
-
-        <section id="about"><div id="over"></div>
-            <div class="section">
-                <article class="contentsection">
-                    <div class="profile">
-                        <div class="pofile-item">
-                            <div class="profile-element element-1">
-                            </div>
-                            <div class="profile-title">Zie plattegrond</div>
-                        </div>
-                        <div class="pofile-item">
-                            <div class="profile-element element-2">
-                            </div>
-                            <div class="profile-title">Met gebruik van Eagle Eye</div>
-                        </div>
-                        <div class="pofile-item">
-                            <div class="profile-element element-3"></div>
-                            <div class="profile-title">Alle gewenste statistieken</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section><!-- end about -->
-        <!-- services -->
-        <div id="services" class="container"><div id="grafiek"></div>
-            <div class="section">
-                <div class="teamhead">
-                    <div class="team-title">Grafieken</div>
-                    <article class="data-content">
-                        Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum el texto de relleno impresorpersonase dedica a la imprenta) desconocido usó.
-                    </article>
-
-                </div>
-            </div>
-        </div>
-        <!-- end services -->
-
-        <div id="footer" class="container">
-            <div class="footerContent">
-                <div class="socialtext">
-                    Footer meuk komt hier
-                </div>
-
-            </div>
-        </div><!-- end footer -->
-    </body>
+    </div>
+</body>
 </html>
 
