@@ -101,13 +101,17 @@ public class Timestamp implements Comparable<Timestamp> {
     public String toString() {
         return this.year + this.month + this.date + "T" + this.hour + this.minute + this.second + this.nano;
     }
+    
+    public double toDouble() {
+        return Double.parseDouble("" + this.year + this.month + this.date + this.hour + this.minute + this.second + this.nano);
+    }
 
     @Override
     public int compareTo(Timestamp o) {
-        // CompareTo returns 1, 0, -1
-        //  1 - This obj > obj we're comparing against
-        //  0 - This obj == obj we're comparing against
-        // -1 - This obj < obj we're comparing against
-        return this.toString().compareTo(o.toString());
+        int result = 0;
+        if (this.toDouble() > o.toDouble()) return 1;
+        if (this.toDouble() == o.toDouble()) return 0;
+        if (this.toDouble() > o.toDouble()) return -1;
+        return result;
     }
 }
