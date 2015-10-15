@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class JsonLineSelect {
     
     private ResultSet result;
-    private Connector dbLink;
+    private final Connector dbLink;
     private Connection conn;
     private static final String SELECT_STATEMENT 
             = "SELECT track_id , time_stamp , event_type , alive_status , "
@@ -37,9 +37,12 @@ public class JsonLineSelect {
         result = statement.getResultSet();
         result.beforeFirst();
         ArrayList <PersonObject> list = new ArrayList();
-        ArrayList <JsonObject> listJ = new ArrayList();
+        ArrayList <ArrayList<JsonObject>> listJ = new ArrayList();
+        for (int i = 0;i>listJ.size();i++){
+            listJ.set(i, new ArrayList());
+        }
         while (result.next() == true){
-                listJ.add(new JsonObject(result.getInt(1),
+                listJ.get(result.getInt(1)).add(new JsonObject(result.getInt(1),
                 new Timestamp(result.getString(2)),
                 result.getInt(3),
                 result.getInt(4),
@@ -47,24 +50,31 @@ public class JsonLineSelect {
                 new Bbox(result.getString(6))));
                 
         }
-
-            
-        
+        for (ArrayList<JsonObject> listJ1 : listJ) {
+            list.add(new PersonObject(listJ1));
+        }
         return list;
     }
-    
-    public ArrayList <JsonObject> retrieveData(String sqlStatement) throws SQLException{
+
+    public ArrayList <PersonObject> retrieveData(String sqlStatement) throws SQLException{
         PreparedStatement statement = conn.prepareStatement(sqlStatement);
         result = statement.getResultSet();
-        ArrayList <JsonObject> list = new ArrayList();
+        ArrayList <PersonObject> list = new ArrayList();
+        ArrayList <ArrayList<JsonObject>> listJ = new ArrayList();
+        for (int i = 0;i>listJ.size();i++){
+            listJ.set(i, new ArrayList());
+        }
         result.beforeFirst();
         while (result.next() == true){
-        list.add(new JsonObject(result.getInt(1),
+        listJ.get(result.getInt(1)).add(new JsonObject(result.getInt(1),
                 new Timestamp(result.getString(2)),
                 result.getInt(3),
                 result.getInt(4),
                 new Position(result.getString(5)),
                 new Bbox(result.getString(6))));
+        }
+        for (ArrayList<JsonObject> listJ1 : listJ) {
+            list.add(new PersonObject(listJ1));
         }
         return list;
     }
