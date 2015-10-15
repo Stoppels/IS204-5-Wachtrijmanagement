@@ -17,12 +17,10 @@ public class PersonObject {
     private Timestamp start;
     private Timestamp end;
     private int personId;
-    private ArrayList<JsonObject> jsonList;
+    private final ArrayList<JsonObject> jsonList;
 
     public PersonObject(ArrayList<JsonObject> jsonList) {
-        this.personId = 0;
         this.jsonList = jsonList;
-        setStartEndTime();
     }
 
     public void add(JsonObject jsonObject) {
@@ -37,17 +35,19 @@ public class PersonObject {
     }
 
     public Timestamp getStart() {
+        setStartEndTime();
         return start;
     }
 
     public Timestamp getEnd() {
+        setStartEndTime();
         return end;
     }
-    
+
     private void setStartEndTime() {
         if (!this.jsonList.isEmpty()) {
             this.start = this.jsonList.get(0).getTimestamp();
-            this.end = this.jsonList.get(jsonList.size()).getTimestamp();
+            this.end = this.jsonList.get(jsonList.size() - 1).getTimestamp();
         }
     }
 
@@ -57,7 +57,11 @@ public class PersonObject {
 
     @Override
     public String toString() {
-        return "PersonObject - personId: " + this.personId + " nr of lines: " + this.jsonList.size() + "\n";
+        return "PersonObject - personId: " + this.personId + " nr of lines: " + this.jsonList.size()
+                //#############################################################################################################################   REMOVE
+                + "\tbegin time: " + this.start + " end time: " + this.end
+        //#############################################################################################################################   REMOVE
+                + "\n";
     }
 
 }

@@ -9,10 +9,9 @@ import Model.JsonObject;
 import Model.PersonObject;
 import Resources.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
- * PersonController zet een ArrayList<JsonObject> om naar een PersonObject, per
+ * PersonController zet een ArrayList< JsonObject> om naar een PersonObject, per
  * track id. Zo kunnen aparte personen verstuurd worden naar de View, die op
  * Timestamp gesorteerd zijn.
  *
@@ -23,22 +22,10 @@ public class PersonController {
     private Timestamp start;
     private Timestamp end;
     private int amountPersons;
-    private ArrayList<PersonObject> list;
+    private final ArrayList<PersonObject> list;
 
     public PersonController() {
         this.list = new ArrayList<PersonObject>();
-    }
-
-    private void setStartEndTime() {
-        if (!this.list.isEmpty()) {
-            Timestamp s = list.get(0).getStart();
-            for (PersonObject personObject : list) {
-                if (s.compareTo(personObject.getStart()) == 1) {
-                    s = personObject.getStart();
-                }
-            }
-            this.start = s;
-        }
     }
 
     public Timestamp getStart() {
@@ -108,8 +95,24 @@ public class PersonController {
                 }
             }
         }
+//        setStartEndTime();
     }
 
+    private void setStartEndTime() {
+        if (this.list.isEmpty()) {
+            System.out.println("setStartEndTime() can't compute, list is empty");
+        } else {
+            Timestamp s = list.get(0).getStart();
+            for (PersonObject personObject : list) {
+                System.out.println(s.toString());
+                if (s.compareTo(personObject.getStart()) == 1) {
+                    s = personObject.getStart();
+                }
+            }
+            this.start = s;
+        }
+    }
+    
     @Override
     public String toString() {
         return "PERSONOBJECT\n"

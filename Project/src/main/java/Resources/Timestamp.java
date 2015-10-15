@@ -103,7 +103,7 @@ public class Timestamp implements Comparable<Timestamp> {
     }
     
     public double toDouble() {
-        return Double.parseDouble("" + this.year + this.month + this.date + this.hour + this.minute + this.second + this.nano);
+        return Double.parseDouble("" + this.year + this.month + this.date + this.hour + this.minute + this.second);
     }
 
     @Override
