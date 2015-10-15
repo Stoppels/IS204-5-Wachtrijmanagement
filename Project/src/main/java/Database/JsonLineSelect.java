@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class JsonLineSelect {
     
-    private ResultSet result;
     private final Connector dbLink;
+    private ResultSet result;
     private Connection conn;
     private static final String SELECT_STATEMENT 
             = "SELECT track_id , time_stamp , event_type , alive_status , "

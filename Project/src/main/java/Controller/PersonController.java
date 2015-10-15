@@ -43,7 +43,6 @@ public class PersonController {
         }
         for (PersonObject person : list) {
             end = person.getEnd();
-            System.out.println(end);
             if (end.compareTo(person.getEnd()) == -1) {
                 end = person.getEnd();
             }
@@ -85,7 +84,7 @@ public class PersonController {
         // Maakt een nieuwe PersonObject voor elke track_id
         // Verdeelt alle Json lijnen per track_id over alle PersonObjects
         int[] p = nrOfPersons(jsonList);
-        for (int i = 0; i < p.length; i++) {
+        for (int i = 0; i < p.length -1; i++) {
             list.add(new PersonObject(new ArrayList<JsonObject>()));
         }
         for (JsonObject jsonObject : jsonList) {
@@ -95,7 +94,7 @@ public class PersonController {
                 }
             }
         }
-//        setStartEndTime();
+        setStartEndTime();
     }
 
     private void setStartEndTime() {
@@ -104,7 +103,6 @@ public class PersonController {
         } else {
             Timestamp s = list.get(0).getStart();
             for (PersonObject personObject : list) {
-                System.out.println(s.toString());
                 if (s.compareTo(personObject.getStart()) == 1) {
                     s = personObject.getStart();
                 }

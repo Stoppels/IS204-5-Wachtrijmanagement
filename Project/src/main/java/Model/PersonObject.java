@@ -51,10 +51,6 @@ public class PersonObject {
         }
     }
 
-    public void sort() {
-        // sort by timestamp
-    }
-
     @Override
     public String toString() {
         return "PersonObject - personId: " + this.personId + " nr of lines: " + this.jsonList.size()
