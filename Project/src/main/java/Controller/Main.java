@@ -15,21 +15,14 @@ public class Main {
         
         // Maakt een JsonController om JSON files te verwerken
         JsonController JC = new JsonController("recording001_short.json");
-//        System.out.println(JC);
         
         // Maakt een PersonController om JsonObjects tot PersonObjects te verwerken
         PersonController PC = new PersonController();
         PC.convertJsonToPerson(JC.getList());
-//        System.out.println(PC);
+
         
-        // Print JsonList van listNr
-//        int listNr = 5;
-//        for (int i = 0; i < PC.getList().get(listNr).getJsonList().size(); i++) {
-//            System.out.println(PC.getList().get(listNr).getJsonList().get(i).toString());
-//            System.out.println(PC.getList().get(listNr).getJsonList().get(i).getTimestamp().toDouble());
-//        }
-        System.out.println(PC.getStart().toString());
-        System.out.println(PC.getEnd().toString());
+        System.out.println("Start time: \t" + PC.getStart().toString());
+        System.out.println("End time: \t" + PC.getEnd().toString());
         
         
     }

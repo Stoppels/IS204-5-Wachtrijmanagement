@@ -96,12 +96,21 @@ public class Timestamp implements Comparable<Timestamp> {
     public void setNano(int nano) {
         this.nano = nano;
     }
-
+    
     @Override
     public String toString() {
-        return this.year + this.month + this.date + "T" + this.hour + this.minute + this.second + this.nano;
+        StringBuilder s = new StringBuilder();
+        s.append(String.format("%04d", this.year));
+        s.append(String.format("%02d", this.month));
+        s.append(String.format("%02d", this.date));
+        s.append("T");
+        s.append(String.format("%02d", this.hour));
+        s.append(String.format("%02d", this.minute));
+        s.append(String.format("%02d", this.second));
+        s.append(String.format("%06d", this.nano));
+        return s.toString();
     }
-    
+
     public double toDouble() {
         return Double.parseDouble("" + this.year + this.month + this.date + this.hour + this.minute + this.second);
     }
@@ -109,9 +118,15 @@ public class Timestamp implements Comparable<Timestamp> {
     @Override
     public int compareTo(Timestamp o) {
         int result = 0;
-        if (this.toDouble() > o.toDouble()) return 1;
-        if (this.toDouble() == o.toDouble()) return 0;
-        if (this.toDouble() > o.toDouble()) return -1;
+        if (this.toDouble() > o.toDouble()) {
+            return 1;
+        }
+        if (this.toDouble() == o.toDouble()) {
+            return 0;
+        }
+        if (this.toDouble() > o.toDouble()) {
+            return -1;
+        }
         return result;
     }
 }
