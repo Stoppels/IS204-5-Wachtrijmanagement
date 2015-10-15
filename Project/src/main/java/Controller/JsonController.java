@@ -18,23 +18,23 @@ import java.io.File;
  */
 public class JsonController {
     
-    private String filename = "recording001_short.json";
+    private final String filename;
     private ArrayList<JsonObject> jsonList;
 
     public JsonController(String filename) {
         this.filename = filename;
-        this.jsonList = read(filename);
+        this.jsonList = readJson(filename);
     }
     
     // reads without converting JSON file
     public ArrayList<JsonObject> getList() {
         if (this.jsonList.isEmpty()) {
-            this.jsonList = read(this.filename);
+            this.jsonList = readJson(this.filename);
         }
         return this.jsonList;
     }
 
-    public static ArrayList<JsonObject> read(String filename) {
+    public static ArrayList<JsonObject> readJson(String filename) {
         
         BufferedReader br = null;
         JsonObject jsonObject;
@@ -44,30 +44,7 @@ public class JsonController {
             String string;
             String[] stringArray;
             br = new BufferedReader(new FileReader("Json" + File.separator + filename));
-
-            // extracting values from one line of JSON, puts it in JsonLine obj
-            while ((string = br.readLine()) != null) {
-                stringArray = string.split(",");
-                for (int i = 0; i < stringArray.length; i++) {
-                    stringArray[i] = stringArray[i].replaceAll("[\\[\\]\"}]", "");
-                    stringArray[i] = stringArray[i].substring(stringArray[i].indexOf(':') + 1).trim();
-                }
-                jsonObject = new JsonObject();
-                jsonObject.setTrack_id(Integer.parseInt(stringArray[0]));
-                jsonObject.setTimestamp(stringArray[1]);
-                jsonObject.setEvent_type(Integer.parseInt(stringArray[2]));
-                jsonObject.setAlive_status(Integer.parseInt(stringArray[3]));
-                jsonObject.setPosition(Double.parseDouble(stringArray[4]),
-                        Double.parseDouble(stringArray[5]));
-                jsonObject.setBbox(Float.parseFloat(stringArray[6]),
-                        Float.parseFloat(stringArray[7]),
-                        Float.parseFloat(stringArray[8]),
-                        Float.parseFloat(stringArray[9]),
-                        Float.parseFloat(stringArray[10]),
-                        Float.parseFloat(stringArray[11]));
-                jsonObjects.add(jsonObject);
-
-            }
+            extractLine(br, jsonObjects);
         } catch (IOException e) {
         } finally {
             try {
@@ -78,6 +55,35 @@ public class JsonController {
             }
         }
         return jsonObjects;
+    }
+
+    private static void extractLine(BufferedReader br, ArrayList<JsonObject> jsonObjects) throws NumberFormatException, IOException {
+        String string;
+        String[] stringArray;
+        JsonObject jsonObject;
+        // extracting values from one line of JSON, puts it in JsonLine obj
+        while ((string = br.readLine()) != null) {
+            stringArray = string.split(",");
+            for (int i = 0; i < stringArray.length; i++) {
+                stringArray[i] = stringArray[i].replaceAll("[\\[\\]\"}]", "");
+                stringArray[i] = stringArray[i].substring(stringArray[i].indexOf(':') + 1).trim();
+            }
+            jsonObject = new JsonObject();
+            jsonObject.setTrack_id(Integer.parseInt(stringArray[0]));
+            jsonObject.setTimestamp(stringArray[1]);
+            jsonObject.setEvent_type(Integer.parseInt(stringArray[2]));
+            jsonObject.setAlive_status(Integer.parseInt(stringArray[3]));
+            jsonObject.setPosition(Double.parseDouble(stringArray[4]),
+                    Double.parseDouble(stringArray[5]));
+            jsonObject.setBbox(Float.parseFloat(stringArray[6]),
+                    Float.parseFloat(stringArray[7]),
+                    Float.parseFloat(stringArray[8]),
+                    Float.parseFloat(stringArray[9]),
+                    Float.parseFloat(stringArray[10]),
+                    Float.parseFloat(stringArray[11]));
+            jsonObjects.add(jsonObject);
+            
+        }
     }
 
     @Override

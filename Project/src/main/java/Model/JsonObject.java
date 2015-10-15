@@ -66,17 +66,9 @@ public class JsonObject {
     public void setAlive_status(int alive_status) {
         this.alive_status = alive_status;
     }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
     
     public void setPosition(double d1, double d2) {
         this.position = new Position(d1, d2);
-    }
-    
-    public void setBbox(Bbox bbox) {
-        this.bbox = bbox;
     }
     
     public void setBbox(float x1, float y1, float z1, float x2, float y2, float z2) {

@@ -9,6 +9,7 @@ import Model.JsonObject;
 import Model.PersonObject;
 import Resources.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * PersonController zet een ArrayList<JsonObject> om naar een PersonObject, per
@@ -26,11 +27,10 @@ public class PersonController {
 
     public PersonController() {
         this.list = new ArrayList<PersonObject>();
-        setStartEndTime();
     }
-    
+
     private void setStartEndTime() {
-        if (!this.list.isEmpty()){
+        if (!this.list.isEmpty()) {
             Timestamp s = list.get(0).getStart();
             for (PersonObject personObject : list) {
                 if (s.compareTo(personObject.getStart()) == 1) {
@@ -43,6 +43,7 @@ public class PersonController {
 
     public Timestamp getStart() {
         if (list.isEmpty()) {
+            System.out.println("getStart() can't compute, list is empty");
             return null;
         }
         return start;
@@ -50,7 +51,7 @@ public class PersonController {
 
     public Timestamp getEnd() {
         if (list.isEmpty()) {
-            System.out.println("Is Empty.");
+            System.out.println("getEnd() can't compute, list is empty");
             return null;
         }
         for (PersonObject person : list) {
@@ -71,9 +72,9 @@ public class PersonController {
         return list;
     }
 
-    public ArrayList<PersonObject> convertJSONtoPerson(ArrayList<JsonObject> jsonList) {
-
-        // verdeel arraylist over PersonObjects op basis van trackid
+    // return een array met alle unieke track_id's
+    // Maakt een nieuwe PersonObject voor elke track_id
+    private int[] nrOfPersons(ArrayList<JsonObject> jsonList) {
         int[] first = new int[1];
         int[] second;
         for (JsonObject jsonObject : jsonList) {
@@ -81,24 +82,31 @@ public class PersonController {
             for (int i = 0; i < first.length; i++) {
                 if (jsonObject.getTrack_id() != first[i]) {
                     count++;
-                } else {
-                    list.get(i).add(jsonObject);
                 }
             }
             if (count == first.length) {
                 list.add(new PersonObject(new ArrayList<JsonObject>()));
-                list.get(count-1).add(jsonObject);
                 second = new int[first.length + 1];
-                for (int i = 0; i < first.length; i++) {
-                    second[i] = first[i];
-                }
+                System.arraycopy(first, 0, second, 0, first.length);
                 first = second;
                 first[count - 1] = jsonObject.getTrack_id();
             }
-            // create personObject for each unique track id
         }
-        this.amountPersons = first.length -1;
-        return list;
+        this.amountPersons = first.length - 1;
+        return first;
+    }
+
+    // Verdeelt alle Json lijnen per track_id over alle PersonObjects
+    public void convertJsonToPerson(ArrayList<JsonObject> jsonList) {
+        // verdeel arraylist over PersonObjects op basis van trackid
+        int[] p = nrOfPersons(jsonList);
+        for (JsonObject jsonObject : jsonList) {
+            for (int i = 0; i < p.length; i++) {
+                if (jsonObject.getTrack_id() == p[i]) {
+                    list.get(i).add(jsonObject);
+                }
+            }
+        }
     }
 
     @Override
