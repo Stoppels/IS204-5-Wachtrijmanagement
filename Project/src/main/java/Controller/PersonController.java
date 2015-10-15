@@ -41,12 +41,6 @@ public class PersonController {
             System.out.println("getEnd() can't compute, list is empty");
             return null;
         }
-        for (PersonObject person : list) {
-            end = person.getEnd();
-            if (end.compareTo(person.getEnd()) == -1) {
-                end = person.getEnd();
-            }
-        }
         return end;
     }
 
@@ -102,11 +96,16 @@ public class PersonController {
             System.out.println("setStartEndTime() can't compute, list is empty");
         } else {
             Timestamp s = list.get(0).getStart();
+            Timestamp e = list.get(0).getEnd();
             for (PersonObject personObject : list) {
                 if (s.compareTo(personObject.getStart()) == 1) {
                     s = personObject.getStart();
                 }
+                if (e.compareTo(personObject.getEnd()) == -1) {
+                    e = personObject.getEnd();
+                }
             }
+            this.end = e;
             this.start = s;
         }
     }

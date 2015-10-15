@@ -112,21 +112,20 @@ public class Timestamp implements Comparable<Timestamp> {
     }
 
     public double toDouble() {
-        return Double.parseDouble("" + this.year + this.month + this.date + this.hour + this.minute + this.second);
+        String s = this.toString();
+        s = s.substring(0, 8) + s.substring(9);
+        return Double.parseDouble(s);
     }
 
     @Override
     public int compareTo(Timestamp o) {
-        int result = 0;
+        int result;
         if (this.toDouble() > o.toDouble()) {
             return 1;
         }
-        if (this.toDouble() == o.toDouble()) {
-            return 0;
-        }
-        if (this.toDouble() > o.toDouble()) {
+        if (this.toDouble() < o.toDouble()) {
             return -1;
         }
-        return result;
+        return 0;
     }
 }

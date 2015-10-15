@@ -54,9 +54,7 @@ public class PersonObject {
     @Override
     public String toString() {
         return "PersonObject - personId: " + this.personId + " nr of lines: " + this.jsonList.size()
-                //#############################################################################################################################   REMOVE
                 + "\tbegin time: " + this.start + " end time: " + this.end
-        //#############################################################################################################################   REMOVE
                 + "\n";
     }
 
