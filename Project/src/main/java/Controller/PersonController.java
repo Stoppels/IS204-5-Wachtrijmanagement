@@ -26,6 +26,19 @@ public class PersonController {
 
     public PersonController() {
         this.list = new ArrayList<PersonObject>();
+        setStartEndTime();
+    }
+    
+    private void setStartEndTime() {
+        if (!this.list.isEmpty()){
+            Timestamp s = list.get(0).getStart();
+            for (PersonObject personObject : list) {
+                if (s.compareTo(personObject.getStart()) == 1) {
+                    s = personObject.getStart();
+                }
+            }
+            this.start = s;
+        }
     }
 
     public Timestamp getStart() {
@@ -37,7 +50,15 @@ public class PersonController {
 
     public Timestamp getEnd() {
         if (list.isEmpty()) {
+            System.out.println("Is Empty.");
             return null;
+        }
+        for (PersonObject person : list) {
+            end = person.getEnd();
+            System.out.println(end);
+            if (end.compareTo(person.getEnd()) == -1) {
+                end = person.getEnd();
+            }
         }
         return end;
     }
@@ -48,12 +69,6 @@ public class PersonController {
 
     public ArrayList<PersonObject> getList() {
         return list;
-    }
-    
-    private void setStartEndTime() {
-        if (!list.isEmpty()) {
-            // get start end from biggest smallest 
-        }
     }
 
     public ArrayList<PersonObject> convertJSONtoPerson(ArrayList<JsonObject> jsonList) {

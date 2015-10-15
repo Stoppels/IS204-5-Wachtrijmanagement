@@ -20,12 +20,17 @@ public class Main {
         // Maakt een PersonController om JsonObjects tot PersonObjects te verwerken
         PersonController perscon = new PersonController();
         perscon.convertJSONtoPerson(jsoncon.getList());
-        System.out.println(perscon);
+//        System.out.println(perscon);
         
 
         int listNr = 5;
         for (int i = 0; i < perscon.getList().get(listNr).getJsonList().size(); i++) {
-            System.out.println(perscon.getList().get(listNr).getJsonList().get(i).toString());
+//            System.out.println(perscon.getList().get(listNr).getJsonList().get(i).toString());
+//            System.out.println(perscon.getList().get(listNr).getJsonList().get(i).getTimestamp().toDouble());
         }
+        System.out.println(perscon.getStart().toString());
+//        System.out.println(perscon.getEnd().toString());
+        
+        
     }
 }

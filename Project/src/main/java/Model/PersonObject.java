@@ -14,12 +14,15 @@ import java.util.ArrayList;
  */
 public class PersonObject {
 
+    private Timestamp start;
+    private Timestamp end;
     private int personId;
     private ArrayList<JsonObject> jsonList;
 
     public PersonObject(ArrayList<JsonObject> jsonList) {
         this.personId = 0;
         this.jsonList = jsonList;
+        setStartEndTime();
     }
 
     public void add(JsonObject jsonObject) {
@@ -33,20 +36,24 @@ public class PersonObject {
         return jsonList;
     }
 
+    public Timestamp getStart() {
+        return start;
+    }
+
+    public Timestamp getEnd() {
+        return end;
+    }
+    
+    private void setStartEndTime() {
+        if (!this.jsonList.isEmpty()) {
+            this.start = this.jsonList.get(0).getTimestamp();
+            this.end = this.jsonList.get(jsonList.size()).getTimestamp();
+        }
+    }
+
     public void sort() {
         // sort by timestamp
     }
-    
-//    public Timestamp getStartTime() {
-//        if (jsonList.isEmpty()) {
-//            return null;
-//        } 
-//        Timestamp t = jsonList.get(0).getTimestamp();
-//        for (JsonObject jsonObject : jsonList) {
-//            
-//        }
-//        return 
-//    }
 
     @Override
     public String toString() {
