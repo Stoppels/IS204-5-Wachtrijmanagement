@@ -46,12 +46,14 @@ public class JsonController {
             br = new BufferedReader(new FileReader("Json" + File.separator + filename));
             extractLine(br, jsonObjects);
         } catch (IOException e) {
+            System.out.println(e);
         } finally {
             try {
                 if (br != null) {
                     br.close();
                 }
             } catch (IOException ex) {
+                System.out.println(ex);
             }
         }
         return jsonObjects;

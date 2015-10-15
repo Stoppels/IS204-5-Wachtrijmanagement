@@ -21,8 +21,8 @@ public class Main {
         PC.convertJsonToPerson(JC.getList());
 
         
-        System.out.println("Start time: \t" + PC.getStart().toString());
-        System.out.println("End time: \t" + PC.getEnd().toString());
+        System.out.println("Start time: \t" + PC.getStartTime().toString());
+        System.out.println("End time: \t" + PC.getEndTime().toString());
         
         
         

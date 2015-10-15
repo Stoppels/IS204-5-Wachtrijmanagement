@@ -19,6 +19,8 @@ import java.util.ArrayList;
  */
 public class PersonController {
 
+    private final String ERROR = "\nCan't compute, list is empty";
+
     private Timestamp start;
     private Timestamp end;
     private int amountPersons;
@@ -28,17 +30,17 @@ public class PersonController {
         this.list = new ArrayList<PersonObject>();
     }
 
-    public Timestamp getStart() {
+    public Timestamp getStartTime() {
         if (list.isEmpty()) {
-            System.out.println("getStart() can't compute, list is empty");
+            System.out.println("getStart()" + ERROR);
             return null;
         }
         return start;
     }
 
-    public Timestamp getEnd() {
+    public Timestamp getEndTime() {
         if (list.isEmpty()) {
-            System.out.println("getEnd() can't compute, list is empty");
+            System.out.println("getEnd()" + ERROR);
             return null;
         }
         return end;
@@ -51,8 +53,8 @@ public class PersonController {
     public ArrayList<PersonObject> getList() {
         return list;
     }
-    
-    private int[] nrOfPersons(ArrayList<JsonObject> jsonList) {
+
+    private int[] calculateAmountPersons(ArrayList<JsonObject> jsonList) {
         // geeft een array met alle unieke track_id's
         int[] first = new int[1];
         int[] second;
@@ -77,23 +79,27 @@ public class PersonController {
     public void convertJsonToPerson(ArrayList<JsonObject> jsonList) {
         // Maakt een nieuwe PersonObject voor elke track_id
         // Verdeelt alle Json lijnen per track_id over alle PersonObjects
-        int[] p = nrOfPersons(jsonList);
-        for (int i = 0; i < p.length -1; i++) {
-            list.add(new PersonObject(new ArrayList<JsonObject>()));
-        }
-        for (JsonObject jsonObject : jsonList) {
-            for (int i = 0; i < p.length; i++) {
-                if (jsonObject.getTrack_id() == p[i]) {
-                    list.get(i).add(jsonObject);
+        if (!jsonList.isEmpty()) {
+            int[] p = calculateAmountPersons(jsonList);
+            for (int i = 0; i < p.length - 1; i++) {
+                list.add(new PersonObject(new ArrayList<JsonObject>()));
+            }
+            for (JsonObject jsonObject : jsonList) {
+                for (int i = 0; i < p.length; i++) {
+                    if (jsonObject.getTrack_id() == p[i]) {
+                        list.get(i).add(jsonObject);
+                    }
                 }
             }
+            setStartEndTime();
+        } else {
+            System.out.println("convertJsonToPerson()" + ERROR);
         }
-        setStartEndTime();
     }
 
     private void setStartEndTime() {
         if (this.list.isEmpty()) {
-            System.out.println("setStartEndTime() can't compute, list is empty");
+            System.out.println("setStartEndTime()" + ERROR);
         } else {
             Timestamp s = list.get(0).getStart();
             Timestamp e = list.get(0).getEnd();
@@ -109,7 +115,7 @@ public class PersonController {
             this.start = s;
         }
     }
-    
+
     @Override
     public String toString() {
         return "PERSONOBJECT\n"
