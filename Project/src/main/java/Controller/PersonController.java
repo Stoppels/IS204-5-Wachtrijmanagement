@@ -71,10 +71,9 @@ public class PersonController {
     public ArrayList<PersonObject> getList() {
         return list;
     }
-
-    // return een array met alle unieke track_id's
-    // Maakt een nieuwe PersonObject voor elke track_id
+    
     private int[] nrOfPersons(ArrayList<JsonObject> jsonList) {
+        // geeft een array met alle unieke track_id's
         int[] first = new int[1];
         int[] second;
         for (JsonObject jsonObject : jsonList) {
@@ -85,7 +84,6 @@ public class PersonController {
                 }
             }
             if (count == first.length) {
-                list.add(new PersonObject(new ArrayList<JsonObject>()));
                 second = new int[first.length + 1];
                 System.arraycopy(first, 0, second, 0, first.length);
                 first = second;
@@ -96,10 +94,13 @@ public class PersonController {
         return first;
     }
 
-    // Verdeelt alle Json lijnen per track_id over alle PersonObjects
     public void convertJsonToPerson(ArrayList<JsonObject> jsonList) {
-        // verdeel arraylist over PersonObjects op basis van trackid
+        // Maakt een nieuwe PersonObject voor elke track_id
+        // Verdeelt alle Json lijnen per track_id over alle PersonObjects
         int[] p = nrOfPersons(jsonList);
+        for (int i = 0; i < p.length; i++) {
+            list.add(new PersonObject(new ArrayList<JsonObject>()));
+        }
         for (JsonObject jsonObject : jsonList) {
             for (int i = 0; i < p.length; i++) {
                 if (jsonObject.getTrack_id() == p[i]) {
