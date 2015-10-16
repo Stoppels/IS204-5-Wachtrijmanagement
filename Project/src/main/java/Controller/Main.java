@@ -13,6 +13,14 @@ public class Main {
     
     public static void main(String[] args) {
         
+        
+        testGetStartEndTime();
+        
+        
+    }
+    
+    // Gets Start and End time from json file
+    public static void testGetStartEndTime() {
         // Maakt een JsonController om JSON files te verwerken
         JsonController JC = new JsonController("recording001_short.json");
         
@@ -23,8 +31,5 @@ public class Main {
         
         System.out.println("Start time: \t" + PC.getStartTime().toString());
         System.out.println("End time: \t" + PC.getEndTime().toString());
-        
-        
-        
     }
 }
