@@ -1,7 +1,6 @@
 package Database;
 
 import java.sql.*;
-import com.mysql.jdbc.Driver;
 
 /**
  *
@@ -25,10 +24,7 @@ public class Connector {
             conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
             
         } catch (SQLException e) {
-
-            e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
@@ -38,7 +34,6 @@ public class Connector {
                 conn.close();
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
         conn = null;
@@ -48,7 +43,6 @@ public class Connector {
         try {
             result = query.executeQuery();
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return result;
     }
@@ -57,7 +51,6 @@ public class Connector {
         try {
             affectedRows = pstmt.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return affectedRows;
     }

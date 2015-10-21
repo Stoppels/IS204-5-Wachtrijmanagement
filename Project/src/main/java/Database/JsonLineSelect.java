@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class JsonLineSelect {
     
-    private final Connector dbLink;
+    private Connector dbLink;
     private ResultSet result;
     private Connection conn;
     private static final String SELECT_STATEMENT 

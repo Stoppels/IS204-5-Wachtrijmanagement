@@ -25,8 +25,8 @@ public class JsonLineInsert {
             + "INTO JsonLine"
             + "VALUES ?,?,?,?,?,?,?";
 
-    public JsonLineInsert(Connector connect) {
-        dbLink = connect;
+    public JsonLineInsert(Connector c) {
+        dbLink = c;
         conn = dbLink.getConnection();
     }
 
