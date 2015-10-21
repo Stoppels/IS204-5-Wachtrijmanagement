@@ -5,6 +5,12 @@
  */
 package Controller;
 
+import Database.Connector;
+import Database.JsonLineInsert;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Testing stuff in Main
  * @author Stefan
@@ -12,24 +18,24 @@ package Controller;
 public class Main {
     
     public static void main(String[] args) {
-        
-        
-        testGetStartEndTime();
-        
-        
-    }
-    
-    // Gets Start and End time from json file
-    public static void testGetStartEndTime() {
+        String fileName = "recording001_short.json";
         // Maakt een JsonController om JSON files te verwerken
-        JsonController JC = new JsonController("recording001_short.json");
-        
+        JsonController JC = new JsonController(fileName);
+        Connector connect = new Connector();
+        connect.startConnection();
         // Maakt een PersonController om JsonObjects tot PersonObjects te verwerken
         PersonController PC = new PersonController();
         PC.convertJsonToPerson(JC.getList());
-
-        
+        JsonLineInsert insert = new JsonLineInsert(connect);
+        try {
+            insert.insertData(PC.getList(), fileName);
+        } catch (SQLException ex) {
+            System.out.println("Database Connection Failed");
+        }
         System.out.println("Start time: \t" + PC.getStartTime().toString());
         System.out.println("End time: \t" + PC.getEndTime().toString());
+        
+        
+        
     }
 }
