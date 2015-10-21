@@ -1,10 +1,7 @@
 package Database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import com.mysql.jdbc.Driver;
 
 /**
  *
@@ -13,8 +10,8 @@ import java.sql.SQLException;
 public class Connector {
 
     public static final String DRIVER = "com.mysql.jdbc.Driver";
-    public static final String DBURL = "https://oege.ie.hva.nl:3306";
-    private static final String DBUSER = "zshayann001";
+    public static final String DBURL = "https://oege.ie.hva.nl:3306/zshayann001";
+    private static final String DBUSER = "shayann001";
     private static final String DBPASS = "JbJDsT1n/QOnyK";
 
     private ResultSet result = null;
@@ -23,10 +20,10 @@ public class Connector {
     
     public void startConnection() {
         try {
-
+            
             Class.forName(DRIVER);
             conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
-
+            
         } catch (SQLException e) {
 
             e.printStackTrace();
