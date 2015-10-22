@@ -26,7 +26,6 @@ public class Main {
         for (PersonObject p : PC.getList()) {
             System.out.println(p.getJsonList().toString());
         }
-
         
         System.out.println("Start time: \t" + PC.getStartTime().toString());
         System.out.println("End time: \t" + PC.getEndTime().toString());

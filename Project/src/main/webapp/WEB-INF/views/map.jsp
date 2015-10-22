@@ -26,6 +26,21 @@
         <body>
         <div id="map-container">
             <div id="map-primary">
+                <c:forEach var="PersonObject" items="${personObjects}">
+                        <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
+                        
+                        <tr>
+                            <td>${user.name}</td>
+                            <td>${user.streetAddress}</td>
+                            <td>${user.houseNumber}</td>
+                            <td>${user.city}</td>
+                            <td>${user.role.name}</td>
+                            <td>${user.id}</td>
+                            <td><a href="${pageContext.request.contextPath}/user/edit/${user.id}">Wijzig</a> </td>
+                            <td><a href="${pageContext.request.contextPath}/user/remove/${user.id}">Verwijder</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 <canvas id="myCanvas">
                     <script src="<c:url value="/resources/js/canvas.js" />" type="text/javascript"></script>
                 </canvas>
