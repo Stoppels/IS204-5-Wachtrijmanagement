@@ -24,55 +24,20 @@
 
         </head>
         <body>
-            <!--[if lt IE 7]>
-                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-            <![endif]-->
-<!--            <div id="header" class="parentContainer container">
-                <div class="header-container">
-                    <div class="content-logo">
-
-                        <a href="${pageContext.request.contextPath}/"><div class="company-name">EWA-5 | Wachtrijmanagement</div></a>
+        <div id="map-container">
+            <div id="map-primary">
+                <canvas id="myCanvas">
+                    <script src="<c:url value="/resources/js/canvas.js" />" type="text/javascript"></script>
+                </canvas>
+            </div>
+            <div id="map-secondary">
+                    <div id="map-form">
+                        <form action="Untitled.html" method="" accept-charset="utf-8">
+                            <textarea></textarea>
+                        </form>
                     </div>
-                    <div class="block-menu">
-                        <select class="navegation_resp" onchange="location.hash = this.options[this.selectedIndex].value;">
-                            <a href="${pageContext.request.contextPath}/">home</a>
-                            <option value="#over" class="second_item">Over</option>
-                            <option value="#grafiek" class="second_item">Grafieken</option>
-
-                        </select>
-                    </div>
-                    <div class="menu-select">
-                        <nav>
-                            <ol class="contentMenu">
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/"><div class="menubtn homebtn">
-                                            <div class="contentbtn">home</div>
-                                            <div class="contentbtn2">home</div>
-                                        </div></a>
-                                </li>
-                                <li>
-                                    <a href="#over"><div class="menubtn">
-                                            <div class="contentbtn">over</div>
-                                            <div class="contentbtn2">over</div>
-                                        </div></a>
-                                </li>
-                                <li>
-                                    <a href="#grafiek"><div class="menubtn">
-                                            <div class="contentbtn">grafiek</div>
-                                            <div class="contentbtn2">grafiek</div>
-                                        </div></a>
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>  end header-->
-            
-        <canvas id="myCanvas">
-            <script src="<c:url value="/resources/js/canvas.js" />" type="text/javascript"></script>
-        </canvas>
-
-    </div>
+            </div>
+        </div>
 </body>
 </html>
 

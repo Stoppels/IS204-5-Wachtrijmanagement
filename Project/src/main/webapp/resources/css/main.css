@@ -724,3 +724,18 @@ li {list-style: none outside none !important;}
 }
 
 /* --------------------- end BODY --------------------- */
+
+/* -------- MAP -------- */
+#map-primary{
+    float:left;
+}
+
+#myCanvas{
+    width:80%;
+    height:80%;
+}
+#map-secondary{
+    width:20%;
+    background:red;
+    float:right;
+}

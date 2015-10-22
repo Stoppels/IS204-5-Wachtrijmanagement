@@ -7,9 +7,9 @@
 
 // init
 var canvas = document.getElementById("myCanvas");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-var dotSize = 5;
+canvas.width = document.getElementById("myCanvas").innerWidth;
+canvas.height = document.getElementById("myCanvas").innerHeight;
+var dotSize = 3;
 
 //determination of center positions x and y axis
 var centerX = canvas.width / 2;
