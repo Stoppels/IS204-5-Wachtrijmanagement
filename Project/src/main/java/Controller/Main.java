@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import Model.PersonObject;
+
 /**
  * Testing stuff in Main
  * @author Stefan
@@ -19,6 +21,11 @@ public class Main {
         // Maakt een PersonController om JsonObjects tot PersonObjects te verwerken
         PersonController PC = new PersonController();
         PC.convertJsonToPerson(JC.getList());
+        System.out.println(PC.toString());
+        
+        for (PersonObject p : PC.getList()) {
+            System.out.println(p.getJsonList().toString());
+        }
 
         
         System.out.println("Start time: \t" + PC.getStartTime().toString());
