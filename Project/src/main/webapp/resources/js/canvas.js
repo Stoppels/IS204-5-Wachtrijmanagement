@@ -8,34 +8,54 @@
 var canvas = document.getElementById("myCanvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-var object = canvas.getContext("2d");
+var dotSize = 5;
 
-// Function create new Object
+//determination of center positions x and y axis
+var centerX = canvas.width / 2;
+var centerY = canvas.height / 2;
 
-// Function controller Object
-var xPos = 100;
-var yPos = 100;
-// Function model Object
-var size = 20;
-object.beginPath();
-object.arc(xPos, yPos, size, 0, 2 * Math.PI);
-object.stroke();
-object.fillStyle = '#FF0000';
-object.fill();
+// set the canvas origin (0,0) to center canvas
+// All coordinates to the left of center canvas are negative
+// All coordinates below center canvas are negative
 
 
-// Create Object
-function createPersonObject(x, y, name) {
+//declare x and y axis
+var xAxis = canvas.getContext("2d");
+var yAxis = canvas.getContext("2d");
 
-    var personObject = {
-        firstName: "John",
-        lastName: "Doe",
-        age: 50,
-        eyeColor: "blue",
-        xPos: x,
-        yPos: y
-    };
-    
-    personObject = canvas.getContext("2d");
+//draw x axis
+xAxis.beginPath();
+xAxis.moveTo(0,centerY);
+xAxis.lineTo(canvas.width, centerY);
+xAxis.stroke();
+
+//draw y axis
+yAxis.beginPath();
+yAxis.moveTo(centerX,0);
+yAxis.lineTo(centerX, canvas.height);
+xAxis.stroke();
+
+/**
+ * 
+ * @param {string} dotname
+ * @param {int} x
+ * @param {int} y
+ * @returns {void}
+ */
+function drawDot(dotname, xPos, yPos, color){
+    // create object
+    var dotname = canvas.getContext("2d");
+    dotname.beginPath();
+    dotname.arc(xPos, yPos, dotSize, 0, 2 * Math.PI);
+    dotname.stroke();
+    dotname.fillStyle = '#ff00ff';
+    dotname.fillStyle = "#"+color;
+    dotname.fill();
 }
+
+drawDot("test", 10, 20, "ff0000");
+drawDot("foo", 100, 10, "00ff00");
+drawDot("bar", 20, 30, "0000ff");
+drawDot("blaat", 80, 40, "f0f0f0");
+drawDot("asdf", 40, 200, "ff00ff")
 
