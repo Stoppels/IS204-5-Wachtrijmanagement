@@ -1,8 +1,6 @@
 package spring.controller;
 
-import Controller.PersonController;
 import java.io.IOException;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +15,15 @@ public class MapController {
     @RequestMapping(value = "/map")
     public ModelAndView mapDots() throws IOException {
         ModelAndView mapView = new ModelAndView("map");
+        
+        // voegt de javascript file toe, met versienummer om caching tegen te gaan
+        mapView.addObject("javascript", "/resources/js/canvas.js" + ("?version=" + Math.random() * 10));
+        
+        // voegt de personObjects uit een jsonfile toe
 //        mapView.addObject("personObjects", personController.getList());
-        return new ModelAndView("map");
+        
+        
+        return mapView;
         
     }
 }
