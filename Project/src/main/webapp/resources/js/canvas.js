@@ -7,18 +7,13 @@
 
 // init
 var canvas = document.getElementById("myCanvas");
-canvas.width = document.getElementById("myCanvas").innerWidth;
-canvas.height = document.getElementById("myCanvas").innerHeight;
+canvas.width = 800;
+canvas.height = 800;
 var dotSize = 3;
 
 //determination of center positions x and y axis
 var centerX = canvas.width / 2;
 var centerY = canvas.height / 2;
-
-// set the canvas origin (0,0) to center canvas
-// All coordinates to the left of center canvas are negative
-// All coordinates below center canvas are negative
-
 
 //declare x and y axis
 var xAxis = canvas.getContext("2d");
