@@ -53,9 +53,6 @@ function drawDot(dotname, xPos, yPos, color){
     dotname.fill();
 }
 
-drawDot("test", 10, 20, "ff0000");
-drawDot("foo", 100, 10, "00ff00");
-drawDot("bar", 20, 30, "0000ff");
-drawDot("blaat", 80, 40, "f0f0f0");
-drawDot("asdf", 40, 200, "ff00ff")
+drawDot("test", 500, 20, "ff0000");
+
 
