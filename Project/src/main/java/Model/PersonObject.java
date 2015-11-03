@@ -6,18 +6,28 @@
 package Model;
 
 import Resources.Timestamp;
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.*;
 
 /**
  *
  * @author Stefan
  */
-public class PersonObject {
-
+public class PersonObject implements Serializable {
     private Timestamp start;
     private Timestamp end;
     private int personId;
     private final ArrayList<JsonObject> jsonList;
+
+    public PersonObject() {
+        jsonList=null;
+    }
+    
+    public PersonObject(int id){
+     this();
+     personId = id;
+    }
 
     public PersonObject(ArrayList<JsonObject> jsonList) {
         this.jsonList = jsonList;

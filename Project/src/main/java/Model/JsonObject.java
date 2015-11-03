@@ -6,17 +6,24 @@ package Model;
 import Resources.Bbox;
 import Resources.Position;
 import Resources.Timestamp;
+import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  *
  * @author Stefan
  */
-public class JsonObject {
 
+@Entity
+@Table(name="JsonLine")
+public class JsonObject implements Serializable {
+@Id
     int track_id;
-    Timestamp timestamp;
+@Id
+    Timestamp timePrint;
     int event_type;
     int alive_status;
+@Id
     Position position;
     Bbox bbox;
 
@@ -39,7 +46,7 @@ public class JsonObject {
      */
     public JsonObject(int track_id, Timestamp timestamp, int event_type, int alive_status, Position position, Bbox bbox) {
         this.track_id = track_id;
-        this.timestamp = timestamp;
+        this.timePrint = timestamp;
         this.event_type = event_type;
         this.alive_status = alive_status;
         this.position = position;
@@ -52,11 +59,11 @@ public class JsonObject {
     }
 
     public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+        this.timePrint = timestamp;
     }
 
     public void setTimestamp(String string) {
-        this.timestamp = new Timestamp(string);
+        this.timePrint = new Timestamp(string);
     }
 
     public void setEvent_type(int event_type) {
@@ -80,7 +87,7 @@ public class JsonObject {
     }
 
     public Timestamp getTimestamp() {
-        return timestamp;
+        return timePrint;
     }
 
     public int getEvent_type() {
@@ -101,6 +108,6 @@ public class JsonObject {
 
     @Override
     public String toString() {
-        return "JsonObject: " + this.track_id + " " + this.timestamp + "\n";
+        return "JsonObject: " + this.track_id + " " + this.timePrint + "\n";
     }
 }

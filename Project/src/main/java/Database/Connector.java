@@ -9,7 +9,7 @@ import java.sql.*;
 public class Connector {
 
     public static final String DRIVER = "com.mysql.jdbc.Driver";
-    public static final String DBURL = "https://oege.ie.hva.nl:3306/zshayann001";
+    public static final String DBURL = "jdbc:mysql://oege.ie.hva.nl:3306/zshayann001";
     private static final String DBUSER = "shayann001";
     private static final String DBPASS = "JbJDsT1n/QOnyK";
 
@@ -22,10 +22,11 @@ public class Connector {
             
             Class.forName(DRIVER);
             conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
-            
         } catch (SQLException e) {
+            System.err.println(e);
         } catch (ClassNotFoundException e) {
         }
+        
     }
 
     public void closeConnection() {

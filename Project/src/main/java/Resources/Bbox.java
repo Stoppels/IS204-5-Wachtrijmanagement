@@ -5,11 +5,13 @@
  */
 package Resources;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Stefan
  */
-public class Bbox {
+public class Bbox implements Serializable{
 
     private float x1;
     private float y1;
