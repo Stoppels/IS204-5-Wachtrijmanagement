@@ -6,19 +6,33 @@
 package Resources;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  *
  * @author Stefan
  */
+@Entity
+@Table(name="Bbox")
 public class Bbox implements Serializable{
-
+    @Column(name="x1")
     private float x1;
+    @Column(name="y1")
     private float y1;
+    @Column(name="z1")
     private float z1;
+    @Column(name="x2")
     private float x2;
+    @Column(name="y2")
     private float y2;
+    @Column(name="z2")
     private float z2;
+    @Column(name="BboxId")
+    @Id@GeneratedValue
+    private int idBbox;
+
+    public Bbox() {
+    }
 
     public Bbox(String bbox){
         bbox = bbox.replace("[","");
@@ -91,6 +105,14 @@ public class Bbox implements Serializable{
     @Override
     public String toString() {
         return "["+ x1 +","+ y1 + "," + z1 + "," + x2 + "," + y2 + "," + z2 + "]";
+    }
+
+    public int getIdBbox() {
+        return idBbox;
+    }
+
+    public void setIdBbox(int idBbox) {
+        this.idBbox = idBbox;
     }
 
 }
