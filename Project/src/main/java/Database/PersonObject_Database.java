@@ -6,6 +6,7 @@
 package Database;
 
 import Model.JsonObject;
+import Model.PersonObject;
 import Resources.Position;
 import Resources.Timestamp;
 import java.util.List;
@@ -126,9 +127,13 @@ public class PersonObject_Database {
         return null;
     }
 
-    public void insertObjects(List<JsonObject> list) {
+    public void insertObjects(PersonObject list) {
         Session session = factory.openSession();
-        for (JsonObject object: list){
+        for (JsonObject object: list.getJsonList()){
+        session.save(list);
         session.save(object);
+        session.save(object.getTimestamp());
+        session.save(object.getPosition());
+        session.save(object.getBbox());
     }
 }}

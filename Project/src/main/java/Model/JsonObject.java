@@ -59,10 +59,19 @@ public class JsonObject implements Serializable {
     public void setTimestamp(Timestamp timestamp) {
         this.timePrint = timestamp;
     }
-
-    public void setTimestamp(String string) {
-        this.timePrint = new Timestamp(string);
+    
+    public void setTimestamp(String timestamp){
+        int year,month,date,hour,minute,second,nano;
+            year = Integer.parseInt(timestamp.substring(0,4));
+            month = Integer.parseInt(timestamp.substring(4,6));
+            date = Integer.parseInt(timestamp.substring(6,8));
+            hour = Integer.parseInt(timestamp.substring(9,11));
+            minute = Integer.parseInt(timestamp.substring(11,13));
+            second = Integer.parseInt(timestamp.substring(13,15));
+            nano = Integer.parseInt(timestamp.substring(16));
+        this.timePrint = new Timestamp(year,month,date,hour,minute,second,nano);
     }
+
 
     public void setEvent_type(int event_type) {
         this.event_type = event_type;
@@ -105,12 +114,12 @@ public class JsonObject implements Serializable {
 
     @Id
     @Type(type="Resources.Position")
-    @Column(name = "position")
+    @Column(name = "Position.positionId")
     public Position getPosition() {
         return position;
     }
 
-    @Column(name = "Bbox")
+    @Column(name = "Bbox.bboxId")
     @Type(type="Resources.Bbox")
     public Bbox getBbox() {
         return bbox;

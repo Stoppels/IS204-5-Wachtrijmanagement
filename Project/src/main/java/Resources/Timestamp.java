@@ -9,7 +9,7 @@ package Resources;
  *
  * @author Stefan
  */
-public class Timestamp implements Comparable<Timestamp> {
+public class Timestamp extends java.sql.Timestamp implements Comparable<java.util.Date> {
 
     private int year;   // - the year minus 1900
     private int month;  // - 0 to 11
@@ -18,20 +18,13 @@ public class Timestamp implements Comparable<Timestamp> {
     private int minute; // - 0 to 59
     private int second; // - 0 to 59
     private int nano;   // - 0 to 999,999,999
-
-    public Timestamp(String string) {
-        if (string.length() == 22) {
-            this.year = Integer.parseInt(string.substring(0, 4));
-            this.month = Integer.parseInt(string.substring(4, 6));
-            this.date = Integer.parseInt(string.substring(6, 8));
-            this.hour = Integer.parseInt(string.substring(9, 11));
-            this.minute = Integer.parseInt(string.substring(11, 13));
-            this.second = Integer.parseInt(string.substring(13, 15));
-            this.nano = Integer.parseInt(string.substring(16));
-        }
+    
+    public Timestamp (long stamp){
+        super(stamp);
     }
 
     public Timestamp(int year, int month, int date, int hour, int minute, int second, int nano) {
+        super(year,month,date,hour,minute,second,nano);
         this.year = year;
         this.month = month;
         this.date = date;
@@ -117,7 +110,6 @@ public class Timestamp implements Comparable<Timestamp> {
         return Double.parseDouble(s);
     }
 
-    @Override
     public int compareTo(Timestamp o) {
         int result;
         if (this.toDouble() > o.toDouble()) {

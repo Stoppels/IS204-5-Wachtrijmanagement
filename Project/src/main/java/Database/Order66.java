@@ -27,7 +27,7 @@ public class Order66 {
         SessionFactory sessionFactory = configuration.buildSessionFactory(ssrb.build());
         PersonObject_Database db = new PersonObject_Database(sessionFactory);
         for (PersonObject object:PC.getList()){
-            db.insertObjects(object.getJsonList());
+            db.insertObjects(object);
         }
     }
     
