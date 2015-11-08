@@ -25,6 +25,7 @@ public class PersonController {
     private Timestamp end;
     private int amountPersons;
     private final ArrayList<PersonObject> list;
+    private Timestamp averageWaiting;
 
     public PersonController() {
         this.list = new ArrayList<PersonObject>();
@@ -45,7 +46,7 @@ public class PersonController {
         }
         return end;
     }
-
+    
     public int getAmountPersons() {
         return amountPersons;
     }

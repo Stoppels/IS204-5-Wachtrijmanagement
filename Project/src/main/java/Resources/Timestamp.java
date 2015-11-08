@@ -17,14 +17,14 @@ public class Timestamp extends java.sql.Timestamp implements Comparable<java.uti
     private int hour;   // - 0 to 23
     private int minute; // - 0 to 59
     private int second; // - 0 to 59
-    private int nano;   // - 0 to 999,999,999
-    
-    public Timestamp (long stamp){
+    private int nano;   // - 0 to 999,999
+
+    public Timestamp(long stamp) {
         super(stamp);
     }
 
     public Timestamp(int year, int month, int date, int hour, int minute, int second, int nano) {
-        super(year,month,date,hour,minute,second,nano);
+        super(year, month, date, hour, minute, second, nano);
         this.year = year;
         this.month = month;
         this.date = date;
@@ -89,7 +89,7 @@ public class Timestamp extends java.sql.Timestamp implements Comparable<java.uti
     public void setNano(int nano) {
         this.nano = nano;
     }
-    
+
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
@@ -120,4 +120,37 @@ public class Timestamp extends java.sql.Timestamp implements Comparable<java.uti
         }
         return 0;
     }
-}
+
+    public Timestamp subtract(Timestamp time) {
+        int yearh = this.year - time.year,
+                monthh = this.month - time.month,
+                dateh = this.date - time.date,
+                hourh = this.hour - time.hour,
+                minuteh = this.minute - time.minute,
+                secondh = this.second - time.second,
+                nanoh = this.nano - time.nano;
+        while (nanoh < 0 || secondh < 0 || minuteh < 0 || hourh < 0 || dateh < 0) {
+            if (nanoh < 0) {
+                nanoh += 999999;
+                secondh--;
+            }
+            if (secondh < 0) {
+                secondh += 60;
+                minuteh--;
+            }
+            if (minuteh < 0) {
+                minuteh += 60;
+                hourh--;
+            }
+            if (hourh < 0) {
+                dateh--;
+                hourh += 24;
+            }
+            if (dateh < 0) {
+                monthh--;
+                dateh += 31;
+            }
+        }
+        return new Timestamp(yearh, monthh, dateh, hourh, minuteh, secondh, nanoh);
+    }
+    }

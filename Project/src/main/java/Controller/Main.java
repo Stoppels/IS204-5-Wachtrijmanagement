@@ -25,7 +25,8 @@ public class Main {
         for (PersonObject p : PC.getList()) {
             p.setAverages();
             System.out.println(p.getJsonList().toString());
-            
+            p.setWaitingTime();
+            System.out.println(p.getWaitingTime());
         }
         
         System.out.println("Start time: \t" + PC.getStartTime().toString());

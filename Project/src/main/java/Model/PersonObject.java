@@ -19,6 +19,7 @@ public class PersonObject implements Serializable {
     private Timestamp end;
     private int personId;
     private ArrayList<JsonObject> jsonList;
+    private Timestamp waitingTime;
 
     public PersonObject() {
     }
@@ -27,7 +28,15 @@ public class PersonObject implements Serializable {
      this();
      personId = id;
     }
+    
+    public void setWaitingTime(){
+        waitingTime = end.subtract(start);
+    }
 
+    public Timestamp getWaitingTime() {
+        return waitingTime;
+    }
+    
     public PersonObject(ArrayList<JsonObject> jsonList) {
         this.jsonList = jsonList;
     }
@@ -80,7 +89,13 @@ public class PersonObject implements Serializable {
                 else{
                     toBeAveraged.add(nextObject);
                    
-                }}
+                }
+                if (i==toBeAveraged.size()-2&&!toBeAveraged.isEmpty()){
+                averages = AvgBBoxPositionsandTime(toBeAveraged,averages);
+                toBeAveraged.clear();
+            }
+            
+            }
             else {
                  if (!toBeAveraged.isEmpty()){
                      averages = AvgBBoxPositionsandTime(toBeAveraged,averages);
@@ -89,8 +104,11 @@ public class PersonObject implements Serializable {
                  else {
                      averages.add(object);
                  }
+                 
          
-        }}
+        }
+           
+        }
     jsonList = averages;
     }}
     
