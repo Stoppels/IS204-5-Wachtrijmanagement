@@ -89,6 +89,40 @@ public class Timestamp extends java.sql.Timestamp implements Comparable<java.uti
     public void setNano(int nano) {
         this.nano = nano;
     }
+    
+    public double amountSeconds(){
+       return (nano/100000)+second+(minute*60)+(hour*60*60)+
+              (date*24*60*60);
+    }
+    
+    public static Timestamp returnToObject(double seconds){
+        double day=0,hourN=0,minuteN=0,secondN=0,nano=0;
+        int secondsI = (int)Math.floor(seconds);
+        nano=(seconds-secondsI)*1000000;
+        System.out.println(seconds);
+        if (seconds<60){
+            secondN=seconds;
+        }
+        else if (seconds>=60&&seconds/60<=59){
+            minuteN = Math.floor(seconds/60);
+            secondN= seconds%60;
+        }
+        else if (seconds/60>=60&&seconds/60/60<=23){
+            hourN = Math.floor(seconds/60/60);
+            seconds -= hourN*60*60;
+            minuteN = Math.floor(seconds/60);
+            secondN= seconds%60;  
+        }
+        else if (seconds/60/60>=24){
+            day=Math.floor(seconds/60/60/60);
+            seconds -= day*60*60*60;
+            hourN = Math.floor(seconds/60/60);
+            seconds -= hourN*60*60;
+            minuteN = Math.floor(seconds/60);
+            secondN= seconds%60;
+        }
+        return new Timestamp(0,0,(int)day,(int)hourN,(int)minuteN,(int)secondN,(int)nano);
+    }
 
     @Override
     public String toString() {

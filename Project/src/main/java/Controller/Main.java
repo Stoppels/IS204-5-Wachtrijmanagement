@@ -20,7 +20,7 @@ public class Main {
 //         Maakt een PersonController om JsonObjects tot PersonObjects te verwerken
         PersonController PC = new PersonController();
         PC.convertJsonToPerson(JC.getList());
-//        System.out.println(PC.toString());
+        System.out.println(PC.toString());
         
         for (PersonObject p : PC.getList()) {
             p.setAverages();
@@ -28,6 +28,7 @@ public class Main {
             p.setWaitingTime();
             System.out.println(p.getWaitingTime());
         }
+        System.out.println(PC.getAverageWaitingTime());
         
         System.out.println("Start time: \t" + PC.getStartTime().toString());
         System.out.println("End time: \t" + PC.getEndTime().toString());

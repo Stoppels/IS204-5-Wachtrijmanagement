@@ -46,7 +46,14 @@ public class PersonController {
         }
         return end;
     }
-    
+    public Timestamp getAverageWaitingTime(){
+        double averageSeconds = 0;
+        for (int i =0;i<list.size();i++){
+            averageSeconds+= list.get(i).getWaitingTime().amountSeconds();
+        }
+        averageSeconds = averageSeconds/list.size();
+        return Timestamp.returnToObject(averageSeconds);
+    }
     public int getAmountPersons() {
         return amountPersons;
     }
