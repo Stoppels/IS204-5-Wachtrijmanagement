@@ -14,7 +14,7 @@ import spring.model.PersonObject;
  */
 public class Main {
     
-    String folder = "D:\\Users\\Stefan\\Google Drive\\School\\Projects\\Proj\\src\\main\\resources\\json\\";
+    String folder = "D:\\Users\\Stefan\\Documents\\GitHub\\is204-5\\Proj\\src\\main\\resources\\json\\";
     String file = "recording003_long.json";
 
     public static void main(String[] args) {
