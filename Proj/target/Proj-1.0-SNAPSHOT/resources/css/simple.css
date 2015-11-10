@@ -1,0 +1,39 @@
+/*#-RESET-#*/
+a{
+    text-decoration: none;
+}
+
+#nav{
+    list-style-type:none;
+    margin-bottom:10px;
+    display:block;
+}
+
+#nav li{
+    float:left;
+    margin-right:5px;
+    list-style-type:none;
+}
+
+#stats {
+    list-style-type:none;
+    margin-bottom:10px;
+    display:block;
+    font-family:Ubuntu, Verdana, Consolas, sans-serif;color:#999;
+}
+
+#container{
+    /*margin: 10px;*/
+}
+
+body{font-family:Ubuntu, Verdana, Consolas, sans-serif;color:#000;background-color:#fff;margin:0;padding:0}
+h1{font-size:40px;line-height:50px;font-weight:900;color:#fff;margin:30px 5px 0 125px;padding:0}
+
+#map{
+    float:left;
+    width:80%;
+    margin-left: 10px;
+}
+
+#footer {
+}

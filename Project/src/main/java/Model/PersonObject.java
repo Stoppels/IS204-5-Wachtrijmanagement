@@ -1,4 +1,4 @@
-/*
+/* ss
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -50,6 +50,10 @@ public class PersonObject implements Serializable {
 
     public ArrayList<JsonObject> getJsonList() {
         return jsonList;
+    }
+
+    public void setJsonList(ArrayList<JsonObject> jsonList) {
+        this.jsonList = jsonList;
     }
 
     public Timestamp getStart() {

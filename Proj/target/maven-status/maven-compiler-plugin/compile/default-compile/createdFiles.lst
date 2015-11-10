@@ -1,0 +1,13 @@
+spring\model\JsonObject.class
+spring\controller\StatController.class
+spring\config\MvcConfiguration.class
+spring\controller\PersonController.class
+spring\model\Statistic.class
+spring\controller\Main.class
+spring\config\Initializer.class
+spring\controller\JsonController.class
+spring\controller\HomeController.class
+spring\model\Bbox.class
+spring\model\Timestamp.class
+spring\model\Position.class
+spring\model\PersonObject.class
