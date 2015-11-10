@@ -17,7 +17,11 @@
         <div id="container">
 
             <div id="map">
-                <center><canvas id="myCanvas">
+                
+                <%--canvas has border for temporary testing--%>
+                <center><canvas id="myCanvas"
+                                style="border:1px solid #000"
+                                >
                     </canvas></center>
             </div>
 

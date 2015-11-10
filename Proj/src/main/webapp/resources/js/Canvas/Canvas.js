@@ -60,7 +60,6 @@ function drawText(text, xPos, yPos, size) {
 
 // Draws quick alert on canvas
 function drawAlert(text) {
-    context.font = 'italic 30pt Calibri';
     context.fillStyle = '#000000';
     context.fillText(text, (0 + centerX), (-250 + centerY));
 }
