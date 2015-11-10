@@ -18,7 +18,7 @@ function drawDot(xPos, yPos, color) {
     context.save();
     context.stroke();
     context.shadowColor = '#000';
-    context.shadowBlur = 10;
+    context.shadowBlur = 0.2;
     context.fillStyle = color;
     context.fill();
     context.restore();
