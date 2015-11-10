@@ -16,6 +16,7 @@ function createPerson(id, t, x, y) {
     list[index].t = t;
     list[index].x = x;
     list[index].y = y;
+    list[index].counter = 0;
 }
 
 // constructor of person
@@ -26,7 +27,14 @@ function person() {
     this.x;
     this.y;
     this.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+    this.counter;
 
+    this.count = function () {
+        this.counter++;
+    };
+    this.resetCount = function() {
+        this.counter = 0;
+    };
     this.dot = function (i) {
         drawDot(-scale * this.x[i], scale * this.y[i], this.color);
     };

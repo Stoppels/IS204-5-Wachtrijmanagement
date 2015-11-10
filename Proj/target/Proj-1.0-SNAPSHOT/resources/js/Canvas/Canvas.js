@@ -18,7 +18,7 @@ function drawDot(xPos, yPos, color) {
     context.save();
     context.stroke();
     context.shadowColor = '#000';
-    context.shadowBlur = 10;
+    context.shadowBlur = 0.2;
     context.fillStyle = color;
     context.fill();
     context.restore();
@@ -60,7 +60,6 @@ function drawText(text, xPos, yPos, size) {
 
 // Draws quick alert on canvas
 function drawAlert(text) {
-    context.font = 'italic 30pt Calibri';
     context.fillStyle = '#000000';
     context.fillText(text, (0 + centerX), (-250 + centerY));
 }

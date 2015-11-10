@@ -19,6 +19,7 @@ function play(s, e) {
 }
 
 function stop() {
+    resetPersonCount();
     location.reload();
 }
 
@@ -33,54 +34,53 @@ function init() {
     }
 }
 
-function showPersons(s, e) {
-    function nextPerson(i)
-    {
-        function nextDot(j)
+function playPersons(s, e) {
+    if (s < e) {
+        function nextFrame(i)
         {
-            if (s <= list[i].t[j] && list[i].t[j] <= e) {
-                list[i].dot(j);
-                list[i].text(j);
+            clear();
+            init();
+            for (j = 0; j < list.length; j++) {
+                if (list[j].counter > 0) {
+                    drawPerson(j);
+                } else
+                if (s + i == list[j].t[0]) {
+                    drawPerson(j);
+                } else 
+                if (s + i > list[j].t[0]) {
+                    for (k = 0; s + i < list[j].t[k]; k++) {
+                        list[j].count();
+                    }
+                    drawPerson(j);
+                }
             }
-            if (i === list[i].t.length)
+            if (s + i !== e)
+            document.getElementById("time1").stepUp(1);
+            if (s + i === e) {
+                alert("End of file");
+                stop();
                 return;
+            }
             setTimeout(function ()
             {
-                nextDot(j + 1);
-            }, 0);
+                nextFrame(i + 1);
+            }, 1000);
         }
-        nextDot(0);
-        if (i === list.length)
-            return;
-        setTimeout(function ()
-        {
-            nextPerson(i + 1);
-        }, 0);
+        nextFrame(0);
     }
-    nextPerson(0);
 }
 
+function drawPerson(j) {
+    list[j].dot(list[j].counter);
+    list[j].text(list[j].counter);
+    list[j].count();
+}
 
-function playPersons(s, e) {
-    function nextFrame(i)
-    {
-        if (s > e) {
-            playing = false;
-            return;
-        }
-        clear();
-        init();
-        showPersons(s + i, s + i);
-        document.getElementById("time1").stepUp(1);
-        if (s + i === e) {
-            return;
-        }
-        setTimeout(function ()
-        {
-            nextFrame(i + 1);
-        }, 1000);
+function resetPersonCount() {
+    for (i = 0; i<list.length; i++) {
+        list[i].resetCount();
     }
-    nextFrame(1);
+    playing = false;
 }
 
 
