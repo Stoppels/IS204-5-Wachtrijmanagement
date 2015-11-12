@@ -3,7 +3,11 @@
  Created on : Nov 5, 2015
  Author     : Stefan */
 
-window.onload = drawAxis();
+window.onload = function () {
+    drawAxis();
+//    showImage('resources/img/painted.png', 0, 0, 500, 500);
+};
+
 var playing = false;
 
 // Plays event to draw on canvas
@@ -25,13 +29,13 @@ function stop() {
 
 // shows corrensponding colors and numbers of the persons
 function init() {
-    var x = 565;
-    var y = 375;
-    for (i = 0; i < list.length; i++) {
-        drawText(list[i].id, x, y, 10);
-        drawDot(x + 25, y + 4, list[i].color);
-        y -= 20;
-    }
+//    var x = 565;
+//    var y = 375;
+//    for (i = 0; i < list.length; i++) {
+//        drawText(list[i].id, x, y, 10);
+//        drawDot(x + 25, y + 4, list[i].color);
+//        y -= 20;
+//    }
 }
 
 function playPersons(s, e) {
@@ -46,7 +50,7 @@ function playPersons(s, e) {
                 } else
                 if (s + i == list[j].t[0]) {
                     drawPerson(j);
-                } else 
+                } else
                 if (s + i > list[j].t[0]) {
                     for (k = 0; s + i < list[j].t[k]; k++) {
                         list[j].count();
@@ -55,7 +59,7 @@ function playPersons(s, e) {
                 }
             }
             if (s + i !== e)
-            document.getElementById("time1").stepUp(1);
+                document.getElementById("time1").stepUp(1);
             if (s + i === e) {
                 alert("End of file");
                 stop();
@@ -77,7 +81,7 @@ function drawPerson(j) {
 }
 
 function resetPersonCount() {
-    for (i = 0; i<list.length; i++) {
+    for (i = 0; i < list.length; i++) {
         list[i].resetCount();
     }
     playing = false;

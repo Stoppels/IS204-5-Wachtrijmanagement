@@ -20,7 +20,6 @@
                         <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Snapshot}" />" type="text/javascript"></script>
-                        <img src="<c:url value="${counter}" />" type="image">
                         </center></canvas>
             </div>
 

@@ -49,7 +49,6 @@ public class HomeController {
         view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
         view.addObject("Snapshot", "/resources/js/Canvas/Snapshot.js" + random);
 
-        view.addObject("counter", "/resources/img/counter.jpg" + random);
         view.addObject("stylesheet", "/resources/css/simple.css" + random);
         view.addObject("starttime", starttime);
         view.addObject("endtime", endtime);
@@ -67,7 +66,6 @@ public class HomeController {
         view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
         view.addObject("Heatmap", "/resources/js/Canvas/Heatmap.js" + random);
 
-        view.addObject("counter", "/resources/img/counter.jpg" + random);
         view.addObject("stylesheet", "/resources/css/simple.css" + random);
         view.addObject("starttime", starttime);
         view.addObject("endtime", endtime);

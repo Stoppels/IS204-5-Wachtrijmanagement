@@ -64,15 +64,15 @@ function drawAlert(text) {
     context.fillText(text, (0 + centerX), (-250 + centerY));
 }
 
-function showImage(src, xPos, yPos) {
+function showImage(src, xPos, yPos, width, height) {
     var imageObj = new Image();
+    imageObj.src = src;
     imageObj.onload = function () {
         context.save();
 //        context.globalAlpha = 0.5;
-        context.drawImage(imageObj, (xPos + centerX), (-yPos + centerY));
-        context.restor();
+        
+        context.drawImage(imageObj, (xPos + centerX), (-yPos + centerY), width, height);
     };
-    imageObj.src = src;
 }
 
 // Draws axis on canvas
