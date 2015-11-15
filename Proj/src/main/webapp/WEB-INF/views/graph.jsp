@@ -35,7 +35,7 @@
 
             <div id="sidebar">
                 <ul id="nav">
-                    
+
                 </ul>
                 <table id="form">
                     <form name="form">
@@ -46,9 +46,13 @@
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);
                                 return false;">
+                        <br>
+                        Statistic:<select name="Statistics">
+                            <option value="volvo">Example</option>
+                        </select>
                     </form>
                 </table>
-                        
+
                 <ul id="stats">
                     <li>${filename}</li>
                 </ul>
