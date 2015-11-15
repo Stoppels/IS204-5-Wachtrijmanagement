@@ -45,6 +45,8 @@
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);
                                 return false;">
+                        <br>
+                        Show scenery: <input type="checkbox" id="scenery">
                     </form>
                 </table>
                         

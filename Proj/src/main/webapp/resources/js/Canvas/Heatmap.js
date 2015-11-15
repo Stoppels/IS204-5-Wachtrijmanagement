@@ -3,12 +3,12 @@
  Created on : Nov 5, 2015
  Author     : Stefan */
 
-window.onload = drawAxis();
 var playing = false;
 
 // Plays event to draw on canvas
 function play(s, e) {
     clear();
+    drawScene(document.getElementById("scenery").checked);
     showPersons(timeToMillis(s), timeToMillis(e));
     playing = true;
 }

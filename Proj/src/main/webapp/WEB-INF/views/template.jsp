@@ -19,9 +19,7 @@
             <div id="map">
                 
                 <%--canvas has border for temporary testing--%>
-                <center><canvas id="myCanvas"
-                                style="border:1px solid #000"
-                                >
+                <center><canvas id="myCanvas">
                     </canvas></center>
             </div>
 

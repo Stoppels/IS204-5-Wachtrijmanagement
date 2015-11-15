@@ -45,6 +45,8 @@
                                     document.getElementById('time1').value,
                                     document.getElementById('time2').value);"  />
                         <input type="button" value="Reset" onclick="stop();">
+                        <br>
+                        Show scenery: <input type="checkbox" id="scenery" checked>
                     </form>
                 </table>
 

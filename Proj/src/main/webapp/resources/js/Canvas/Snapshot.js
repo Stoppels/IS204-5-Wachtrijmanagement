@@ -3,19 +3,12 @@
  Created on : Nov 5, 2015
  Author     : Stefan */
 
-window.onload = function () {
-    drawAxis();
-//    showImage('resources/img/painted.png', 0, 0, 500, 500);
-};
-
-var playing = false;
-
 // Plays event to draw on canvas
+var playing = false;
 function play(s, e) {
     if (playing === false) {
         playing = true;
         clear();
-        init();
         playPersons(timeToMillis(s), timeToMillis(e));
     } else {
         window.confirm("Press 'OK' to continue playing.");
@@ -27,23 +20,12 @@ function stop() {
     location.reload();
 }
 
-// shows corrensponding colors and numbers of the persons
-function init() {
-//    var x = 565;
-//    var y = 375;
-//    for (i = 0; i < list.length; i++) {
-//        drawText(list[i].id, x, y, 10);
-//        drawDot(x + 25, y + 4, list[i].color);
-//        y -= 20;
-//    }
-}
-
 function playPersons(s, e) {
     if (s < e) {
         function nextFrame(i)
         {
             clear();
-            init();
+            drawScene(document.getElementById('scenery').checked);
             for (j = 0; j < list.length; j++) {
                 if (list[j].counter > 0) {
                     drawPerson(j);
@@ -52,7 +34,7 @@ function playPersons(s, e) {
                     drawPerson(j);
                 } else
                 if (s + i > list[j].t[0]) {
-                    for (k = 0; s + i < list[j].t[k]; k++) {
+                    for (k = 0; s + i > list[j].t[k]; k++) {
                         list[j].count();
                     }
                     drawPerson(j);

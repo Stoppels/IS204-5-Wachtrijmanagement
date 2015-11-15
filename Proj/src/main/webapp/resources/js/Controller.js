@@ -21,7 +21,7 @@ function createPerson(id, t, x, y) {
 
 // constructor of person
 function person() {
-    var scale = 50;
+    var scale = 90;
     this.id;
     this.t;
     this.x;

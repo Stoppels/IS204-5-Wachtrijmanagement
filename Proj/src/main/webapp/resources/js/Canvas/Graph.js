@@ -15,7 +15,7 @@ function personData() {
     var balken = [];
     var labels = [];
     var data = [];
-    
+
     for (i = 0; i < stats[0].data.length; i++) {
         labels[i] = stats[0].labels[i];
         data[i] = stats[0].data[i];
