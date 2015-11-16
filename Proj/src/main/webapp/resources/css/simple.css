@@ -1,6 +1,16 @@
 /*#-RESET-#*/
+body{font-family:Helvetica, Ubuntu, Verdana, Consolas, sans-serif;color:#000;background-color:#fff;margin:0;padding:0}
+h1{font-size:40px;line-height:50px;font-weight:900;color:#fff;margin:30px 5px 0 125px;padding:0}
+
 a{
     text-decoration: none;
+    color:#000;
+}
+a:visited{
+    color:#000;
+}
+a:hover{
+    color:red;
 }
 
 #nav{
@@ -23,17 +33,18 @@ a{
 }
 
 #container{
-    /*margin: 10px;*/
+    width:100%;
+    overflow:hidden;
 }
 
-body{font-family:Ubuntu, Verdana, Consolas, sans-serif;color:#000;background-color:#fff;margin:0;padding:0}
-h1{font-size:40px;line-height:50px;font-weight:900;color:#fff;margin:30px 5px 0 125px;padding:0}
 
 #map{
-    float:left;
     width:80%;
-    margin-left: 10px;
+    float: left;
 }
 
-#footer {
+#sidebar{
+    min-height:200px;
+    float:left;
+    width:20%;
 }

@@ -19,8 +19,15 @@
             <div id="map">
                 
                 <%--canvas has border for temporary testing--%>
+<<<<<<< HEAD
+                <canvas id="myCanvas"
+                                style="border:1px solid #000"
+                                >
+                    </canvas>
+=======
                 <center><canvas id="myCanvas">
                     </canvas></center>
+>>>>>>> cfe8fc85ae2c7ad41c9a835605c61eee974985ee
             </div>
 
             <div id="sidebar">
@@ -36,12 +43,10 @@
 
                 <ul id="stats">
                 </ul>
+                <div id="footer">
+                    <p>Footer (needs to be at bottom of sidebar)</p>
+                </div>
             </div>
         </div>
     </body>
-    <footer>
-        <div id="footer">
-            <br>Footer (needs to be at bottom of sidebar)
-        </div>
-    </footer>
 </html>

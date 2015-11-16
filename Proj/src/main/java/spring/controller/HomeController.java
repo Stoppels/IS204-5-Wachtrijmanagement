@@ -95,7 +95,7 @@ public class HomeController {
     private void init() {
         
         Main temporaryProblemSolverSeeTrello = new Main();
-        this.filename = temporaryProblemSolverSeeTrello.file;
+        this.filename = temporaryProblemSolverSeeTrello.getPath();
         
         JC = new JsonController(temporaryProblemSolverSeeTrello.getPath());
         PC = new PersonController();

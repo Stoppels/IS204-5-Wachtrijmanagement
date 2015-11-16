@@ -5,37 +5,35 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="template.jsp" />
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="<c:url value="${stylesheet}" />" rel="stylesheet" >
         <title>Project</title>
     </head>
     <body>
+        <jsp:include page="header.jsp" />
         <div id="container">
             <div id="map">                
-                <center><canvas id="myCanvas">
+                <canvas id="myCanvas">
                         <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Snapshot}" />" type="text/javascript"></script>
-                        </center></canvas>
-            </div>
-
-            <c:forEach var="person" items="${list}">
-                <script>
-                    createPerson(${person.getPersonId()},
-                    ${person.timestampArray()},
-                    ${person.xArray()},
-                    ${person.yArray()});
-                </script>
-            </c:forEach>
-
-            <div id="sidebar">
-                <ul id="nav">
-                </ul>
+                        <img src="<c:url value="${counter}" />" type="image">
+                </canvas>
                 
+                <c:forEach var="person" items="${list}">
+                    <script>
+                        createPerson(${person.getPersonId()},
+                        ${person.timestampArray()},
+                        ${person.xArray()},
+                        ${person.yArray()});
+                    </script>
+                </c:forEach>
+            </div>
+            <div id="sidebar">
                 <table id="form">
                     <form name="form">
                         Time: 
@@ -49,7 +47,6 @@
                         Show scenery: <input type="checkbox" id="scenery" checked>
                     </form>
                 </table>
-
                 <ul id="stats">
                     <li>${filename}</li>
                 </ul>

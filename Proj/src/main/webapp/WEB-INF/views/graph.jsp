@@ -5,24 +5,25 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="template.jsp" />
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="<c:url value="${stylesheet}" />" rel="stylesheet" >
         <title>Project</title>
     </head>
     <body>
+        <jsp:include page="header.jsp" />
         <div id="container">
             <div id="map">                
-                <center><canvas id="myCanvas">
+                <canvas id="myCanvas">
                         <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
                         <script src="<c:url value="${ChartBar}" />" type="text/javascript"></script>
                         <script src="<c:url value="${ChartCore}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Chart}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Graph}" />" type="text/javascript"></script>
-                </center></canvas>
+                </canvas>
             </div>
 
             <c:forEach var="stat" items="${stats}">
@@ -34,9 +35,7 @@
             </c:forEach>
 
             <div id="sidebar">
-                <ul id="nav">
-
-                </ul>
+   
                 <table id="form">
                     <form name="form">
                         Time: 
