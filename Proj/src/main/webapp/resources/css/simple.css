@@ -1,28 +1,36 @@
 /*#-RESET-#*/
-body{font-family:Helvetica, Ubuntu, Verdana, Consolas, sans-serif;color:#000;background-color:#fff;margin:0;padding:0}
-h1{font-size:40px;line-height:50px;font-weight:900;color:#fff;margin:30px 5px 0 125px;padding:0}
-
+*{
+    font-family:Helvetica;
+}
+body{
+    margin:0;
+}
+header {
+    background: #ff0000;
+    height: 16px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
 a{
     text-decoration: none;
-    color:#000;
+    color:#fff;
 }
 a:visited{
-    color:#000;
+    color:#fff;
 }
 a:hover{
-    color:red;
+    color:#000;
 }
-
 #nav{
-    list-style-type:none;
-    margin-bottom:10px;
-    display:block;
+    margin: 0 0 0 -2%;
 }
-
 #nav li{
     float:left;
-    margin-right:5px;
+    margin-right:1%;
     list-style-type:none;
+}
+#nav li a{
+    font-weight: lighter;
 }
 
 #stats {

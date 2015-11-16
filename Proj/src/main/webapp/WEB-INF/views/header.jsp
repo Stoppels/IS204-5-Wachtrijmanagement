@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<header>
+<header id="header">
     <ul id="nav">
         <li><a href="${pageContext.request.contextPath}/">Home</a></li> 
         <li><a href="${pageContext.request.contextPath}/snapshot">Snapshot</a></li>
