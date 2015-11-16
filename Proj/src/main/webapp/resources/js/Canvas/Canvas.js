@@ -56,7 +56,7 @@ function drawRectangle(xPos, yPos, width, height, degree, color) {
 function drawScene(active, img) {
     if (active) {
         showImage(img, 530, -330, 1400, 1400);
-        drawRectangle(520, -25, 600, 50, 14, '#FF0000');
+        drawRectangle(520, -25, 600, 50, 14, '#0099FF');
     }
 }
 
