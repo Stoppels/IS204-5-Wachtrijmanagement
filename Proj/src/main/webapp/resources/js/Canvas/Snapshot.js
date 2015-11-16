@@ -5,6 +5,9 @@
 
 // Plays event to draw on canvas
 var playing = false;
+var img = new Image();
+img.src = 'resources/img/filmed.png';
+
 function play(s, e) {
     if (playing === false) {
         playing = true;
@@ -25,7 +28,7 @@ function playPersons(s, e) {
         function nextFrame(i)
         {
             clear();
-            drawScene(document.getElementById('scenery').checked);
+            drawScene(document.getElementById('scenery').checked, img);
             for (j = 0; j < list.length; j++) {
                 if (list[j].counter > 0) {
                     drawPerson(j);

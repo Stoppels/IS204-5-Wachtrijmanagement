@@ -53,9 +53,9 @@ function drawRectangle(xPos, yPos, width, height, degree, color) {
     context.restore();
 }
 
-function drawScene(active) {
+function drawScene(active, img) {
     if (active) {
-        showImage('resources/img/filmed.png', 530, -330, 1400, 1400);
+        showImage(img, 530, -330, 1400, 1400);
         drawRectangle(520, -25, 600, 50, 14, '#FF0000');
     }
 }
@@ -73,14 +73,11 @@ function drawAlert(text) {
     context.fillText(text, (0 + centerX), (-250 + centerY));
 }
 
-function showImage(src, xPos, yPos, width, height) {
-    var imageObj = new Image();
-    imageObj.src = src;
-    imageObj.onload = function () {
-        context.save();
-        context.globalAlpha = 0.5;
-        context.drawImage(imageObj, (xPos + centerX) - width / 2, (-yPos + centerY) - height / 2, width, height);
-    };
+function showImage(img, xPos, yPos, width, height) {
+    var imageObj = img;
+    context.save();
+    context.globalAlpha = 0.5;
+    context.drawImage(imageObj, (xPos + centerX) - width / 2, (-yPos + centerY) - height / 2, width, height);
 }
 
 // Clears canvas

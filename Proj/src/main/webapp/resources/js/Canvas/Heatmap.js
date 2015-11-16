@@ -4,11 +4,13 @@
  Author     : Stefan */
 
 var playing = false;
+var img = new Image();
+img.src = 'resources/img/filmed.png';
 
 // Plays event to draw on canvas
 function play(s, e) {
     clear();
-    drawScene(document.getElementById("scenery").checked);
+    drawScene(document.getElementById("scenery").checked, img);
     showPersons(timeToMillis(s), timeToMillis(e));
     playing = true;
 }
