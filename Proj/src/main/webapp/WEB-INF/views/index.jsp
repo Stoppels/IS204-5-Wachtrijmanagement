@@ -5,25 +5,25 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="template.jsp" />
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
-
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="<c:url value="${stylesheet}" />" rel="stylesheet" >
+        <title>Project</title>
     </head>
-    <body>
+    <body> 
+        <jsp:include page="header.jsp" />
         <div id="container">
             <div id="map">
-                <center><canvas id="myCanvas">
+                <canvas id="myCanvas">
                         <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Home}" />" type="text/javascript"></script>
-                </center></canvas>
+               </canvas>
             </div>
             <div id="sidebar">
-                <ul id="nav">
 
-                </ul>
                 <table id="form">
                     <form name="form">
                         Time: 
