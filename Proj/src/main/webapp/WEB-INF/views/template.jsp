@@ -17,17 +17,7 @@
         <div id="container">
 
             <div id="map">
-                
-                <%--canvas has border for temporary testing--%>
-<<<<<<< HEAD
-                <canvas id="myCanvas"
-                                style="border:1px solid #000"
-                                >
-                    </canvas>
-=======
-                <center><canvas id="myCanvas">
-                    </canvas></center>
->>>>>>> cfe8fc85ae2c7ad41c9a835605c61eee974985ee
+
             </div>
 
             <div id="sidebar">
