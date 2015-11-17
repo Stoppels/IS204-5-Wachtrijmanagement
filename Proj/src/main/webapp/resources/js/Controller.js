@@ -50,10 +50,11 @@ function person() {
 }
 
 // function to create stats (Bar, data for every person)
-function createStats(id, labels, data) {
+function createStats(id, name, labels, data) {
     var index = stats.length;
     stats[index] = new statistic();
     stats[index].id = id;
+    stats[index].name = name;
     stats[index].labels = labels;
     stats[index].data = data;
 }
@@ -61,6 +62,7 @@ function createStats(id, labels, data) {
 // constructor of stats
 function statistic() {
     this.id;
+    this.name;
     this.labels;
     this.data;
 }

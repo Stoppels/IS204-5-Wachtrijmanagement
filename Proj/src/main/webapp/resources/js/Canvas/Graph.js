@@ -3,17 +3,23 @@
  Created on : Nov 6, 2015
  Author     : Stefan */
 
-window.onload = function() {
+loadStats = function () {
     personData(0);
+    addList();
+};
+
+addList = function () {
+    var select = document.getElementById("dropDown");
+    var option = document.createElement('option');
+    for (i = 0; i < stats.length; i++) {
+        option.text = stats[i].name;
+        select.add(option, 0);
+    }
 };
 
 function play() {
     personData(document.getElementById('dropDown').selectedIndex);
 }
-
-var randomScalingFactor = function () {
-    return Math.round(Math.random() * 100);
-};
 
 function personData(index) {
     var balken = [];
@@ -40,7 +46,7 @@ function personData(index) {
 function barChart(labels, data) {
     this.labels = labels,
             this.datasets = data;
-};
+}
 
 addChart = function (barChartData) {
     var ctx = document.getElementById("myCanvas").getContext("2d");

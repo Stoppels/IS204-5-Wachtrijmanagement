@@ -32,7 +32,7 @@ public class StatController {
             data[i] = personList.get(i).getEnd().secondsTotal() - personList.get(i).getStart().secondsTotal();
             labels[i] = "Person " + personList.get(i).getPersonId();
         }
-        Statistic result = new Statistic(list.size(), labels, data);
+        Statistic result = new Statistic(list.size(), "Total visit time", labels, data);
         this.list.add(result);
     }
 

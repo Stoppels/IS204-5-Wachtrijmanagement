@@ -14,17 +14,23 @@ import java.util.Arrays;
 public class Statistic {
     
     int id;
+    String name;
     String[] labels;
     int[] data;
 
-    public Statistic(int id, String[] labels, int[] data) {
+    public Statistic(int id, String name, String[] labels, int[] data) {
         this.id = id;
+        this.name = name;
         this.labels = labels;
         this.data = data;
     }
     
     public int getStatId() {
         return id;
+    }
+
+    public String getStatName() {
+        return "[\"" + name + "\"]";
     }
     
     public String labelArray() {
@@ -55,7 +61,7 @@ public class Statistic {
 
     @Override
     public String toString() {
-        return this.id + " data: \n"
+        return this.id + " " + this.name + " data: \n"
                 + Arrays.toString(labels)
                 + Arrays.toString(data);
     }

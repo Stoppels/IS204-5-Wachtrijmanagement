@@ -29,6 +29,7 @@
             <c:forEach var="stat" items="${stats}">
                 <script>
                     createStats(${stat.getStatId()},
+                    ${stat.getStatName()},
                     ${stat.labelArray()},
                     ${stat.dataArray()});
                 </script>
@@ -46,8 +47,8 @@
                                         document.getElementById('time2').value);
                                 return false;">
                         <br>
+                        <body onload="loadStats()">
                         Statistic: <select name="dropDown" id="dropDown">
-                            <option>Apple</option>
                         </select>
                     </form>
                 </table>
