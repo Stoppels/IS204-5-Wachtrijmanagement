@@ -89,8 +89,8 @@ function clear() {
 function init() {
     canvas = document.getElementById("myCanvas");
     context = canvas.getContext("2d");
-    canvas.width = 1200;
-    canvas.height = 770;
+    canvas.width = 1024;
+    canvas.height = 768;
     //determination of center positions x and y axis
     centerX = 100;
     centerY = 100;
