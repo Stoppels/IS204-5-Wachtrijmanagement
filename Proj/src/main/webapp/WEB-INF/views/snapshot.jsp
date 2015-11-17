@@ -27,9 +27,9 @@
                                         document.getElementById('time2').value);"  />
                         <input class="reset" type="button" value="Reset" onclick="stop();">
                         <br />
-                        Background: <input type="checkbox" id="scenery" checked>
                     </form>
                 </table>
+                Background: <input type="checkbox" id="scenery" checked>
                 <div id="stats">
                     <p>${filename}</p>
                 </div>

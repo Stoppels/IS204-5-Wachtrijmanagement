@@ -26,10 +26,10 @@
                                         document.getElementById('time2').value);
                                 return false;">
                         <br>
-                        Background: <input type="checkbox" id="scenery">
                     </form>
                 </table>
-                        
+                Background: <input type="checkbox" id="scenery" checked>
+
                 <div id="stats">
                     <p>${filename}</p>
                 </div>
@@ -44,14 +44,14 @@
 
             <c:forEach var="person" items="${list}">
                 <script>
-                    createPerson(${person.getPersonId()},
+                            createPerson(${person.getPersonId()},
                     ${person.timestampArray()},
                     ${person.xArray()},
                     ${person.yArray()});
                 </script>
             </c:forEach>
 
-            
+
             <br>
         </div>
     </body>

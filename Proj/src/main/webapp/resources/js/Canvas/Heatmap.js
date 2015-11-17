@@ -6,11 +6,14 @@
 var playing = false;
 var img = new Image();
 img.src = 'resources/img/filmed.png';
+setTimeout(function() {
+    img.onload = drawBackground();
+}, 1);
 
 // Plays event to draw on canvas
 function play(s, e) {
     clear();
-    drawScene(document.getElementById("scenery").checked, img);
+    drawBackground();
     showPersons(timeToMillis(s), timeToMillis(e));
     playing = true;
 }
@@ -41,6 +44,6 @@ function showPersons(s, e) {
     nextPerson(0);
 }
 
-
-
-
+function drawBackground() {
+    drawScene(document.getElementById('scenery').checked, img);
+}

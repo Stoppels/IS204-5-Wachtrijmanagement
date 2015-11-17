@@ -7,6 +7,10 @@
 var playing = false;
 var img = new Image();
 img.src = 'resources/img/filmed.png';
+setTimeout(function() {
+    img.onload = drawBackground();
+}, 1);
+
 
 function play(s, e) {
     if (playing === false) {
@@ -28,7 +32,7 @@ function playPersons(s, e) {
         function nextFrame(i)
         {
             clear();
-            drawScene(document.getElementById('scenery').checked, img);
+            drawBackground();
             for (j = 0; j < list.length; j++) {
                 if (list[j].counter > 0) {
                     drawPerson(j);
@@ -57,6 +61,10 @@ function playPersons(s, e) {
         }
         nextFrame(0);
     }
+}
+
+function drawBackground() {
+    drawScene(document.getElementById('scenery').checked, img);
 }
 
 function drawPerson(j) {
