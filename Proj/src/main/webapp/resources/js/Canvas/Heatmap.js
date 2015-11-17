@@ -18,6 +18,10 @@ function play(s, e) {
     playing = true;
 }
 
+function stop() {
+    location.reload();
+}
+
 function showPersons(s, e) {
     function nextPerson(i)
     {

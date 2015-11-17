@@ -29,6 +29,8 @@
                         <br />
                     </form>
                 </table>
+                <br>
+                
                 Background: <input type="checkbox" id="scenery" checked>
                 <div id="stats">
                     <p>${filename}</p>

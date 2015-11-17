@@ -1,13 +1,13 @@
 /*#-RESET-#*/
 *{
-    font-family:Helvetica;
+    font-family:Ubuntu;
 }
 body{
     margin:0;
 }
 header {
     background: #ff0000;
-    height: 16px;
+    height: 17px;
     padding: 5px;
 }
 a{
