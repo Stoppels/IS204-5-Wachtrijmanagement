@@ -3,22 +3,26 @@
  Created on : Nov 6, 2015
  Author     : Stefan */
 
-function play(s, e) {
-    personData();
+window.onload = function() {
+    personData(0);
+};
+
+function play() {
+    personData(document.getElementById('dropDown').selectedIndex);
 }
 
 var randomScalingFactor = function () {
     return Math.round(Math.random() * 100);
 };
 
-function personData() {
+function personData(index) {
     var balken = [];
     var labels = [];
     var data = [];
 
-    for (i = 0; i < stats[0].data.length; i++) {
-        labels[i] = stats[0].labels[i];
-        data[i] = stats[0].data[i];
+    for (i = 0; i < stats[index].data.length; i++) {
+        labels[i] = stats[index].labels[i];
+        data[i] = stats[index].data[i];
     }
 
     for (i = 0; i < 1; i++) {

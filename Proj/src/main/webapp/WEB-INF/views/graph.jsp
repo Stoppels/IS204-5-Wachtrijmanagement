@@ -46,7 +46,8 @@
                                         document.getElementById('time2').value);
                                 return false;">
                         <br>
-                        Statistic: <select name="dropDown">
+                        Statistic: <select name="dropDown" id="dropDown">
+                            <option>Apple</option>
                         </select>
                     </form>
                 </table>
