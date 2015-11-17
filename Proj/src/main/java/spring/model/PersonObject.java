@@ -40,7 +40,26 @@ public class PersonObject {
     public int getPersonId() {
         return personId;
     }
-
+    
+    public Bbox averageBbox(){
+        float x1 = 0,x2 = 0,y1 = 0,y2 = 0,z1 = 0,z2 = 0;
+        for (JsonObject j:jsonList){
+            Bbox box = j.getBbox();
+            x1+=box.getX1();
+            x2+=box.getX2();
+            y1+=box.getY1();
+            y2+=box.getY2();
+            z1+=box.getZ1();
+            z2+=box.getZ2();
+        }
+        x1/= jsonList.size();
+        x2/= jsonList.size();
+        y1/= jsonList.size();
+        y2/= jsonList.size();
+        z1/= jsonList.size();
+        z2/= jsonList.size();
+        return new Bbox(x1,x2,y1,y2,z1,z2);
+    }
     public Timestamp getStart() {
         setStartEndTime();
         return start;
