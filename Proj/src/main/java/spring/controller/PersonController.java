@@ -6,6 +6,7 @@
 package spring.controller;
 
 import java.util.ArrayList;
+import spring.model.Bbox;
 import spring.model.JsonObject;
 import spring.model.PersonObject;
 import spring.model.Timestamp;
@@ -20,7 +21,7 @@ import spring.model.Timestamp;
 public class PersonController {
 
     private final String ERROR = "\tCan't compute, list is empty";
-
+    private Bbox average;
     private Timestamp start;
     private Timestamp end;
     private ArrayList<PersonObject> list;
@@ -54,6 +55,47 @@ public class PersonController {
         for (PersonObject personObject : list) {
             validatePerson(personObject);
         }
+    }
+
+    public Bbox getAverage() {
+        return average;
+    }
+    
+    public void averageBbox(){
+        ArrayList <Bbox> boxes = new ArrayList<>();
+        for (int i =0;i<list.size();i++){
+            if (list.get(i).averageBbox().getX1()<-10||list.get(i).averageBbox().getX1()>0||list.get(i).averageBbox().getY2()<-10){
+                list.remove(i);
+            }
+        }
+        for (int i = 0;i<list.size();i++){
+                boxes.add(list.get(i).averageBbox());
+            }
+ 
+        for (Bbox box : boxes){
+            System.out.println(box);
+        }
+        average = oneBbox(boxes);
+        
+    }
+    
+    public Bbox oneBbox(ArrayList<Bbox> boxes){
+       float x1 = 0,x2 = 0,y1 = 0,y2 = 0,z1 = 0,z2 = 0;
+        for (Bbox box:boxes){
+            x1+=box.getX1();
+            x2+=box.getX2();
+            y1+=box.getY1();
+            y2+=box.getY2();
+            z1+=box.getZ1();
+            z2+=box.getZ2();
+        }
+        x1/= boxes.size();
+        x2/= boxes.size();
+        y1/= boxes.size();
+        y2/= boxes.size();
+        z1/= boxes.size();
+        z2/= boxes.size();
+        return new Bbox(x1,x2,y1,y2,z1,z2);
     }
     
     private void validatePerson(PersonObject personObject) {
