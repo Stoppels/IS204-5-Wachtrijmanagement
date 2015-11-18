@@ -90,6 +90,17 @@ public class HomeController {
         view.addObject("endtime", endtime);
         return view;
     }
+    
+    @RequestMapping(value = "/error")
+    public ModelAndView error() throws IOException {
+        ModelAndView view = new ModelAndView("error");
+
+        view.addObject("Error", "/resources/js/Canvas/Error.js" + random);
+        view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
+
+        view.addObject("stylesheet", "/resources/css/style.css" + random);
+        return view;
+    }
 
     // instantiates
     private void init() {
