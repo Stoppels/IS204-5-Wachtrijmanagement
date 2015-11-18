@@ -40,14 +40,14 @@ a:hover{
     list-style-type:none;
     margin-bottom:10px;
     display:block;
-    font-family:Ubuntu, Verdana, Consolas, sans-serif;color:#999;
+    font-family:Consolas, Verdana, Ubuntu, sans-serif;color:#999;
 }
 #container{
     width:100%;
     overflow:hidden;
 }
 #map canvas{
-    width:80%;
+    width:60%;
     float: left;
 }
 #sidebar{
