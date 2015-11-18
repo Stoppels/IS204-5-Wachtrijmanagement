@@ -41,10 +41,7 @@
                     <form name="form">
                         <input type="time" step="1" id="time1" value="${starttime}">
                         <input type="time" step="1" id="time2" value="${endtime}">
-                        <input type="button" value="Enter" onclick="play(
-                                        document.getElementById('time1').value,
-                                        document.getElementById('time2').value);
-                                return false;">
+                        <input type="button" value="Enter">
                             <br><br>
                         <body onload="loadStats();">
                             Statistic: <select name="dropDown" id="dropDown" onChange="play(

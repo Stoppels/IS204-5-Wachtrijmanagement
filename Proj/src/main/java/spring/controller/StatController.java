@@ -18,7 +18,7 @@ import spring.model.Statistic;
 public class StatController {
 
 	ArrayList<Statistic> list;
-	ArrayList<Integer> tempIntVisitors = new ArrayList<Integer>();
+	ArrayList<Integer> tempIntVisitors = new ArrayList<>();
 
 	public StatController() {
 		this.list = new ArrayList<>();

@@ -3,6 +3,12 @@
  Created on : Nov 6, 2015
  Author     : Stefan */
 
+var canvas;
+var context;
+
+window.onload = init();
+
+
 loadStats = function () {
     personData(0);
     addList();
@@ -40,6 +46,7 @@ function personData(index) {
             data: data
         };
     }
+    if (window.myBar) window.myBar.destroy();
     addChart(new barChart(labels, balken));
 }
 
@@ -49,8 +56,15 @@ function barChart(labels, data) {
 }
 
 addChart = function (barChartData) {
-    var ctx = document.getElementById("myCanvas").getContext("2d");
-    window.myBar = new Chart(ctx).Bar(barChartData, {
+    window.myBar = new Chart(context).Bar(barChartData, {
         responsive: true
     });
+
 };
+// Initializes canvas
+function init() {
+    canvas = document.getElementById("myCanvas");
+    context = canvas.getContext("2d");
+    canvas.width = 800;
+    canvas.height = 300;
+}
