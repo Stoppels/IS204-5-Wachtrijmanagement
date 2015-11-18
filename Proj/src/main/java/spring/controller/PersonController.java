@@ -57,10 +57,19 @@ public class PersonController {
         }
     }
 
+    /* TODO: Verander de naam van de methode, samen met de variabele
+    Feedback van Stefan:
+    Wat is average?? We snappen dat het een BBOX is, maar waar komt hij vandaan?
+    Waarom staat hij in deze class?
+    */
     public Bbox getAverage() {
         return average;
     }
     
+    /* TODO: Verander de naam van de methode, geef aan wat hij doet
+    Feedback van Stefan
+    Wat doet deze methode?
+    */
     public void averageBbox(){
         ArrayList <Bbox> boxes = new ArrayList<>();
         for (int i =0;i<list.size();i++){
@@ -79,6 +88,13 @@ public class PersonController {
         
     }
     
+    /* TODO: Nogmaals, dit is misschien wel de meest onduidelijke methode die ik
+            ooit heb gezien!
+    Feedback van Stefan
+    Elke idioot snapt dat hij de gemiddelde waarden van een BBOX probeert terug
+    te geven. Maar deze naam slaat alles.
+    Waarom staat deze methode in deze class?
+    */
     public Bbox oneBbox(ArrayList<Bbox> boxes){
        float x1 = 0,x2 = 0,y1 = 0,y2 = 0,z1 = 0,z2 = 0;
         for (Bbox box:boxes){
