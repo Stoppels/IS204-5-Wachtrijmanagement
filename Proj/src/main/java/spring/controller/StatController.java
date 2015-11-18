@@ -59,10 +59,10 @@ public class StatController {
 		int afternoonDuration = 0;
 		int eveningDuration = 0;
 		int temp[] = Arrays.copyOf(list.get(0).getStatData(), list.get(0).getStatData().length); // Fetch duration per person.
-		ArrayList<Integer> morningOrdered = new ArrayList<Integer>();
-		ArrayList<Integer> noonOrdered = new ArrayList<Integer>();
-		ArrayList<Integer> afternoonOrdered = new ArrayList<Integer>();
-		ArrayList<Integer> eveningOrdered = new ArrayList<Integer>();
+		ArrayList<Integer> morningOrdered = new ArrayList<>();
+		ArrayList<Integer> noonOrdered = new ArrayList<>();
+		ArrayList<Integer> afternoonOrdered = new ArrayList<>();
+		ArrayList<Integer> eveningOrdered = new ArrayList<>();
 
 		for (int i = 0; i < personList.size(); i++) { // Sum and store all visitors' visit duration
 			try {
@@ -150,7 +150,7 @@ public class StatController {
 			e.getLocalizedMessage();
 		}
 
-		Statistic result = new Statistic(list.size(), "Details visit durations", labels, data);
+		Statistic result = new Statistic(list.size(), "Daily overview", labels, data);
 		this.list.add(result);
 	}
 
@@ -161,7 +161,7 @@ public class StatController {
 			data[i] = personList.get(i).getEnd().secondsTotal() - personList.get(i).getStart().secondsTotal();
 			labels[i] = "Person " + personList.get(i).getPersonId();
 		}
-		Statistic result = new Statistic(list.size(), "Individual visit durations", labels, data);
+		Statistic result = new Statistic(list.size(), "Time per visitor", labels, data);
 		this.list.add(result);
 	}
 
@@ -182,7 +182,7 @@ public class StatController {
 		tempIntVisitors.clear();
 		// To do: visitor length details
 
-		Statistic result = new Statistic(list.size(), "Statistics visitors", labels, data);
+		Statistic result = new Statistic(list.size(), "Number of visitors", labels, data);
 		this.list.add(result);
 	}
 

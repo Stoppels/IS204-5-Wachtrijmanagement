@@ -17,17 +17,6 @@
         <jsp:include page="header.jsp" />
         <div id="container">
             <div id="sidebar">
-
-                <table id="form">
-                    <form name="form">
-                        <!--<label class="timeLabel">Time:</label>-->
-                        <input class="start" type="time" step="1" id="time1" value="${starttime}">
-                        <input class="end" type="time" step="1" id="time2" value="${endtime}">
-                        <input class="enter" type="button" value="Enter" onclick="play();" />
-                        <input class="reset" type="button" value="Reset" onclick="stop();">
-                    </form>
-                </table>
-
                 <div id="stats">
                     <p>${filename}</p>
                 </div>

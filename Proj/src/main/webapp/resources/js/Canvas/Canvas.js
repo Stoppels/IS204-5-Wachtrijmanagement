@@ -11,7 +11,6 @@ var centerY;
 
 window.onload = init();
 
-// Draws dot on canvas
 function drawDot(xPos, yPos, color) {
     var dotSize = 7;
     context.beginPath();
@@ -26,7 +25,6 @@ function drawDot(xPos, yPos, color) {
     context.restore();
 }
 
-// Draws dot on canvas
 function drawHeat(xPos, yPos) {
     var dotSize = 4;
     context.beginPath();
@@ -39,7 +37,6 @@ function drawHeat(xPos, yPos) {
     context.restore();
 }
 
-// Draws rectangle on canvas
 function drawRectangle(xPos, yPos, width, height, degree, color, opacity) {
     context.save();
     context.translate(xPos + centerX, -yPos + centerY);
@@ -59,14 +56,11 @@ function drawScene(active, img) {
     }
 }
 
-// Draws text on canvas
 function drawText(text, xPos, yPos, size) {
-    context.font = 'italic ' + size + 'pt Ubuntu';
-    context.fillStyle = '#000000';
+    context.font = 'normal ' + size + 'pt sans-serif';
     context.fillText(text, xPos + centerX, -yPos + centerY);
 }
 
-// Draws quick alert on canvas
 function drawAlert(text) {
     context.fillStyle = '#000000';
     context.fillText(text, (0 + centerX), (-250 + centerY));
@@ -78,18 +72,15 @@ function showImage(img, xPos, yPos, width, height) {
     context.drawImage(imageObj, (xPos + centerX) - width / 2, (-yPos + centerY) - height / 2, width, height);
 }
 
-// Clears canvas
 function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// Initializes canvas
 function init() {
     canvas = document.getElementById("myCanvas");
     context = canvas.getContext("2d");
     canvas.width = 1024;
     canvas.height = 768;
-    //determination of center positions x and y axis
     centerX = 100;
     centerY = 100;
 }
