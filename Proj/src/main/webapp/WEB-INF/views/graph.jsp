@@ -18,11 +18,11 @@
         <div id="container">
             <div id="map">                
                 <canvas id="myCanvas">
-                        <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
-                        <script src="<c:url value="${ChartBar}" />" type="text/javascript"></script>
-                        <script src="<c:url value="${ChartCore}" />" type="text/javascript"></script>
-                        <script src="<c:url value="${Chart}" />" type="text/javascript"></script>
-                        <script src="<c:url value="${Graph}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${ChartBar}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${ChartCore}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${Chart}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${Graph}" />" type="text/javascript"></script>
                 </canvas>
             </div>
 
@@ -36,7 +36,7 @@
             </c:forEach>
 
             <div id="sidebar">
-   
+
                 <table id="form">
                     <form name="form">
                         Time: 
@@ -48,8 +48,11 @@
                                 return false;">
                         <br>
                         <body onload="loadStats()">
-                        Statistic: <select name="dropDown" id="dropDown">
-                        </select>
+                            Statistic: <select name="dropDown" id="dropDown" onclick="play(
+                                        document.getElementById('time1').value,
+                                        document.getElementById('time2').value);
+                                return false;">
+                            </select>
                     </form>
                 </table>
 

@@ -10,10 +10,10 @@ loadStats = function () {
 
 addList = function () {
     var select = document.getElementById("dropDown");
-    var option = document.createElement('option');
     for (i = 0; i < stats.length; i++) {
+        var option = document.createElement('option');
         option.text = stats[i].name;
-        select.add(option, 0);
+        select.add(option, i);
     }
 };
 
