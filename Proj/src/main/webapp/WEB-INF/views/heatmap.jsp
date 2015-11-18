@@ -25,9 +25,11 @@
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);
                                 return false;">
+                        <input class="reset" type="button" value="Reset" onclick="stop();">
                         <br>
                     </form>
                 </table>
+                <br>
                 Background: <input type="checkbox" id="scenery" checked>
 
                 <div id="stats">

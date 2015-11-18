@@ -28,27 +28,26 @@ function drawDot(xPos, yPos, color) {
 
 // Draws dot on canvas
 function drawHeat(xPos, yPos) {
-    var dotSize = 3;
+    var dotSize = 4;
     context.beginPath();
     context.arc((xPos + centerX), (-yPos + centerY), dotSize + 4, 0, 2 * Math.PI);
-
     context.save();
     context.shadowColor = '#FFFF00';
-    context.shadowBlur = 40;
+    context.shadowBlur = 45;
     context.fillStyle = 'rgba(250, 0, 0, 0.02)';
     context.fill();
     context.restore();
-
 }
 
 // Draws rectangle on canvas
-function drawRectangle(xPos, yPos, width, height, degree, color) {
+function drawRectangle(xPos, yPos, width, height, degree, color, opacity) {
     context.save();
     context.translate(xPos + centerX, -yPos + centerY);
     context.rotate(degree * Math.PI / 180);
     context.beginPath();
     context.rect(-width / 2, -height / 2, width, height);
     context.fillStyle = color;
+    context.globalAlpha = opacity;
     context.fill();
     context.restore();
 }
@@ -56,7 +55,7 @@ function drawRectangle(xPos, yPos, width, height, degree, color) {
 function drawScene(active, img) {
     if (active) {
         showImage(img, 530, -330, 1400, 1400);
-        drawRectangle(520, -25, 600, 50, 14, '#0099FF');
+        drawRectangle(555, -10, 650, 30, 14, '#0099FF', 0.6);
     }
 }
 
@@ -76,7 +75,6 @@ function drawAlert(text) {
 function showImage(img, xPos, yPos, width, height) {
     var imageObj = img;
     context.save();
-    context.globalAlpha = 0.5;
     context.drawImage(imageObj, (xPos + centerX) - width / 2, (-yPos + centerY) - height / 2, width, height);
 }
 

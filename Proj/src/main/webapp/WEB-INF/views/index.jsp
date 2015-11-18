@@ -24,6 +24,7 @@
                         <input class="start" type="time" step="1" id="time1" value="${starttime}">
                         <input class="end" type="time" step="1" id="time2" value="${endtime}">
                         <input class="enter" type="button" value="Enter" onclick="play();" />
+                        <input class="reset" type="button" value="Reset" onclick="stop();">
                     </form>
                 </table>
 

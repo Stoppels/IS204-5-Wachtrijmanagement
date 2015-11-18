@@ -33,10 +33,10 @@ function personData(index) {
 
     for (i = 0; i < 1; i++) {
         balken[i] = {
-            fillColor: "rgba(220,220,220,0.5)",
-            strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(220,220,220,0.75)",
-            highlightStroke: "rgba(220,220,220,1)",
+            fillColor: "rgba(0,153,255,0.75)",
+            strokeColor: "rgba(0,153,255,1)",
+            highlightFill: "rgba(0,153,255,0.50)",
+            highlightStroke: "rgba(0,153,255,0.75)",
             data: data
         };
     }

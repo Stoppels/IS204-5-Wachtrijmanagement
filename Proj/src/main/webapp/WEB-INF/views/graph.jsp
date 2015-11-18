@@ -39,16 +39,15 @@
 
                 <table id="form">
                     <form name="form">
-                        Time: 
                         <input type="time" step="1" id="time1" value="${starttime}">
                         <input type="time" step="1" id="time2" value="${endtime}">
                         <input type="button" value="Enter" onclick="play(
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);
                                 return false;">
-                        <br>
-                        <body onload="loadStats()">
-                            Statistic: <select name="dropDown" id="dropDown" onclick="play(
+                            <br><br>
+                        <body onload="loadStats();">
+                            Statistic: <select name="dropDown" id="dropDown" onChange="play(
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);
                                 return false;">
@@ -56,9 +55,9 @@
                     </form>
                 </table>
 
-                <ul id="stats">
-                    <li>${filename}</li>
-                </ul>
+                <div id="stats">
+                    <p>${filename}</p>
+                </div>
             </div>
         </div>
     </body>
