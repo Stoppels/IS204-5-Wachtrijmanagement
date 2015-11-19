@@ -8,7 +8,6 @@ var context;
 
 window.onload = init();
 
-
 loadStats = function () {
     personData(0);
     addList();
@@ -46,8 +45,18 @@ function personData(index) {
             data: data
         };
     }
-    if (window.myBar) window.myBar.destroy();
+    document.getElementById("visitors").innerHTML = data.length;
+
+    if (window.myBar)
+        window.myBar.destroy();
     addChart(new barChart(labels, balken));
+
+    // Hide time fields for graphs other than 'Time per visitor'.
+    if (index !== 0) {
+        document.getElementById("timeElements").style.display = 'none';
+    } else {
+        document.getElementById("timeElements").style.display = 'block';
+    }
 }
 
 function barChart(labels, data) {

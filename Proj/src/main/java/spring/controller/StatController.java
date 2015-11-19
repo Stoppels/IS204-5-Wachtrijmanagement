@@ -35,24 +35,12 @@ public class StatController {
 	}
 
 	private void statDurationsInDetail(ArrayList<PersonObject> personList) {
-		int[] data = new int[15];
-		String[] labels = new String[15];
-
-		labels[0] = "Minimum duration";
-		labels[1] = "Minimum morning";
-		labels[2] = "Minimum noon";
-		labels[3] = "Minimum afternoon";
-		labels[4] = "Minimum evening";
-		labels[5] = "Average duration";
-		labels[6] = "Average morning";
-		labels[7] = "Average noon";
-		labels[8] = "Average afternoon";
-		labels[9] = "Average evening";
-		labels[10] = "Maximum duration";
-		labels[11] = "Maximum morning";
-		labels[12] = "Maximum noon";
-		labels[13] = "Maximum afternoon";
-		labels[14] = "Maximum evening";
+		Integer[] data = new Integer[15];
+		String[] labels = {
+			"Minimum duration", "Minimum morning", "Minimum noon", "Minimum afternoon", "Minimum evening",
+			"Average duration", "Average morning", "Average noon", "Average afternoon", "Average evening",
+			"Maximum duration", "Maximum morning", "Maximum noon", "Maximum afternoon", "Maximum evening"
+		};
 
 		int morningDuration = 0;
 		int noonDuration = 0;
@@ -64,7 +52,8 @@ public class StatController {
 		ArrayList<Integer> afternoonOrdered = new ArrayList<>();
 		ArrayList<Integer> eveningOrdered = new ArrayList<>();
 
-		for (int i = 0; i < personList.size(); i++) { // Sum and store all visitors' visit duration
+		// Sum and store all visitors' visit durations.
+		for (int i = 0; i < personList.size(); i++) {
 			try {
 				if (personList.get(i).getEnd().getHour() >= 0 && personList.get(i).getEnd().getHour() < 12) {
 					// Morning stats.
@@ -99,7 +88,6 @@ public class StatController {
 		// Sum and store all visitors' visit duration.
 		int totalDuration = morningDuration + noonDuration + afternoonDuration + eveningDuration;
 		int totalVisitors = temp.length;
-		tempIntVisitors.add(0, temp.length);
 		data[5] = totalVisitors > 0 ? totalDuration / totalVisitors : 0;
 
 		// Sort daypart duration data ascending.
@@ -109,48 +97,56 @@ public class StatController {
 		Collections.sort(eveningOrdered);
 
 		// Stores the shortest, average and longest durations per daypart.
-		try {
-			if (morningOrdered.size() > 0) { // Stats for the morning.
-				data[1] = morningOrdered.get(0);
-				data[6] = morningDuration / morningOrdered.size();
-				data[11] = morningOrdered.get(morningOrdered.size() - 1);
-				tempIntVisitors.add(1, morningOrdered.size());
-			} else { // If there's no (usable) data, assume zero.
-				data[1] = data[6] = data[11] = 0;
-				tempIntVisitors.add(1, 0);
-			}
-			if (noonOrdered.size() > 0) { // Stats for noon.
-				data[2] = noonOrdered.get(0);
-				data[7] = noonDuration / noonOrdered.size();
-				data[12] = noonOrdered.get(noonOrdered.size() - 1);
-				tempIntVisitors.add(2, noonOrdered.size());
-			} else { // If there's no (usable) data, assume zero.
-				data[2] = data[7] = data[12] = 0;
-				tempIntVisitors.add(2, 0);
-			}
-			if (afternoonOrdered.size() > 0) { // Stats for the afternoon.
-				data[3] = afternoonOrdered.get(0);
-				data[8] = afternoonDuration / afternoonOrdered.size();
-				data[13] = afternoonOrdered.get(afternoonOrdered.size() - 1);
-				tempIntVisitors.add(3, afternoonOrdered.size());
-			} else { // If there's no (usable) data, assume zero.
-				data[3] = data[8] = data[13] = 0;
-				tempIntVisitors.add(3, 0);
-			}
-			if (eveningOrdered.size() > 0) { // Stats for the evening.
-				data[4] = eveningOrdered.get(0);
-				data[9] = eveningDuration / eveningOrdered.size();
-				data[14] = eveningOrdered.get(eveningOrdered.size() - 1);
-				tempIntVisitors.add(4, eveningOrdered.size());
-			} else { // If there's no (usable) data, assume zero.
-				data[4] = data[9] = data[14] = 0;
-				tempIntVisitors.add(4, 0);
-			}
-		} catch (NullPointerException e) {
-			e.getLocalizedMessage();
+		if (morningOrdered.size() > 0) { // Stats for the morning.
+			data[1] = morningOrdered.get(0); // Minimum duration.
+			data[6] = morningDuration / morningOrdered.size(); // Average duration.
+			data[11] = morningOrdered.get(morningOrdered.size() - 1); // Maximum duration.
+			tempIntVisitors.add(0, morningOrdered.size());
+		} else { // If there're no (usable) data, assume zero. Hide daypart.
+			data[1] = data[6] = data[11] = null;
+			tempIntVisitors.add(0, 0);
+		}
+		if (noonOrdered.size() > 0) { // Stats for noon.
+			data[2] = noonOrdered.get(0); // Minimum duration.
+			data[7] = noonDuration / noonOrdered.size(); // Average duration.
+			data[12] = noonOrdered.get(noonOrdered.size() - 1); // Maximum duration.
+			tempIntVisitors.add(1, noonOrdered.size());
+		} else { // If there're no (usable) data, assume zero. Hide daypart.
+			data[2] = data[7] = data[12] = null;
+			tempIntVisitors.add(1, 0);
+		}
+		if (afternoonOrdered.size() > 0) { // Stats for the afternoon.
+			data[3] = afternoonOrdered.get(0); // Minimum duration.
+			data[8] = afternoonDuration / afternoonOrdered.size(); // Average duration.
+			data[13] = afternoonOrdered.get(afternoonOrdered.size() - 1); // Maximum duration.
+			tempIntVisitors.add(2, afternoonOrdered.size());
+		} else { // If there're no (usable) data, assume zero. Hide daypart.
+			data[3] = data[8] = data[13] = null;
+			tempIntVisitors.add(2, 0);
+		}
+		if (eveningOrdered.size() > 0) { // Stats for the evening.
+			data[4] = eveningOrdered.get(0); // Minimum duration.
+			data[9] = eveningDuration / eveningOrdered.size(); // Average duration.
+			data[14] = eveningOrdered.get(eveningOrdered.size() - 1); // Maximum duration.
+			tempIntVisitors.add(3, eveningOrdered.size());
+		} else { // If there're no (usable) data, assume zero. Hide daypart.
+			data[4] = data[9] = data[14] = null;
+			tempIntVisitors.add(3, 0);
 		}
 
-		Statistic result = new Statistic(list.size(), "Daily overview", labels, data);
+		// Filter out the nulls. Null means no visitors that daypart. Will be omitted from chart.
+		int[] tempData = new int[data.length];
+		String[] tempLabels = new String[data.length];
+		int index = 0;
+		for (int i = 0; i < data.length; i++) {
+			if (data[i] != null) { // If data[i] is empty, this will skip that daypart section.
+				tempData[index] = data[i];
+				tempLabels[index++] = labels[i];
+			}
+		}
+		int[] finalData = Arrays.copyOfRange(tempData, 0, index);
+		String[] finalLabels = Arrays.copyOf(tempLabels, index);
+		Statistic result = new Statistic(list.size(), "Daily overview", finalLabels, finalData);
 		this.list.add(result);
 	}
 
@@ -166,23 +162,29 @@ public class StatController {
 	}
 
 	private void statVisitorDetails(ArrayList<PersonObject> personList) {
-		int[] data = new int[5];
-		String[] labels = new String[5];
+		int[] data = new int[tempIntVisitors.size() + 1];
+		String[] labels = {"Morning visitors", "Noon visitors", "Afternoon visitors", "Evening visitors", "Total number of visitors"};
 
-		labels[0] = "Total number of visitors";
-		labels[1] = "Morning visitors";
-		labels[2] = "Noon visitors";
-		labels[3] = "Afternoon visitors";
-		labels[4] = "Evening visitors";
-		data[0] = tempIntVisitors.get(0); // Stores the total number of visitors.
-		data[1] = tempIntVisitors.get(1); // Stores the morning visitors.
-		data[2] = tempIntVisitors.get(2); // Stores the noon visitors.
-		data[3] = tempIntVisitors.get(3); // Stores the afternoon visitors.
-		data[4] = tempIntVisitors.get(4); // Stores the evening visitors.
+		// Stores the total number of visitors for dayparts and total.
+		for (int i = 0; i < data.length - 1; i++) {
+			data[i] = tempIntVisitors.get(i);
+		}
 		tempIntVisitors.clear();
-		// To do: visitor length details
+		data[4] = data[0] + data[1] + data[2] + data[3];
 
-		Statistic result = new Statistic(list.size(), "Number of visitors", labels, data);
+		// Filter out the nulls. Null means no visitors that daypart. Will be omitted from chart.
+		int[] tempData = new int[data.length];
+		String[] tempLabels = new String[data.length];
+		int index = 0;
+		for (int i = 0; i < data.length; i++) {
+			if (i != 0) {
+				tempData[index] = data[i];
+				tempLabels[index++] = labels[i];
+			}
+		}
+		int[] finalData = Arrays.copyOfRange(tempData, 0, index);
+		String[] finalLabels = Arrays.copyOf(tempLabels, index);
+		Statistic result = new Statistic(list.size(), "Number of visitors", finalLabels, finalData);
 		this.list.add(result);
 	}
 

@@ -39,15 +39,14 @@
 
                 <table id="form">
                     <form name="form">
-                        <input type="time" step="1" id="time1" value="${starttime}">
-                        <input type="time" step="1" id="time2" value="${endtime}">
-                        <input type="button" value="Enter">
-                            <br><br>
+                        <span id="timeElements"><input type="time" step="1" id="time1" value="${starttime}">
+                            <input type="time" step="1" id="time2" value="${endtime}">
+                            <input type="button" value="Enter">
+                            <br>
+                            <p>Number of visitors: <span id="visitors"></span></p>
+                        </span>
                         <body onload="loadStats();">
-                            Statistic: <select name="dropDown" id="dropDown" onChange="play(
-                                        document.getElementById('time1').value,
-                                        document.getElementById('time2').value);
-                                return false;">
+                            Statistic: <select name="dropDown" id="dropDown" onChange="play();">
                             </select>
                     </form>
                 </table>
