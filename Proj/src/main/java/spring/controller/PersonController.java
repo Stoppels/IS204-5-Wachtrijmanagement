@@ -6,6 +6,7 @@
 package spring.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import spring.model.Bbox;
 import spring.model.JsonObject;
 import spring.model.PersonObject;
@@ -49,104 +50,35 @@ public class PersonController {
     public ArrayList<PersonObject> getList() {
         return list;
     }
-    
-    // validates the list of personObjects
-    public void validatePersons() {
-        for (PersonObject personObject : list) {
-            validatePerson(personObject);
-        }
-    }
 
-    /* TODO: Verander de naam van de methode, samen met de variabele
-    Feedback van Stefan:
-    Wat is average?? We snappen dat het een BBOX is, maar waar komt hij vandaan?
-    Waarom staat hij in deze class?
-    */
     public Bbox getAverage() {
         return average;
     }
-    
-    /* TODO: Verander de naam van de methode, geef aan wat hij doet
-    Feedback van Stefan
-    Wat doet deze methode?
-    */
-    public void averageBbox(){
-        ArrayList <Bbox> boxes = new ArrayList<>();
-        for (int i =0;i<list.size();i++){
-            if (list.get(i).averageBbox().getX1()<-10||list.get(i).averageBbox().getX1()>0||list.get(i).averageBbox().getY2()<-10){
-                list.remove(i);
-            }
-        }
-        for (int i = 0;i<list.size();i++){
-                boxes.add(list.get(i).averageBbox());
-            }
- 
-        for (Bbox box : boxes){
-            System.out.println(box);
-        }
-        average = oneBbox(boxes);
-        
-    }
-    
-    /* TODO: Nogmaals, dit is misschien wel de meest onduidelijke methode die ik
-            ooit heb gezien!
-    Feedback van Stefan
-    Elke idioot snapt dat hij de gemiddelde waarden van een BBOX probeert terug
-    te geven. Maar deze naam slaat alles.
-    Waarom staat deze methode in deze class?
-    */
-    public Bbox oneBbox(ArrayList<Bbox> boxes){
-       float x1 = 0,x2 = 0,y1 = 0,y2 = 0,z1 = 0,z2 = 0;
-        for (Bbox box:boxes){
-            x1+=box.getX1();
-            x2+=box.getX2();
-            y1+=box.getY1();
-            y2+=box.getY2();
-            z1+=box.getZ1();
-            z2+=box.getZ2();
-        }
-        x1/= boxes.size();
-        x2/= boxes.size();
-        y1/= boxes.size();
-        y2/= boxes.size();
-        z1/= boxes.size();
-        z2/= boxes.size();
-        return new Bbox(x1,x2,y1,y2,z1,z2);
-    }
-    
-    private void validatePerson(PersonObject personObject) {
-        ArrayList<JsonObject> result = new ArrayList<>();
-        JsonObject j = personObject.getJsonList().get(0);
-        Timestamp t = j.getTimestamp();
-        for (JsonObject jsonObject : personObject.getJsonList()) {
-            if (t.compareTo(jsonObject.getTimestamp()) == 0) {
-                j.mergeJsonObject(jsonObject);
-            } else {
-                result.add(j);
-                t = jsonObject.getTimestamp();
-                j = jsonObject;
-            }
-        }
-        result.add(j);
-        personObject.setJsonList(result);
-    }
 
-    private int[] calculateAmountPersons(ArrayList<JsonObject> jsonList) {
+    public void averageBbox() {
+        ArrayList<Bbox> boxes = new ArrayList<>();
+    }
+    
+    private ArrayList<Integer> calculateAmountPersons(ArrayList<JsonObject> jsonList) {
         // geeft een array met alle unieke track_id's
-        int[] first = new int[1];
-        int[] second;
+        ArrayList<Integer> first = new ArrayList<>();
+        ArrayList<Integer> all = new ArrayList<>();
+        first.add(0);
         for (JsonObject jsonObject : jsonList) {
+            all.add(jsonObject.getTrack_id());
             int count = 0;
-            for (int i = 0; i < first.length; i++) {
-                if (jsonObject.getTrack_id() != first[i]) {
+            for (int i = 0; i < first.size(); i++) {
+                if (jsonObject.getTrack_id() != first.get(i)) {
                     count++;
                 }
             }
-            if (count == first.length) {
-                second = new int[first.length + 1];
-                System.arraycopy(first, 0, second, 0, first.length);
-                first = second;
-                first[count - 1] = jsonObject.getTrack_id();
+            if (count == first.size()) {
+                first.set(count - 1, jsonObject.getTrack_id());
+                first.add(0);
+        }}
+        for (Integer i:all){
+            if (Collections.frequency(all, i)==1){
+                first.remove(i);
             }
         }
         return first;
@@ -156,24 +88,30 @@ public class PersonController {
         // Maakt een nieuwe PersonObject voor elke track_id
         // Verdeelt alle Json lijnen per track_id over alle PersonObjects
         if (!jsonList.isEmpty()) {
-            int[] p = calculateAmountPersons(jsonList);
-            for (int i = 0; i < p.length - 1; i++) {
-                list.add(new PersonObject(new ArrayList<JsonObject>()));
+            ArrayList p = calculateAmountPersons(jsonList);
+            for (int i = 0; i < p.size() - 1; i++) {
+                list.add(new PersonObject(new ArrayList<JsonObject>())); 
             }
             for (JsonObject jsonObject : jsonList) {
-                for (int i = 0; i < p.length; i++) {
-                    if (jsonObject.getTrack_id() == p[i]) {
+                for (int i = 0; i < p.size(); i++) {
+                    if (jsonObject.getTrack_id() == (int) p.get(i)) {
                         list.get(i).add(jsonObject);
                     }
                 }
             }
             setStartEndTime();
-            validatePersons();
         } else {
             System.out.println("convertJsonToPerson()" + ERROR);
         }
     }
 
+//    public void PersonCheckOneLine(){
+//        for (){
+//            if (o.getJsonList().size() == 1){
+//                list.remove(o);
+//            }
+//        }
+//    }
     private void setStartEndTime() {
         if (this.list.isEmpty()) {
             System.out.println("setStartEndTime()" + ERROR);

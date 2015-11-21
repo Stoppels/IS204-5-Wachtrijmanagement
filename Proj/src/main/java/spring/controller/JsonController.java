@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 import spring.model.JsonObject;
+import spring.model.Timestamp;
 
 /**
  *
@@ -32,8 +33,26 @@ public class JsonController {
         }
         return this.jsonList;
     }
-
-    public static ArrayList<JsonObject> readJson(String filename) {
+    
+    private ArrayList validateList(ArrayList<JsonObject> list) {
+        ArrayList<JsonObject> result = new ArrayList<>();
+        JsonObject j = list.get(0);
+        Timestamp t = j.getTimestamp();
+        for (JsonObject jsonObject : list) {
+            if (t.compareTo(jsonObject.getTimestamp()) == 0) {
+                j.mergeJsonObject(jsonObject);
+            } else {
+                result.add(j);
+                t = jsonObject.getTimestamp();
+                j = jsonObject;
+            }
+        }
+        result.add(j);
+        jsonList = result;
+        return result;
+    }
+    
+    private ArrayList<JsonObject> readJson(String filename) {
 
         BufferedReader br = null;
         JsonObject jsonObject;
@@ -55,10 +74,10 @@ public class JsonController {
                 System.out.println(ex);
             }
         }
-        return jsonObjects;
+        return validateList(jsonObjects);
     }
 
-    private static void extractLine(BufferedReader br, ArrayList<JsonObject> jsonObjects) throws NumberFormatException, IOException {
+    private void extractLine(BufferedReader br, ArrayList<JsonObject> jsonObjects) throws NumberFormatException, IOException {
         String string;
         String[] stringArray;
         JsonObject jsonObject;
@@ -86,10 +105,10 @@ public class JsonController {
                     Float.parseFloat(stringArray[9]),
                     Float.parseFloat(stringArray[10]),
                     Float.parseFloat(stringArray[11]));
-            jsonObjects.add(jsonObject);
+                jsonObjects.add(jsonObject);
+            }
         }
-    }
-
+    
     @Override
     public String toString() {
         return "JSONCONTROLLER\n"
