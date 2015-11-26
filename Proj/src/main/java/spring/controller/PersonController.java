@@ -26,6 +26,9 @@ public class PersonController {
     private Timestamp start;
     private Timestamp end;
     private ArrayList<PersonObject> list;
+    // tijelijk even een vaste max height en in height
+    private final double MIN_HEIGHT = 0.4;
+    private final double MAX_HEIGHT = 1.7; 
 
     public PersonController() {
         this.list = new ArrayList<>();
@@ -68,7 +71,10 @@ public class PersonController {
             all.add(jsonObject.getTrack_id());
             int count = 0;
             for (int i = 0; i < first.size(); i++) {
-                if (jsonObject.getTrack_id() != first.get(i)) {
+                //de && statements in de if hier zorgen er voor dat objecten
+                //met een abnormale hoogte/afstand van camera gefiltered worden
+                if (jsonObject.getTrack_id() != first.get(i) && jsonObject.getBbox().getZ2() >= MIN_HEIGHT
+                        && jsonObject.getBbox().getZ2() <= MAX_HEIGHT) {
                     count++;
                 }
             }
@@ -94,8 +100,8 @@ public class PersonController {
             }
             for (JsonObject jsonObject : jsonList) {
                 for (int i = 0; i < p.size(); i++) {
-                    if (jsonObject.getTrack_id() == (int) p.get(i)) {
-                        list.get(i).add(jsonObject);
+                    if (jsonObject.getTrack_id() == (int) p.get(i) ) {
+                        list.get(i).add(jsonObject);      
                     }
                 }
             }
@@ -104,7 +110,7 @@ public class PersonController {
             System.out.println("convertJsonToPerson()" + ERROR);
         }
     }
-
+      
 //    public void PersonCheckOneLine(){
 //        for (){
 //            if (o.getJsonList().size() == 1){
