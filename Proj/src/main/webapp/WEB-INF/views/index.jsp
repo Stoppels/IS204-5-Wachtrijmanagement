@@ -23,11 +23,11 @@
             </div>
             <div id="map">
                 <canvas id="myCanvas">
-                        <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
-                        <script src="<c:url value="${Home}" />" type="text/javascript"></script>
-               </canvas>
+                    <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${Home}" />" type="text/javascript"></script>
+                </canvas>
             </div>
-            
+
         </div>
     </body>
 </html>

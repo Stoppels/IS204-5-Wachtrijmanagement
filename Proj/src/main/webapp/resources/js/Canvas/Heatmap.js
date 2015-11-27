@@ -6,7 +6,7 @@
 var playing = false;
 var img = new Image();
 img.src = 'resources/img/filmed.png';
-setTimeout(function() {
+setTimeout(function () {
     img.onload = drawBackground();
 }, 1);
 

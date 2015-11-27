@@ -18,11 +18,11 @@
         <div id="container">
             <div id="map">
                 <canvas id="myCanvas">
-                        <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
-                        <script src="<c:url value="${Error}" />" type="text/javascript"></script>
-               </canvas>
+                    <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${Error}" />" type="text/javascript"></script>
+                </canvas>
             </div>
-            
+
         </div>
     </body>
 </html>

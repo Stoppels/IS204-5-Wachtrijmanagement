@@ -1,12 +1,12 @@
 /* 
-Document   : Home.js
-Created on : Nov 5, 2015
-Author     : Stefan */
+ Document   : Home.js
+ Created on : Nov 5, 2015
+ Author     : Stefan */
 
 window.onload = function showLogo() {
-    var xOffset  = 700;
-    var yOffset  = -300;
-    drawRectangle(100 + xOffset, 0 + yOffset, 190, 50, 45, '#FF0000' );
+    var xOffset = 700;
+    var yOffset = -300;
+    drawRectangle(100 + xOffset, 0 + yOffset, 190, 50, 45, '#FF0000');
     drawRectangle(100 + xOffset, 0 + yOffset, 190, 50, 135, '#FF0000');
     drawRectangle(-100 + xOffset, 0 + yOffset, 190, 50, 45, '#FF0000');
     drawRectangle(-100 + xOffset, 0 + yOffset, 190, 50, 135, '#FF0000');
@@ -17,5 +17,5 @@ window.onload = function showLogo() {
 };
 
 function play() {
-    
+
 }

@@ -32,7 +32,7 @@ function person() {
     this.count = function () {
         this.counter++;
     };
-    this.resetCount = function() {
+    this.resetCount = function () {
         this.counter = 0;
     };
     this.dot = function (i) {
@@ -45,7 +45,7 @@ function person() {
         drawText(this.id, -scale * this.x[i], scale * this.y[i], 15);
     };
     this.totalTime = function () {
-        return timeToMillis(t[t.length -1]) - timeToMillis(t[0]);
+        return timeToMillis(t[t.length - 1]) - timeToMillis(t[0]);
     };
 }
 
