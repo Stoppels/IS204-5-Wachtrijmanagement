@@ -7,17 +7,19 @@
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
 var isDrawing;
-var yOffset = 2;
-var xOffset = -311;
 
 canvas.onmousedown = function (e) {
+    var pos = getMousePos(canvas, e);
+
     isDrawing = true;
-    context.moveTo(e.clientX + xOffset, e.clientY + yOffset);
+    context.moveTo(pos.x, pos.y);
 };
 canvas.onmousemove = function (e) {
     if (isDrawing) {
+        var pos = getMousePos(canvas, e);
+
         context.save();
-        context.lineTo(e.clientX + xOffset, e.clientY + yOffset);
+        context.lineTo(pos.x, pos.y);
         context.stroke();
         context.restore();
     }
@@ -25,3 +27,11 @@ canvas.onmousemove = function (e) {
 canvas.onmouseup = function () {
     isDrawing = false;
 };
+
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: Math.round((evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width),
+        y: Math.round((evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height)
+    };
+}

@@ -50,6 +50,11 @@ a:hover{
     width:60%;
     float: left;
 }
+
+#myCanvas:active { 
+    cursor: crosshair;
+}
+
 #sidebar{
     float:left;
     width:18%;
