@@ -5,37 +5,29 @@
 
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
-var draw = false;
 var line = [];
-
-// button New Line calls this method
-function newLine() {
-    draw = true;
-}
 
 // initiate drawing
 canvas.onmousedown = function (e) {
-    if (draw === true) {
-        var pos = getMousePos(canvas, e);
-        context.beginPath();
-        context.moveTo(pos.x, pos.y);
-        line[0] = pos.x; line[1] = pos.y;
-    }
+    var pos = getMousePos(canvas, e);
+    context.beginPath();
+    context.moveTo(pos.x, pos.y);
+    line[0] = pos.x;
+    line[1] = pos.y;
 };
 
 // finish drawing (for continuous drawing use canvas.onmousemove)
 canvas.onmouseup = function (e) {
-    if (draw) {
-        var pos = getMousePos(canvas, e);
-        context.save();
-        context.lineTo(pos.x, pos.y);
-        line[2] = pos.x; line[3] = pos.y;
-        context.lineWidth = 15;
-        context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
-        context.stroke();
-        context.restore();
-        saveLine();
-    }
+    var pos = getMousePos(canvas, e);
+    context.save();
+    context.lineTo(pos.x, pos.y);
+    line[2] = pos.x;
+    line[3] = pos.y;
+    context.lineWidth = 15;
+    context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
+    context.stroke();
+    context.restore();
+    saveLine();
 };
 
 // gets exact mouse position regardless of resized windows
@@ -50,7 +42,7 @@ function getMousePos(canvas, evt) {
 // saves line
 function saveLine() {
     var r = confirm('Do you wish to save this line?');
-    if (r) {
+    if (r === true) {
         lines[lines.length] = line;
     }
 }
