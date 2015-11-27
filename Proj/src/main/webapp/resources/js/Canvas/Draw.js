@@ -3,29 +3,26 @@
  Created on : Nov 27, 2015
  Author     : Stefan */
 
-
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
-var isDrawing;
 
+// initiate drawing
 canvas.onmousedown = function (e) {
     var pos = getMousePos(canvas, e);
-
-    isDrawing = true;
+    context.beginPath();
     context.moveTo(pos.x, pos.y);
 };
-canvas.onmousemove = function (e) {
-    if (isDrawing) {
-        var pos = getMousePos(canvas, e);
 
-        context.save();
-        context.lineTo(pos.x, pos.y);
-        context.stroke();
-        context.restore();
-    }
-};
-canvas.onmouseup = function () {
-    isDrawing = false;
+// finish drawing (for continuous drawing use canvas.onmousemove)
+canvas.onmouseup = function (e) {
+    var pos = getMousePos(canvas, e);
+    context.save();
+    context.lineTo(pos.x, pos.y);
+    context.lineWidth = 15;
+    context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
+    context.stroke();
+    context.restore();
+    saveLine();
 };
 
 function getMousePos(canvas, evt) {
@@ -34,4 +31,9 @@ function getMousePos(canvas, evt) {
         x: Math.round((evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width),
         y: Math.round((evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height)
     };
+}
+
+function saveLine() {
+    // saves line to some array to display each frame
+    // saves line to some file
 }

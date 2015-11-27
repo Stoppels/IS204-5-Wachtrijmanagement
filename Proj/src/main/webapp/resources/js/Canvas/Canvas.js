@@ -15,9 +15,10 @@ function drawDot(xPos, yPos, color) {
     var dotSize = 7;
     context.beginPath();
     context.arc((xPos + centerX), (-yPos + centerY), dotSize, 0, 2 * Math.PI);
+    context.closePath();
+    context.stroke();
 
     context.save();
-    context.stroke();
     context.shadowColor = '#000';
     context.shadowBlur = 0.2;
     context.fillStyle = color;
@@ -29,10 +30,12 @@ function drawHeat(xPos, yPos) {
     var dotSize = 4;
     context.beginPath();
     context.arc((xPos + centerX), (-yPos + centerY), dotSize + 4, 0, 2 * Math.PI);
+    context.closePath();
+    
     context.save();
     context.shadowColor = '#FFFF00';
     context.shadowBlur = 45;
-    context.fillStyle = 'rgba(250, 0, 0, 0.02)';
+    context.fillStyle = 'rgba(250, 0, 0, 0.08)';
     context.fill();
     context.restore();
 }
@@ -43,6 +46,7 @@ function drawRectangle(xPos, yPos, width, height, degree, color, opacity) {
     context.rotate(degree * Math.PI / 180);
     context.beginPath();
     context.rect(-width / 2, -height / 2, width, height);
+    context.closePath();
     context.fillStyle = color;
     context.globalAlpha = opacity;
     context.fill();
