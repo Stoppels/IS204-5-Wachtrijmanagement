@@ -11,7 +11,7 @@ setTimeout(function () {
     img.onload = drawBackground();
 }, 1);
 
-
+// starts the loop between start and end time
 function play(s, e) {
     if (playing === false) {
         playing = true;
@@ -22,11 +22,20 @@ function play(s, e) {
     }
 }
 
+// reloads page and resets timestamp count in each person object
 function stop() {
     resetPersonCount();
     location.reload();
 }
 
+
+/* iterates trough all person objects within start and end time
+ * list = person array containing t timestamp, x Position, y Position
+ * t = timestamp array
+ * s = start time
+ * e = end time
+ * i, j = iterators within loops
+ */
 function playPersons(s, e) {
     if (s < e) {
         function nextFrame(i)
@@ -63,16 +72,19 @@ function playPersons(s, e) {
     }
 }
 
+// draws background
 function drawBackground() {
     drawScene(document.getElementById('scenery').checked, img);
 }
 
+// draws dot and text while counting timestamp position
 function drawPerson(j) {
     list[j].dot(list[j].counter);
     list[j].text(list[j].counter);
     list[j].count();
 }
 
+// resets timestamp position for every person
 function resetPersonCount() {
     for (i = 0; i < list.length; i++) {
         list[i].resetCount();

@@ -8,11 +8,13 @@ var context;
 
 window.onload = init();
 
+// loads statistics from first position in array
 loadStats = function () {
     personData(0);
     addList();
 };
 
+// adds statistics to dropdown menu
 addList = function () {
     var select = document.getElementById("dropDown");
     for (i = 0; i < stats.length; i++) {
@@ -22,10 +24,12 @@ addList = function () {
     }
 };
 
+// plays selected statistic as chart
 function play() {
     personData(document.getElementById('dropDown').selectedIndex);
 }
 
+// retrieves data from statistic
 function personData(index) {
     var balken = [];
     var labels = [];
@@ -59,17 +63,20 @@ function personData(index) {
     }
 }
 
+// initialises chart with retrieved data
 function barChart(labels, data) {
     this.labels = labels,
             this.datasets = data;
 }
 
+// adds chart to window.myBar
 addChart = function (barChartData) {
     window.myBar = new Chart(context).Bar(barChartData, {
         responsive: true
     });
 
 };
+
 // Initializes canvas
 function init() {
     canvas = document.getElementById("myCanvas");

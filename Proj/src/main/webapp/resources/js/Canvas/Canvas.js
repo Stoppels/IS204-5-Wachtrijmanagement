@@ -11,6 +11,7 @@ var centerY;
 
 window.onload = init();
 
+// colored dot for snapshot.js
 function drawDot(xPos, yPos, color) {
     var dotSize = 7;
     context.beginPath();
@@ -26,6 +27,7 @@ function drawDot(xPos, yPos, color) {
     context.restore();
 }
 
+// heat dot for heatmap.js
 function drawHeat(xPos, yPos) {
     var dotSize = 4;
     context.beginPath();
@@ -40,6 +42,7 @@ function drawHeat(xPos, yPos) {
     context.restore();
 }
 
+// rectangle
 function drawRectangle(xPos, yPos, width, height, degree, color, opacity) {
     context.save();
     context.translate(xPos + centerX, -yPos + centerY);
@@ -53,6 +56,26 @@ function drawRectangle(xPos, yPos, width, height, degree, color, opacity) {
     context.restore();
 }
 
+// text
+function drawText(text, xPos, yPos, size) {
+    context.font = 'normal ' + size + 'pt sans-serif';
+    context.fillText(text, xPos + centerX, -yPos + centerY);
+}
+
+// quick text with only one parameter
+function drawAlert(text) {
+    context.fillStyle = '#000000';
+    context.fillText(text, (0 + centerX), (-250 + centerY));
+}
+
+// image
+function showImage(img, xPos, yPos, width, height) {
+    var imageObj = img;
+    context.save();
+    context.drawImage(imageObj, (xPos + centerX) - width / 2, (-yPos + centerY) - height / 2, width, height);
+}
+
+// scene with added scenery
 function drawScene(active, img) {
     if (active) {
         showImage(img, 530, -330, 1400, 1400);
@@ -60,26 +83,12 @@ function drawScene(active, img) {
     }
 }
 
-function drawText(text, xPos, yPos, size) {
-    context.font = 'normal ' + size + 'pt sans-serif';
-    context.fillText(text, xPos + centerX, -yPos + centerY);
-}
-
-function drawAlert(text) {
-    context.fillStyle = '#000000';
-    context.fillText(text, (0 + centerX), (-250 + centerY));
-}
-
-function showImage(img, xPos, yPos, width, height) {
-    var imageObj = img;
-    context.save();
-    context.drawImage(imageObj, (xPos + centerX) - width / 2, (-yPos + centerY) - height / 2, width, height);
-}
-
+// clears canvas
 function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+// initialises canvas
 function init() {
     canvas = document.getElementById("myCanvas");
     context = canvas.getContext("2d");

@@ -3,6 +3,7 @@
  Created on : Nov 5, 2015
  Author     : Stefan */
 
+// shows home page content
 window.onload = function showLogo() {
     var xOffset = 840;
     var yOffset = -300;
@@ -17,7 +18,3 @@ window.onload = function showLogo() {
     drawText("Queue", -895 + xOffset, 220 + yOffset, 60);
     drawText("Management", -625 + xOffset, 220 + yOffset, 60);
 };
-
-function play() {
-
-}

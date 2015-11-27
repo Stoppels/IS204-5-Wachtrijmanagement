@@ -3,6 +3,7 @@
  Created on : Nov 5, 2015
  Author     : Stefan */
 
+// shows error page content
 window.onload = function showLogo() {
     var xOffset = 700;
     var yOffset = -300;
@@ -15,7 +16,3 @@ window.onload = function showLogo() {
     drawText("404 Error", -650 + xOffset, 225 + yOffset, 80);
     drawText("This is not the page you are looking for", -700 + xOffset, 125 + yOffset, 40);
 };
-
-function play() {
-
-}

@@ -25,6 +25,7 @@ canvas.onmouseup = function (e) {
     saveLine();
 };
 
+// gets exact mouse position regardless of resized windows
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -33,6 +34,7 @@ function getMousePos(canvas, evt) {
     };
 }
 
+// saves drawing
 function saveLine() {
     // saves line to some array to display each frame
     // saves line to some file

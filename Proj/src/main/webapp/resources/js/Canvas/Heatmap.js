@@ -18,10 +18,12 @@ function play(s, e) {
     playing = true;
 }
 
+// reloads page
 function stop() {
     location.reload();
 }
 
+// loops trough heat dots within start and end time
 function showPersons(s, e) {
     function nextPerson(i)
     {
@@ -48,6 +50,7 @@ function showPersons(s, e) {
     nextPerson(0);
 }
 
+// draws background
 function drawBackground() {
     drawScene(document.getElementById('scenery').checked, img);
 }
