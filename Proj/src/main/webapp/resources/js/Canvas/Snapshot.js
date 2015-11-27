@@ -75,6 +75,7 @@ function playPersons(s, e) {
 // draws background
 function drawBackground() {
     drawScene(document.getElementById('scenery').checked, img);
+    drawLines();
 }
 
 // draws dot and text while counting timestamp position

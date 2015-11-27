@@ -5,6 +5,7 @@
 
 // list contains persons
 var list = new Array();
+var lines = new Array();
 var stats = new Array();
 var colors = [];
 
@@ -42,11 +43,18 @@ function person() {
         drawHeat(-scale * this.x[i], scale * this.y[i], '#FF0000');
     };
     this.text = function (i) {
-        drawText(this.id, -scale * this.x[i], scale * this.y[i], 15);
+        drawInfo(this.id, -scale * this.x[i], scale * this.y[i], 15);
     };
     this.totalTime = function () {
         return timeToMillis(t[t.length - 1]) - timeToMillis(t[0]);
     };
+}
+
+// draws all lines in lines array
+function drawLines() {
+    for (i = 0; i < lines.length; i++) {
+        drawLine(line);
+    }
 }
 
 // function to create stats (Bar, data for every person)

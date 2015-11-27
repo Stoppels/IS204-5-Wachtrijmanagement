@@ -20,12 +20,15 @@ function drawDot(xPos, yPos, color) {
     context.stroke();
 
     context.save();
-    context.shadowColor = '#000';
-    context.shadowBlur = 0.2;
     context.fillStyle = color;
+    context.strokeStyle = "rgba(0,153,255,1)";
+    context.lineWidth = 2;
+    context.stroke();
     context.fill();
     context.restore();
 }
+
+
 
 // heat dot for heatmap.js
 function drawHeat(xPos, yPos) {
@@ -33,7 +36,7 @@ function drawHeat(xPos, yPos) {
     context.beginPath();
     context.arc((xPos + centerX), (-yPos + centerY), dotSize + 4, 0, 2 * Math.PI);
     context.closePath();
-    
+
     context.save();
     context.shadowColor = '#FFFF00';
     context.shadowBlur = 45;
@@ -60,6 +63,29 @@ function drawRectangle(xPos, yPos, width, height, degree, color, opacity) {
 function drawText(text, xPos, yPos, size) {
     context.font = 'normal ' + size + 'pt sans-serif';
     context.fillText(text, xPos + centerX, -yPos + centerY);
+}
+
+// line
+function drawLine(line) {
+    context.beginPath();
+    context.save();
+    context.moveTo(line[0], line[1]);
+    context.lineTo(line[2], line[3]);
+    context.lineWidth = 15;
+    context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
+    context.stroke();
+    context.restore();
+}
+
+// info text
+function drawInfo(text, xPos, yPos, size) {
+    context.save();
+    context.font = 'normal ' + size + 'pt Trebuchet MS';
+    context.fillStyle = 'rgba(250, 250, 250, 0.8)';
+    context.shadowBlur = 3;
+    context.shadowColor = "black";
+    context.fillText(text, xPos + centerX, -yPos + centerY);
+    context.restore();
 }
 
 // quick text with only one parameter

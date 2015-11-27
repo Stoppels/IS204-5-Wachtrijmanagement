@@ -25,7 +25,8 @@
                         <input class="enter" type="button" value="Enter" onclick="play(
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);"  />
-                        <input class="reset" type="button" value="Reset" onclick="stop();">
+                        <input class="reset" type="button" value="Reset" onclick="stop();"><br>
+                        <input class="reset" type="button" value="New Line" onclick="newLine();">
                         <br />
                     </form>
                 </table>
@@ -47,7 +48,7 @@
 
                 <c:forEach var="person" items="${list}">
                     <script>
-                            createPerson(${person.getPersonId()},
+                                createPerson(${person.getPersonId()},
                         ${person.timestampArray()},
                         ${person.xArray()},
                         ${person.yArray()});
