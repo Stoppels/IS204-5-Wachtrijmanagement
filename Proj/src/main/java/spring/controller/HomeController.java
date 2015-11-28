@@ -43,7 +43,8 @@ public class HomeController {
 	JsonController JC;
 	PersonController PC;
 	StatController SC;
-	String filename = "no file";
+	String filename;
+	String file = "no file";
 	String starttime;
 	String endtime;
 
@@ -52,7 +53,7 @@ public class HomeController {
 		ModelAndView view = new ModelAndView("index");
 		init();
 
-		view.addObject("filename", filename);
+		view.addObject("filename", file);
 
 		view.addObject("Controller", "/resources/js/Controller.js" + random);
 		view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
@@ -68,7 +69,7 @@ public class HomeController {
 	public ModelAndView snapshotGet() throws IOException {
 		ModelAndView view = new ModelAndView("snapshot");
 
-		view.addObject("filename", filename);
+		view.addObject("filename", file);
 		view.addObject("list", PC.getList());
 
 		view.addObject("Controller", "/resources/js/Controller.js" + random);
@@ -86,7 +87,7 @@ public class HomeController {
 	public ModelAndView heatmap() throws IOException {
 		ModelAndView view = new ModelAndView("heatmap");
 
-		view.addObject("filename", filename);
+		view.addObject("filename", file);
 		view.addObject("list", PC.getList());
 
 		view.addObject("Controller", "/resources/js/Controller.js" + random);
@@ -103,7 +104,7 @@ public class HomeController {
 	public ModelAndView graph() throws IOException {
 		ModelAndView view = new ModelAndView("graph");
 
-		view.addObject("filename", filename);
+		view.addObject("filename", file);
 		view.addObject("stats", SC.getList());
 
 		view.addObject("Controller", "/resources/js/Controller.js" + random);
@@ -133,6 +134,7 @@ public class HomeController {
 	private void init() {
 		Main temporaryProblemSolverSeeTrello = new Main();
 		this.filename = temporaryProblemSolverSeeTrello.getPath();
+                this.file = temporaryProblemSolverSeeTrello.file;
 
 		JC = new JsonController(temporaryProblemSolverSeeTrello.getPath());
 		PC = new PersonController();
