@@ -39,7 +39,7 @@ function stop() {
 function playPersons(s, e) {
     if (s < e) {                // starttime has to be smaller than endtime
         function nextFrame(i) { // starts iterating trough frame
-
+            
             drawPersons(s, i);  // draws frame with persons and background
             if (s + i !== e)    // it its not starttime == endtime
                 document.getElementById("time1").stepUp(1); // html input time++

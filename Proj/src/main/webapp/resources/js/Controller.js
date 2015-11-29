@@ -12,8 +12,10 @@
 
 var persons = new Array();
 var stats = new Array();
-var lines; getLines();
+var lines;
+getLines();
 var colors = [];
+
 
 /*
  * Gets all the line information and data if it exists
@@ -21,10 +23,13 @@ var colors = [];
  * @returns void
  */
 function getLines() {
-    if (typeof lines === 'undefined') {
-        lines = JSON.parse(localStorage.getItem('session'));
+    var ls = JSON.parse(localStorage.getItem('session'));
+    if (ls !== null) {
+        lines = ls;
+        alert('ls');
     } else {
         lines = new Array();
+        alert('array');
     }
 }
 
@@ -83,7 +88,6 @@ function person() {
 function createLine(x1, y1, x2, y2) {
     lines.push({'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2});
     localStorage.setItem('session', JSON.stringify(lines));
-    console.log(JSON.parse(localStorage.getItem('session')));
 }
 
 // draws all lines in lines array
