@@ -32,8 +32,6 @@ function play(s, e) {
         playing = true;
         playPersons(timeToMillis(s), timeToMillis(e));
     }
-    highlight();
-    demo();
 }
 
 // reloads page and resets timestamp count in each person object

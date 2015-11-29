@@ -19,3 +19,14 @@ function drawPerson(j) {
     persons[j].count();
 }
 
+// draws movement web
+function drawMap(i) {
+    for (j = 1; j < persons[i].t.length; j++) {
+        drawLine((-90 * persons[i].x[j - 1]) + centerX,
+                (90 * -persons[i].y[j - 1]) + centerY,
+                (-90 * persons[i].x[j]) + centerX,
+                (90 * -persons[i].y[j]) + centerY
+                , 3, '#606060');
+    }
+}
+

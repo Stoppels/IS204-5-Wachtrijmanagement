@@ -35,7 +35,9 @@
                     </form>
                 </table>
                 <br>
-                Background: <input type="checkbox" id="scenery" checked>
+                Scenery: <tab><input type="checkbox" id="scenery" checked></tab>
+                <br>
+                Tracks: <tab><input type="checkbox" id="tracks" checked></tab>
 
                 <div id="stats">
                     <p>${filename}</p>
