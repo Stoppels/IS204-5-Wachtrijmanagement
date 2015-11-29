@@ -97,6 +97,7 @@ public class HomeController {
         view.addObject("Snapshot", "/resources/js/Canvas/Snapshot.js" + random);
         view.addObject("Heatmap", "/resources/js/Canvas/Heatmap.js" + random);
         view.addObject("Draw", "/resources/js/Canvas/Draw.js" + random);
+        view.addObject("LinesIntersect", "/resources/js/Canvas/LinesIntersect.js" + random);
 
         view.addObject("stylesheet", "/resources/css/style.css" + random);
         view.addObject("starttime", starttime);

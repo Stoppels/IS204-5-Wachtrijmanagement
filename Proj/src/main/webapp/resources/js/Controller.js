@@ -23,7 +23,7 @@ var colors = [];
  * @returns void
  */
 function getLines() {
-    var ls = JSON.parse(localStorage.getItem('session'));
+    var ls = JSON.parse(localStorage.getItem('linesSession'));
     if (ls !== null) {
         lines = ls;
     } else {
@@ -85,7 +85,7 @@ function person() {
  */
 function createLine(x1, y1, x2, y2) {
     lines.push({'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2});
-    localStorage.setItem('session', JSON.stringify(lines));
+    localStorage.setItem('linesSession', JSON.stringify(lines));
 }
 
 // draws all lines in lines array

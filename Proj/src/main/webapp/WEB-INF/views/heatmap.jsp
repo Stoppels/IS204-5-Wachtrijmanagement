@@ -50,6 +50,7 @@
                         <script src="<c:url value="${Snapshot}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Heatmap}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Draw}" />" type="text/javascript"></script>
+                        <script src="<c:url value="${LinesIntersect}" />" type="text/javascript"></script>
                 </center></canvas>
             </div>
 

@@ -46,7 +46,8 @@ function saveLine() {
     if (r === true) {
         createLine(newline[0], newline[1], newline[2], newline[3]);
         addList();
-        checkIntersections(newline[0], newline[1], newline[2], newline[3]);
-//        createStats(int id, String name,String[] labels, int[] data);
+        var select = document.getElementById("dropDown");
+        checkIntersections(select.options.length, select.options[select.options.length - 1].value,
+            newline[0], newline[1], newline[2], newline[3]);
     }
 }

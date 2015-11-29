@@ -59,35 +59,39 @@ function clearLines() {
 function playPersons(s, e) {
     if (s < e) {                // starttime has to be smaller than endtime
         function nextFrame(i) { // starts iterating trough frame
-
             drawPersons(s, i);  // draws frame with persons and background
             if (s + i !== e)    // it its not starttime == endtime
                 document.getElementById("time1").stepUp(1); // html input time++
-            if (s + i === e) {  // if starttime == endtime
+            else
                 return;
-            }
-
             setTimeout(function () {
                 nextFrame(i + 1);
-            }, playspeed);           // every 1000 ms (1 second)
+            }, playspeed);
         }
         nextFrame(0);
     }
 }
 
+// Calculates if person has passed starttime and starts painting dots and stripes
 function drawPersons(starttime, i) {
     // refers to Dotmap or Heatmap to determine if canvas needs cleaning
     cleanCanvas();
     for (j = 0; j < persons.length; j++) {
         if (persons[j].counter > 0) {
+            // if iterator in person has started
             drawPerson(j);
+            drawTrack(j);
         } else if (starttime + i == persons[j].t[0]) {
+            // if iterator matches starttime
             drawPerson(j);
+            drawTrack(j);
         } else if (starttime + i > persons[j].t[0]) {
+            // if iterator has passed starttime
             for (k = 0; starttime + i > persons[j].t[k]; k++) {
                 persons[j].count();
             }
             drawPerson(j);
+            drawTrack(j);
         }
     }
 }
@@ -95,7 +99,19 @@ function drawPersons(starttime, i) {
 // draws background
 function drawBackground() {
     drawScene(document.getElementById('scenery').checked, img);
-    drawLines();
+    drawLines(); // user drawn lines
+}
+
+// draws movement web
+function drawTrack(i) {
+    if (document.getElementById('tracks').checked) {
+        drawLine((-90 * persons[i].x[persons[j].counter - 2]) + centerX,
+                (90 * -persons[i].y[persons[j].counter - 2]) + centerY,
+                (-90 * persons[i].x[persons[j].counter-1]) + centerX,
+                (90 * -persons[i].y[persons[j].counter-1]) + centerY
+                , 3, '#606060');
+
+    }
 }
 
 // resets timestamp position for every person
