@@ -43,11 +43,10 @@
                             <input type="time" step="1" id="time2" value="${endtime}">
                             <input type="button" value="Enter">
                             <br>
-                            <p>Number of visitors: <span id="visitors"></span></p>
+                            <p>Number of visitors: <span id="visitors"></p>
                         </span>
                         <body onload="loadStats();">
-                            Statistic: <select name="dropDown" id="dropDown" onChange="play();">
-                            </select>
+                            Statistic: <select name="dropDown" id="dropDown" onChange="play();" />
                     </form>
                 </table>
 

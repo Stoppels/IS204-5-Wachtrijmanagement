@@ -45,6 +45,7 @@ function saveLine() {
     var r = confirm('Do you wish to save this line?');
     if (r === true) {
         createLine(newline[0], newline[1], newline[2], newline[3]);
+        addList();
 //        createStats(int id, String name,String[] labels, int[] data);
     }
 }

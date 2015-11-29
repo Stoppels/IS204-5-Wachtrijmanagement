@@ -5,28 +5,49 @@
 
 // Plays event to draw on canvas
 var playing = false;
+addList();
 var img = new Image();
 img.src = 'resources/img/filmed.png';
 setTimeout(function () {
     img.onload = drawBackground();
 }, 1);
 
+
+// adds lines to dropdown menu
+function addList() {
+    var select = document.getElementById("dropDown");
+    for (i = select.options.length - 1; i >= 0; i--) {
+        select.remove(i);
+    }
+    for (i = 0; i < lines.length; i++) {
+        var option = document.createElement('option');
+        option.text = 'Line alert ' + (i + 1);
+        select.add(option, i);
+    }
+}
+
 // starts the loop between start and end time
 function play(s, e) {
     if (playing === false) {
         playing = true;
-        clear();
         playPersons(timeToMillis(s), timeToMillis(e));
-    } else {
-        window.confirm("Press 'OK' to continue playing.");
     }
+    highlight();
+    demo();
 }
 
 // reloads page and resets timestamp count in each person object
 function stop() {
     resetPersonCount();
-    localStorage.setItem('session', null);
     location.reload();
+}
+
+function clearLines() {
+    localStorage.setItem('session', null);
+    lines = new Array();
+    clear();
+    drawBackground();
+    addList();
 }
 
 
@@ -40,27 +61,25 @@ function stop() {
 function playPersons(s, e) {
     if (s < e) {                // starttime has to be smaller than endtime
         function nextFrame(i) { // starts iterating trough frame
-            
+
             drawPersons(s, i);  // draws frame with persons and background
             if (s + i !== e)    // it its not starttime == endtime
                 document.getElementById("time1").stepUp(1); // html input time++
             if (s + i === e) {  // if starttime == endtime
-                alert("End of file");
-                stop();
                 return;
             }
 
             setTimeout(function () {
                 nextFrame(i + 1);
-            }, 1000);           // every 1000 ms (1 second)
+            }, playspeed);           // every 1000 ms (1 second)
         }
         nextFrame(0);
     }
 }
 
 function drawPersons(starttime, i) {
-    clear();
-    drawBackground();
+    // refers to Dotmap or Heatmap to determine if canvas needs cleaning
+    cleanCanvas();
     for (j = 0; j < persons.length; j++) {
         if (persons[j].counter > 0) {
             drawPerson(j);
@@ -81,13 +100,6 @@ function drawBackground() {
     drawLines();
 }
 
-// draws dot and text while counting timestamp position
-function drawPerson(j) {
-    persons[j].dot(persons[j].counter);
-    persons[j].text(persons[j].counter);
-    persons[j].count();
-}
-
 // resets timestamp position for every person
 function resetPersonCount() {
     for (i = 0; i < persons.length; i++) {
@@ -96,7 +108,9 @@ function resetPersonCount() {
     playing = false;
 }
 
-
-
-
-
+// highlights selected line
+function highlight() {
+    var ln = document.getElementById('dropDown').selectedIndex;
+    if (ln !== -1)
+        drawLine(lines[ln].x1, lines[ln].y1, lines[ln].x2, lines[ln].y2, 17, 'rgba(100, 200, 0, 0.2)');
+}

@@ -66,13 +66,15 @@ function drawText(text, xPos, yPos, size) {
 }
 
 // line
-function drawLine(x1, y1, x2, y2) {
+function drawLine(x1, y1, x2, y2, lineWidth, strokeStyle) {
     context.beginPath();
     context.save();
     context.moveTo(x1, y1);
     context.lineTo(x2, y2);
     context.lineWidth = 15;
+    context.lineWidth = lineWidth;
     context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
+    context.strokeStyle = strokeStyle;
     context.stroke();
     context.restore();
 }

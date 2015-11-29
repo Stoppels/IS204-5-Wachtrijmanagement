@@ -26,7 +26,12 @@
                                         document.getElementById('time2').value);
                                 return false;">
                         <input class="reset" type="button" value="Reset" onclick="stop();">
+                        <br><br>
+                        Line:
                         <br>
+                        <select name="dropDown" id="dropDown" onChange="highlight();" />
+                        <br>
+                        <input class="enter" type="button" value="Clear" onclick="clearLines();" />
                     </form>
                 </table>
                 <br>
@@ -40,6 +45,7 @@
                 <center><canvas id="myCanvas">
                         <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
+                        <script src="<c:url value="${Snapshot}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Heatmap}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Draw}" />" type="text/javascript"></script>
                 </center></canvas>

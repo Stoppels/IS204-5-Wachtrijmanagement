@@ -26,12 +26,17 @@
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);"  />
                         <input class="reset" type="button" value="Reset" onclick="stop();">
-                        <br />
+                        <br><br>
+                        Line:
+                        <br>
+                        <select name="dropDown" id="dropDown" onChange="highlight();" />
+                        <br>
+                        <input class="enter" type="button" value="Clear" onclick="clearLines();" />
                     </form>
                 </table>
                 <br>
-
                 Background: <input type="checkbox" id="scenery" checked>
+
                 <div id="stats">
                     <p>${filename}</p>
                 </div>
@@ -41,7 +46,9 @@
                     <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
                     <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
                     <script src="<c:url value="${Snapshot}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${Dotmap}" />" type="text/javascript"></script>
                     <script src="<c:url value="${Draw}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${LinesIntersect}" />" type="text/javascript"></script>
                     <img src="<c:url value="${counter}" />" type="image">
                 </canvas>
 
