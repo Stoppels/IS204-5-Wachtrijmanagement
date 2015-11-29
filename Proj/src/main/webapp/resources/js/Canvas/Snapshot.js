@@ -25,6 +25,7 @@ function play(s, e) {
 // reloads page and resets timestamp count in each person object
 function stop() {
     resetPersonCount();
+    localStorage.setItem('session', null);
     location.reload();
 }
 

@@ -20,6 +20,7 @@ function play(s, e) {
 
 // reloads page
 function stop() {
+    localStorage.setItem('session', null);
     location.reload();
 }
 

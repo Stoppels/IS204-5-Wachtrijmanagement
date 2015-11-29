@@ -26,10 +26,8 @@ function getLines() {
     var ls = JSON.parse(localStorage.getItem('session'));
     if (ls !== null) {
         lines = ls;
-        alert('ls');
     } else {
         lines = new Array();
-        alert('array');
     }
 }
 
