@@ -48,6 +48,7 @@ public class PersonController {
 	// tijelijk even een vaste max height en in height
 	private final double MIN_HEIGHT = 0.4;
 	private final double MAX_HEIGHT = 1.7;
+        private final double destroyRadius = 0.5;
 
 	public PersonController() {
 		this.list = new ArrayList<>();
@@ -177,6 +178,39 @@ public class PersonController {
 			this.start = s;
 		}
 	}
+        
+        /**
+     * nog niet af maar de basis voor de filter is er
+     *
+     * @param list a list of json objects
+     */
+    public void mergeTracksIfSimilar(ArrayList<JsonObject> list) {
+        ArrayList<Integer> idBlackList = new ArrayList<>();
+
+        for (JsonObject jo : list) {
+            ArrayList<JsonObject> result = new ArrayList<>();
+            JsonObject j = list.get(0);
+            Timestamp t = j.getTimestamp();
+
+            for (int i = 0; i < list.size(); i++) {
+                // is not the same person
+                if (jo.getTrack_id() != list.get(i).getTrack_id()) {
+                    //are the objects less than 5 seconds apart?
+                    if (t.secondsTotal() - list.get(i).getTimestamp().secondsTotal() <= 5) {
+                        // if new object is withiin certain radius
+                        if (j.getBbox().getX1() - list.get(i).getBbox().getX1() <= destroyRadius
+                                && j.getBbox().getY1() - list.get(i).getBbox().getY1() <= destroyRadius) {
+                            //remove object // assign same id?
+                            idBlackList.add(list.get(i).getTrack_id());
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
 
 	@Override
 	public String toString() {
