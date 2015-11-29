@@ -50,10 +50,27 @@ function person() {
     };
 }
 
+function createLine(x1, y1, x2, y2) {
+    var index = lines.length;
+    lines[index] = new line();
+    lines[index].x1 = x1;
+    lines[index].y1 = y1;
+    lines[index].x2 = x2;
+    lines[index].y2 = y2;
+}
+
+function line() {
+    var x1, x2, y1, y2;
+    
+    this.draw = function() {
+        drawLine(this);
+    };
+}
+
 // draws all lines in lines array
 function drawLines() {
     for (i = 0; i < lines.length; i++) {
-        drawLine(line);
+        drawLine(lines[i]);
     }
 }
 
