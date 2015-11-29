@@ -25,7 +25,7 @@
                         <input class="enter" type="button" value="Enter" onclick="play(
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);"  />
-                        <input class="reset" type="button" value="Reset" onclick="stop();"><br>
+                        <input class="reset" type="button" value="Reset" onclick="stop();">
                         <br />
                     </form>
                 </table>

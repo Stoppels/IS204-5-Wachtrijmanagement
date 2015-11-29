@@ -77,19 +77,6 @@ function drawLine(line) {
     context.restore();
 }
 
-//// line
-//function drawLine(line) {
-//    context.beginPath();
-//    context.save();
-//    context.moveTo(line[0], line[1]);
-//    context.lineTo(line[2], line[3]);
-//    context.lineWidth = 15;
-//    context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
-//    context.stroke();
-//    context.restore();
-//    alert(line[0] + " " + line[1] + " " + line[2] + " " + line[3]);
-//}
-
 // info text
 function drawInfo(text, xPos, yPos, size) {
     context.save();

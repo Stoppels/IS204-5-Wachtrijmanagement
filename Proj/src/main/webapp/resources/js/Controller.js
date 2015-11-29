@@ -3,21 +3,33 @@
  Created on : Nov 4, 2015
  Author     : Stefan */
 
-// list contains persons
-var list = new Array();
+/*
+ * Arrays of all the differen objects that are used troughout views
+ * @persons holds data of person objects sent from Java objects
+ * @lines holds data of user drawn lines on the Snapshot map
+ * @stats holds statistical information of person objects
+ */
+var persons = new Array();
 var lines = new Array();
 var stats = new Array();
 var colors = [];
 
-// function to create person
+/*
+ * Function to create a person object in Javascript used by Snapshot and Heatmap
+ * @id int holds the track id of a person object converted from Java objects
+ * @t int holds timestamp data in the following format 00:00:00, HH:MM:SS
+ * @x int holds x[index] pos data aligned with timestamp of t[index]
+ * @y int holds y[index] pos aligned with timestamp of t[index]
+ * @counter int holds the current iterator position of t,x,y
+ */
 function createPerson(id, t, x, y) {
-    var index = list.length;
-    list[index] = new person();
-    list[index].id = id;
-    list[index].t = t;
-    list[index].x = x;
-    list[index].y = y;
-    list[index].counter = 0;
+    var index = persons.length;
+    persons[index] = new person();
+    persons[index].id = id;
+    persons[index].t = t;
+    persons[index].x = x;
+    persons[index].y = y;
+    persons[index].counter = 0;
 }
 
 // constructor of person
@@ -50,6 +62,10 @@ function person() {
     };
 }
 
+/* Function to create a line object in Javascript used by Snapshot and Graph
+ * @x1 and @y1 int holding the starting position of the user drawn line
+ * @x2 and @y2 int holding the end position of the user drawn line
+ */
 function createLine(x1, y1, x2, y2) {
     var index = lines.length;
     lines[index] = new line();
@@ -59,8 +75,12 @@ function createLine(x1, y1, x2, y2) {
     lines[index].y2 = y2;
 }
 
+// constructor of line
 function line() {
-    var x1, x2, y1, y2;
+    this.x1; 
+    this.x2; 
+    this.y1;
+    this.y2;
     
     this.draw = function() {
         drawLine(this);
@@ -74,7 +94,11 @@ function drawLines() {
     }
 }
 
-// function to create stats (Bar, data for every person)
+/* Function to create a stat object in Javascript used by Snapshot and Graph
+ * @name String represents the name of the the statistic and information
+ * @labels array holding Strings of corresponding names for each bar
+ * @data array holding ints of the data associated with the label
+ */
 function createStats(id, name, labels, data) {
     var index = stats.length;
     stats[index] = new statistic();
@@ -84,7 +108,7 @@ function createStats(id, name, labels, data) {
     stats[index].data = data;
 }
 
-// constructor of stats
+// constructor of stat
 function statistic() {
     this.id;
     this.name;

@@ -42,16 +42,16 @@ function playPersons(s, e) {
         {
             clear();
             drawBackground();
-            for (j = 0; j < list.length; j++) {
-                if (list[j].counter > 0) {
+            for (j = 0; j < persons.length; j++) {
+                if (persons[j].counter > 0) {
                     drawPerson(j);
                 } else
-                if (s + i == list[j].t[0]) {
+                if (s + i == persons[j].t[0]) {
                     drawPerson(j);
                 } else
-                if (s + i > list[j].t[0]) {
-                    for (k = 0; s + i > list[j].t[k]; k++) {
-                        list[j].count();
+                if (s + i > persons[j].t[0]) {
+                    for (k = 0; s + i > persons[j].t[k]; k++) {
+                        persons[j].count();
                     }
                     drawPerson(j);
                 }
@@ -80,15 +80,15 @@ function drawBackground() {
 
 // draws dot and text while counting timestamp position
 function drawPerson(j) {
-    list[j].dot(list[j].counter);
-    list[j].text(list[j].counter);
-    list[j].count();
+    persons[j].dot(persons[j].counter);
+    persons[j].text(persons[j].counter);
+    persons[j].count();
 }
 
 // resets timestamp position for every person
 function resetPersonCount() {
-    for (i = 0; i < list.length; i++) {
-        list[i].resetCount();
+    for (i = 0; i < persons.length; i++) {
+        persons[i].resetCount();
     }
     playing = false;
 }

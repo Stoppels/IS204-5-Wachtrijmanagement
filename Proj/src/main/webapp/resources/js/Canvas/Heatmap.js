@@ -29,10 +29,10 @@ function showPersons(s, e) {
     {
         function nextDot(j)
         {
-            if (s <= list[i].t[j] && list[i].t[j] <= e) {
-                list[i].heat(j);
+            if (s <= persons[i].t[j] && persons[i].t[j] <= e) {
+                persons[i].heat(j);
             }
-            if (i === list[i].t.length)
+            if (i === persons[i].t.length)
                 return;
             setTimeout(function ()
             {
@@ -40,7 +40,7 @@ function showPersons(s, e) {
             }, 1);
         }
         nextDot(0);
-        if (i === list.length)
+        if (i === persons.length)
             return;
         setTimeout(function ()
         {
