@@ -33,9 +33,7 @@ import spring.model.PersonObject;
 import spring.model.Timestamp;
 
 /**
- * PersonController zet een ArrayList< JsonObject> om naar een PersonObject, per
- * track id. Zo kunnen aparte personen verstuurd worden naar de View, die op
- * Timestamp gesorteerd zijn.
+ * 
  *
  * @author IS204-5
  * @version 1.0
@@ -55,6 +53,10 @@ public class PersonController {
 		this.list = new ArrayList<>();
 	}
 
+        /**
+         * Gets start time of PersonObject
+         * @return Timestamp
+         */
 	public Timestamp getStartTime() {
 		if (list.isEmpty()) {
 			System.out.println("getStartTime()" + ERROR);
@@ -62,7 +64,11 @@ public class PersonController {
 		}
 		return start;
 	}
-
+        
+        /**
+         * Gets end time of PersonObject
+         * @return Timestamp
+         */
 	public Timestamp getEndTime() {
 		if (list.isEmpty()) {
 			System.out.println("getEndTime()" + ERROR);
@@ -71,10 +77,14 @@ public class PersonController {
 		return end;
 	}
 
+        /**
+         * Gets list of PersonObjects
+         * @return ArrayList<PersonObject>
+         */
 	public ArrayList<PersonObject> getList() {
 		return list;
 	}
-
+        
 	public Bbox getAverage() {
 		return average;
 	}
@@ -83,6 +93,13 @@ public class PersonController {
 		ArrayList<Bbox> boxes = new ArrayList<>();
 	}
 
+        /**
+         * This method returns an ArrayList<Integer> that holds track id's of each PersonObject
+         * This way the convertJsonToPerson() method can simply check on track id, and fill
+         * the ArrayLists<PersonObject> with the correct persons (same track id's)
+         * @param jsonList holding JsonObjects to be checked on track id
+         * @return ArrayList<Integer> holding unique track id's
+         */
 	private ArrayList<Integer> calculateAmountPersons(ArrayList<JsonObject> jsonList) {
 		// geeft een array met alle unieke track_id's
 		ArrayList<Integer> first = new ArrayList<>();
@@ -112,6 +129,12 @@ public class PersonController {
 		return first;
 	}
 
+        /**
+         * This method converts a giant JsonList of mixed track id's to sorted ArrayLists
+         * containing PersonObjects. A PersonObject is a collection of JsonObjects with
+         * the same track id, supported by a variety of methods to modify the data
+         * @param jsonList ArrayList<JsonObject> containing json lines
+         */
 	public void convertJsonToPerson(ArrayList<JsonObject> jsonList) {
 		// Maakt een nieuwe PersonObject voor elke track_id
 		// Verdeelt alle Json lijnen per track_id over alle PersonObjects
@@ -132,14 +155,10 @@ public class PersonController {
 			System.out.println("convertJsonToPerson()" + ERROR);
 		}
 	}
-
-//    public void PersonCheckOneLine(){
-//        for (){
-//            if (o.getJsonList().size() == 1){
-//                list.remove(o);
-//            }
-//        }
-//    }
+        
+        /**
+         * Sets Start and End time to the first and last time of each PersonObject
+         */
 	private void setStartEndTime() {
 		if (this.list.isEmpty()) {
 			System.out.println("setStartEndTime()" + ERROR);
