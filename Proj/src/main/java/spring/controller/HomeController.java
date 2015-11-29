@@ -66,7 +66,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/snapshot")
-	public ModelAndView snapshotGet() throws IOException {
+	public ModelAndView snapshot() throws IOException{
 		ModelAndView view = new ModelAndView("snapshot");
 
 		view.addObject("filename", file);
@@ -93,6 +93,7 @@ public class HomeController {
 		view.addObject("Controller", "/resources/js/Controller.js" + random);
 		view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
 		view.addObject("Heatmap", "/resources/js/Canvas/Heatmap.js" + random);
+                view.addObject("Draw", "/resources/js/Canvas/Draw.js" + random);
 
 		view.addObject("stylesheet", "/resources/css/style.css" + random);
 		view.addObject("starttime", starttime);

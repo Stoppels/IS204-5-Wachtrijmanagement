@@ -53,4 +53,5 @@ function showPersons(s, e) {
 // draws background
 function drawBackground() {
     drawScene(document.getElementById('scenery').checked, img);
+    drawLines();
 }

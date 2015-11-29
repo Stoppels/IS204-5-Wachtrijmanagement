@@ -37,38 +37,40 @@ function stop() {
  * i, j = iterators within loops
  */
 function playPersons(s, e) {
-    if (s < e) {
-        function nextFrame(i)
-        {
-            clear();
-            drawBackground();
-            for (j = 0; j < persons.length; j++) {
-                if (persons[j].counter > 0) {
-                    drawPerson(j);
-                } else
-                if (s + i == persons[j].t[0]) {
-                    drawPerson(j);
-                } else
-                if (s + i > persons[j].t[0]) {
-                    for (k = 0; s + i > persons[j].t[k]; k++) {
-                        persons[j].count();
-                    }
-                    drawPerson(j);
-                }
-            }
-            if (s + i !== e)
-                document.getElementById("time1").stepUp(1);
-            if (s + i === e) {
+    if (s < e) {                // starttime has to be smaller than endtime
+        function nextFrame(i) { // starts iterating trough frame
+
+            drawPersons(s, i);  // draws frame with persons and background
+            if (s + i !== e)    // it its not starttime == endtime
+                document.getElementById("time1").stepUp(1); // html input time++
+            if (s + i === e) {  // if starttime == endtime
                 alert("End of file");
                 stop();
                 return;
             }
-            setTimeout(function ()
-            {
+
+            setTimeout(function () {
                 nextFrame(i + 1);
-            }, 1000);
+            }, 1000);           // every 1000 ms (1 second)
         }
         nextFrame(0);
+    }
+}
+
+function drawPersons(starttime, i) {
+    clear();
+    drawBackground();
+    for (j = 0; j < persons.length; j++) {
+        if (persons[j].counter > 0) {
+            drawPerson(j);
+        } else if (starttime + i == persons[j].t[0]) {
+            drawPerson(j);
+        } else if (starttime + i > persons[j].t[0]) {
+            for (k = 0; starttime + i > persons[j].t[k]; k++) {
+                persons[j].count();
+            }
+            drawPerson(j);
+        }
     }
 }
 

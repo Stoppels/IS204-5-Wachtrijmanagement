@@ -10,8 +10,6 @@ var newline = new line();
 // initiate drawing
 canvas.onmousedown = function (e) {
     var pos = getMousePos(canvas, e);
-    context.beginPath();
-    context.moveTo(pos.x, pos.y);
     newline.x1 = pos.x;
     newline.y1 = pos.y;
 };
@@ -19,10 +17,13 @@ canvas.onmousedown = function (e) {
 // finish drawing (for continuous drawing use canvas.onmousemove)
 canvas.onmouseup = function (e) {
     var pos = getMousePos(canvas, e);
-    context.save();
-    context.lineTo(pos.x, pos.y);
     newline.x2 = pos.x;
     newline.y2 = pos.y;
+    
+    context.save();
+    context.beginPath();
+    context.moveTo(newline.x1, newline.y1);
+    context.lineTo(newline.x2, newline.y2);
     context.lineWidth = 15;
     context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
     context.stroke();

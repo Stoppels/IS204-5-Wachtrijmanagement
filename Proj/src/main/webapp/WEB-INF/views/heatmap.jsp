@@ -41,6 +41,7 @@
                         <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
                         <script src="<c:url value="${Heatmap}" />" type="text/javascript"></script>
+                        <script src="<c:url value="${Draw}" />" type="text/javascript"></script>
                 </center></canvas>
             </div>
 
