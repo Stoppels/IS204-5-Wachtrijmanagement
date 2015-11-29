@@ -9,10 +9,24 @@
  * @lines holds data of user drawn lines on the Snapshot map
  * @stats holds statistical information of person objects
  */
+
 var persons = new Array();
-var lines = new Array();
 var stats = new Array();
+var lines; getLines();
 var colors = [];
+
+/*
+ * Gets all the line information and data if it exists
+ * Otherwise this method will assign a new array
+ * @returns void
+ */
+function getLines() {
+    if (typeof lines === 'undefined') {
+        lines = JSON.parse(localStorage.getItem('session'));
+    } else {
+        lines = new Array();
+    }
+}
 
 /*
  * Function to create a person object in Javascript used by Snapshot and Heatmap
@@ -67,30 +81,15 @@ function person() {
  * @x2 and @y2 int holding the end position of the user drawn line
  */
 function createLine(x1, y1, x2, y2) {
-    var index = lines.length;
-    lines[index] = new line();
-    lines[index].x1 = x1;
-    lines[index].y1 = y1;
-    lines[index].x2 = x2;
-    lines[index].y2 = y2;
-}
-
-// constructor of line
-function line() {
-    this.x1; 
-    this.x2; 
-    this.y1;
-    this.y2;
-    
-    this.draw = function() {
-        drawLine(this);
-    };
+    lines.push({'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2});
+    localStorage.setItem('session', JSON.stringify(lines));
+    console.log(JSON.parse(localStorage.getItem('session')));
 }
 
 // draws all lines in lines array
 function drawLines() {
     for (i = 0; i < lines.length; i++) {
-        drawLine(lines[i]);
+        drawLine(lines[i].x1, lines[i].y1, lines[i].x2, lines[i].y2);
     }
 }
 

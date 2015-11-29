@@ -5,9 +5,6 @@
 
 var img = new Image();
 img.src = 'resources/img/counterview.png';
-setTimeout(function () {
-    img.onload = drawBackground();
-}, 1);
 
 // shows home page content
 window.onload = function showLogo() {

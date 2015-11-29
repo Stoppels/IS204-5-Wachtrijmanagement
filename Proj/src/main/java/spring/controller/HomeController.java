@@ -126,6 +126,7 @@ public class HomeController {
 
 		view.addObject("Error", "/resources/js/Canvas/Error.js" + random);
 		view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
+                view.addObject("Controller", "/resources/js/Controller.js" + random);
 
 		view.addObject("stylesheet", "/resources/css/style.css" + random);
 		return view;

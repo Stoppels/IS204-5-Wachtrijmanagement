@@ -5,25 +5,25 @@
 
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
-var newline = new line();
+var newline = [];
 
 // initiate drawing
 canvas.onmousedown = function (e) {
     var pos = getMousePos(canvas, e);
-    newline.x1 = pos.x;
-    newline.y1 = pos.y;
+    newline[0] = pos.x;
+    newline[1] = pos.y;
 };
 
 // finish drawing (for continuous drawing use canvas.onmousemove)
 canvas.onmouseup = function (e) {
     var pos = getMousePos(canvas, e);
-    newline.x2 = pos.x;
-    newline.y2 = pos.y;
+    newline[2] = pos.x;
+    newline[3] = pos.y;
     
     context.save();
     context.beginPath();
-    context.moveTo(newline.x1, newline.y1);
-    context.lineTo(newline.x2, newline.y2);
+    context.moveTo(newline[0], newline[1]);
+    context.lineTo(newline[2], newline[3]);
     context.lineWidth = 15;
     context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
     context.stroke();
@@ -44,7 +44,7 @@ function getMousePos(canvas, evt) {
 function saveLine() {
     var r = confirm('Do you wish to save this line?');
     if (r === true) {
-        createLine(newline.x1, newline.y1, newline.x2, newline.y2);
-        newline.destroy();
+        createLine(newline[0], newline[1], newline[2], newline[3]);
+//        createStats(int id, String name,String[] labels, int[] data);
     }
 }

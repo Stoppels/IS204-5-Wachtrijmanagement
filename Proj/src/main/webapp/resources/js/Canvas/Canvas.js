@@ -66,11 +66,11 @@ function drawText(text, xPos, yPos, size) {
 }
 
 // line
-function drawLine(line) {
+function drawLine(x1, y1, x2, y2) {
     context.beginPath();
     context.save();
-    context.moveTo(line.x1, line.y1);
-    context.lineTo(line.x2, line.y2);
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
     context.lineWidth = 15;
     context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
     context.stroke();

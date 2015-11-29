@@ -18,6 +18,7 @@
         <div id="container">
             <div id="map">
                 <canvas id="myCanvas">
+                    <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
                     <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
                     <script src="<c:url value="${Error}" />" type="text/javascript"></script>
                 </canvas>
