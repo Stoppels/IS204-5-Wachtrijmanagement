@@ -14,6 +14,6 @@ function cleanCanvas() {
 
 // draws dot and text while counting timestamp position
 function drawPerson(j) {
-    persons[j].heat(persons[j].counter);
+    persons[j].dot(persons[j].counter);
     persons[j].count();
 }
