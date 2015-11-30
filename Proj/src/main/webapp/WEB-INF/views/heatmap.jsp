@@ -39,9 +39,6 @@
                 <br>
                 Tracks: <tab><input type="checkbox" id="tracks" checked></tab>
 
-                <div id="stats">
-                    <p>${filename}</p>
-                </div>
             </div>
             <div id="map">                
                 <center><canvas id="myCanvas">
@@ -53,7 +50,6 @@
                         <script src="<c:url value="${LinesIntersect}" />" type="text/javascript"></script>
                 </center></canvas>
             </div>
-
             <c:forEach var="person" items="${list}">
                 <script>
                             createPerson(${person.getPersonId()},
@@ -62,9 +58,7 @@
                     ${person.yArray()});
                 </script>
             </c:forEach>
-
-
-            <br>
         </div>
+        <jsp:include page="footer.jsp" />
     </body>
 </html>

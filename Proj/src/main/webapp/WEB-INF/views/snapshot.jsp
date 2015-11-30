@@ -38,10 +38,6 @@
                 Scenery: <tab><input type="checkbox" id="scenery" checked></tab>
                 <br>
                 Tracks: <tab><input type="checkbox" id="tracks" checked></tab>
-
-                <div id="stats">
-                    <p>${filename}</p>
-                </div>
             </div>
             <div id="map">                
                 <canvas id="myCanvas">
@@ -63,7 +59,7 @@
                     </script>
                 </c:forEach>
             </div>
-
         </div>
+        <jsp:include page="footer.jsp" />
     </body>
 </html>

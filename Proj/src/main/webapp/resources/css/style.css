@@ -61,6 +61,14 @@ a:hover{
     padding:1%;
     word-break:break-all;
 }
+#sidebar.graph{
+    width: 100%;
+    float:none;
+}
+.graphmap canvas{
+    max-width: 99%;
+    padding-left:1%;
+}
 input{
     max-width: 90px;
     display:inline;
