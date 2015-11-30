@@ -1,7 +1,8 @@
 /* 
  Document   : Canvas.js
  Created on : Nov 3, 2015
- Author     : Stefan */
+ Author     : IS204-5
+ */
 
 
 var canvas;
@@ -20,27 +21,25 @@ function drawDot(xPos, yPos, color) {
     context.stroke();
 
     context.save();
-    context.fillStyle = color;
     context.strokeStyle = "rgba(0,153,255,1)";
     context.lineWidth = 2;
     context.stroke();
+    context.fillStyle = color;
     context.fill();
     context.restore();
 }
 
-
-
 // heat dot for heatmap.js
-function drawHeat(xPos, yPos) {
-    var dotSize = 4;
+function drawHeat(xPos, yPos, color) {
+    var dotSize = 8;
     context.beginPath();
-    context.arc((xPos + centerX), (-yPos + centerY), dotSize + 4, 0, 2 * Math.PI);
+    context.arc((xPos + centerX), (-yPos + centerY), dotSize, 0, 2 * Math.PI);
     context.closePath();
 
     context.save();
     context.shadowColor = '#FFFF00';
     context.shadowBlur = 45;
-    context.fillStyle = 'rgba(250, 0, 0, 0.08)';
+    context.fillStyle = color;
     context.fill();
     context.restore();
 }

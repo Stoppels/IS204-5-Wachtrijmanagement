@@ -1,7 +1,8 @@
 /* 
  Document   : Home.js
  Created on : Nov 5, 2015
- Author     : Stefan */
+ Author     : IS204-5
+ */
 
 // shows error page content
 window.onload = function showLogo() {

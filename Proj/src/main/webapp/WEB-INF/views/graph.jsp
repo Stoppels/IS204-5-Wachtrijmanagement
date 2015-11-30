@@ -1,7 +1,7 @@
 <%-- 
     Document   : graph
-    Created on : Nov 2, 2015, 7:01:39 PM
-    Author     : Stefan
+    Created on : Nov 2, 2015
+    Author     : IS204-5
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,20 +18,16 @@
 
         <div id="container">
             <div id="sidebar" class="graph">
-                <!--BUGGY AS SHIT ###########################################--><!-- remove -->
-                <table id="form">                                               <!-- remove -->
-                    <span id="timeElements">                                <!-- remove -->
-                    </span>                                                 <!-- remove -->
-                    <form name="form">                                          <!-- remove -->
-                    </form>                                                     <!-- remove -->
-                    <!--REMOVE THIS CRAP ########################################--><!-- remove -->    
-                    <input type="time" step="1" id="time1" value="${starttime}">
-                    <input type="time" step="1" id="time2" value="${endtime}">
-                    <input type="button" value="Enter">
+                <table id="form">
+                    <input type="time" step="1" id="time1" value="${starttime}" />
+                    <input type="time" step="1" id="time2" value="${endtime}" />
+                    <input class="enter" type="button" value="Update graph" onclick="play(
+                                    document.getElementById('time1').value,
+                                    document.getElementById('time2').value);"  />
                     <p>
                         <label>Statistic:</label> 
                         <select name="dropDown" id="dropDown" onChange="play();" />
-                        <input class="enter" type="button" value="Clear" onclick="clearSessions();" />
+                        <input class="enter" type="button" value="Clear lines" onclick="clearSessions();" />
                     </p>
                 </table>
             </div>
@@ -47,7 +43,7 @@
         </div>
         <c:forEach var="stat" items="${stats}">
             <script>
-                        importStats(${stat.getStatId()},
+                            importStats(${stat.getStatId()},
                 ${stat.getStatName()},
                 ${stat.labelArray()},
                 ${stat.dataArray()});

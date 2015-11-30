@@ -1,7 +1,8 @@
 /* 
  Document   : Draw.js
  Created on : Nov 27, 2015
- Author     : Stefan */
+ Author     : IS204-5
+ */
 
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
@@ -19,7 +20,7 @@ canvas.onmouseup = function (e) {
     var pos = getMousePos(canvas, e);
     newline[2] = pos.x;
     newline[3] = pos.y;
-    
+
     context.save();
     context.beginPath();
     context.moveTo(newline[0], newline[1]);
@@ -48,6 +49,6 @@ function saveLine() {
         addList();
         var select = document.getElementById("dropDown");
         checkIntersections(select.options[select.options.length - 1].value,
-            newline[0], newline[1], newline[2], newline[3]);
+                newline[0], newline[1], newline[2], newline[3]);
     }
 }

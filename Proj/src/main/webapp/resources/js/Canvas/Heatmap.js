@@ -1,15 +1,13 @@
 /* 
- Document   : Snapshot.js
+ Document   : Heatmap.js
  Created on : Nov 5, 2015
- Author     : Stefan */
-
-// speed of frames in ms
-var playspeed = 1;
+ Author     : IS204-5
+ */
 
 // clean canvas?
 function cleanCanvas() {
-//    clear();
-//    drawBackground();
+    clear();
+    drawBackground();
 }
 
 // draws dot and text while counting timestamp position

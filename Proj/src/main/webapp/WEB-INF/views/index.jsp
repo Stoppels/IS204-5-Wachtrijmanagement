@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
-    Created on : Nov 2, 2015, 7:01:39 PM
-    Author     : Stefan
+    Created on : Nov 2, 2015
+    Author     : IS204-5
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,6 +30,6 @@
             </div>
 
         </div>
-         <jsp:include page="footer.jsp" />
+        <jsp:include page="footer.jsp" />
     </body>
 </html>

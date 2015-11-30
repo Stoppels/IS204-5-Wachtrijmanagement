@@ -1,10 +1,8 @@
 /* 
  Document   : Dotmap.js
  Created on : Nov 5, 2015
- Author     : Stefan */
-
-// speed of frames in ms
-var playspeed = 1000;
+ Author     : IS204-5
+ */
 
 // clean canvas?
 function cleanCanvas() {

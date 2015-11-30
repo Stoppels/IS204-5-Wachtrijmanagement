@@ -1,7 +1,8 @@
 /* 
  Document   : Snapshot.js
  Created on : Nov 5, 2015
- Author     : Stefan */
+ Author     : IS204-5
+ */
 
 // Plays event to draw on canvas
 var playing = false;
@@ -12,16 +13,37 @@ setTimeout(function () {
     img.onload = drawBackground();
 }, 1);
 
-// adds lines to dropdown menu
+// Adds default option to dropdown menu.
+function addDefaultOptionList() {
+    var select = document.getElementById("dropDown");
+    var option = document.createElement('option');
+    option.text = '-- Draw a line first --';
+    select.add(option, 0);
+    select.disabled = true;
+}
+
+// Adds lines to dropdown menu.
 function addList() {
     var select = document.getElementById("dropDown");
+    var clearButton = document.getElementsByClassName("enter")[1]; // 'Clear lines' button
     for (i = select.options.length - 1; i >= 0; i--) {
         select.remove(i);
+        clearButton.disabled = true;
     }
+    linesExist = false;
     for (i = 0; i < lines.length; i++) {
         var option = document.createElement('option');
         option.text = 'Line alert ' + (i + 1);
         select.add(option, i);
+        linesExist = true;
+        clearButton.disabled = false;
+    }
+    if (!linesExist) {
+        addDefaultOptionList();
+        clearButton.disabled = true;
+    } else {
+        select.disabled = false;
+        clearButton.disabled = false;
     }
 }
 
@@ -123,7 +145,6 @@ function drawTrack(i) {
                 (-90 * persons[i].x[persons[j].counter - 1]) + centerX,
                 (90 * -persons[i].y[persons[j].counter - 1]) + centerY
                 , 3, '#606060');
-
     }
 }
 
@@ -137,7 +158,9 @@ function resetPersonCount() {
 
 // highlights selected line
 function highlight() {
-    var ln = document.getElementById('dropDown').selectedIndex;
-    if (ln !== -1)
-        drawLine(lines[ln].x1, lines[ln].y1, lines[ln].x2, lines[ln].y2, 17, 'rgba(100, 200, 0, 0.2)');
+    if (linesExist) {
+        var ln = document.getElementById('dropDown').selectedIndex;
+        if (ln !== -1)
+            drawLine(lines[ln].x1, lines[ln].y1, lines[ln].x2, lines[ln].y2, 17, 'rgb(100, 0, 200)');
+    }
 }

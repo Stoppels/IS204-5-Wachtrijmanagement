@@ -1,8 +1,8 @@
 /* 
  Document   : Graph.js
  Created on : Nov 6, 2015
- Author     : Stefan */
-
+ Author     : IS204-5
+ */
 var canvas;
 var context;
 
@@ -25,7 +25,7 @@ function addList() {
         option.text = stats[i].name;
         select.add(option, i);
     }
-};
+}
 
 function clear() {
     location.reload();
@@ -58,13 +58,6 @@ function personData(index) {
     if (window.myBar)
         window.myBar.destroy();
     addChart(new barChart(labels, balken));
-
-    // Hide time fields for graphs other than 'Time per visitor'.
-    if (index !== 0) {
-        document.getElementById("timeElements").style.display = 'none';
-    } else {
-        document.getElementById("timeElements").style.display = 'block';
-    }
 }
 
 // initialises chart with retrieved data

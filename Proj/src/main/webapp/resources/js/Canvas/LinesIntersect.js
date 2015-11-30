@@ -1,7 +1,8 @@
 /* 
  Document   : LinesIntersect.js
  Created on : Nov 30, 2015
- Author     : Stefan */
+ Author     : IS204-5
+ */
 
 
 /*

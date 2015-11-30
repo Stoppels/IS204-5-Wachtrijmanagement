@@ -1,7 +1,8 @@
 /* 
  Document   : Controller.js
  Created on : Nov 4, 2015
- Author     : Stefan */
+ Author     : IS204-5
+ */
 
 /*
  * Arrays of all the differen objects that are used troughout views
@@ -14,6 +15,8 @@ var persons = new Array();
 var stats;
 var lines;
 var colors = [];
+var playspeed = 1000; // Framespeed in ms (1000 = 1 FPS)
+var linesExist;
 getSessions();
 
 
@@ -27,8 +30,10 @@ function getSessions() {
     var statSsn = JSON.parse(localStorage.getItem('statsSession'));
     if (lineSsn !== null) {
         lines = lineSsn;
+        linesExist = true;
     } else {
         lines = new Array();
+        linesExist = false;
     }
     if (statSsn !== null) {
         stats = statSsn;
@@ -97,7 +102,7 @@ function person() {
         drawDot(-scale * this.x[i], scale * this.y[i], this.color);
     };
     this.heat = function (i) {
-        drawHeat(-scale * this.x[i], scale * this.y[i], '#FF0000');
+        drawHeat(-scale * this.x[i], scale * this.y[i]);
     };
     this.text = function (i) {
         drawInfo(this.id, -scale * this.x[i], scale * this.y[i], 15);
@@ -121,8 +126,10 @@ function createLine(x1, y1, x2, y2) {
  * @returns void
  */
 function drawLines() {
+    linesExist = false;
     for (i = 0; i < lines.length; i++) {
         drawLine(lines[i].x1, lines[i].y1, lines[i].x2, lines[i].y2);
+        linesExist = true;
     }
 }
 
