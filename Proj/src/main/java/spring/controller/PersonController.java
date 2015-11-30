@@ -33,7 +33,7 @@ import spring.model.PersonObject;
 import spring.model.Timestamp;
 
 /**
- * 
+ *
  *
  * @author IS204-5
  * @version 1.0
@@ -48,16 +48,17 @@ public class PersonController {
 	// tijelijk even een vaste max height en in height
 	private final double MIN_HEIGHT = 0.4;
 	private final double MAX_HEIGHT = 1.7;
-        private final double destroyRadius = 0.5;
+	private final double destroyRadius = 0.5;
 
 	public PersonController() {
 		this.list = new ArrayList<>();
 	}
 
-        /**
-         * Gets start time of PersonObject
-         * @return Timestamp
-         */
+	/**
+	 * Gets start time of PersonObject
+	 *
+	 * @return Timestamp
+	 */
 	public Timestamp getStartTime() {
 		if (list.isEmpty()) {
 			System.out.println("getStartTime()" + ERROR);
@@ -65,11 +66,12 @@ public class PersonController {
 		}
 		return start;
 	}
-        
-        /**
-         * Gets end time of PersonObject
-         * @return Timestamp
-         */
+
+	/**
+	 * Gets end time of PersonObject
+	 *
+	 * @return Timestamp
+	 */
 	public Timestamp getEndTime() {
 		if (list.isEmpty()) {
 			System.out.println("getEndTime()" + ERROR);
@@ -78,14 +80,15 @@ public class PersonController {
 		return end;
 	}
 
-        /**
-         * Gets list of PersonObjects
-         * @return ArrayList<PersonObject>
-         */
+	/**
+	 * Gets list of PersonObjects
+	 *
+	 * @return ArrayList<\PersonObject>
+	 */
 	public ArrayList<PersonObject> getList() {
 		return list;
 	}
-        
+
 	public Bbox getAverage() {
 		return average;
 	}
@@ -94,15 +97,17 @@ public class PersonController {
 		ArrayList<Bbox> boxes = new ArrayList<>();
 	}
 
-        /**
-         * This method returns an ArrayList<Integer> that holds track id's of each PersonObject
-         * This way the convertJsonToPerson() method can simply check on track id, and fill
-         * the ArrayLists<PersonObject> with the correct persons (same track id's)
-         * @param jsonList holding JsonObjects to be checked on track id
-         * @return ArrayList<Integer> holding unique track id's
-         */
+	/**
+	 * This method returns an ArrayList<Integer> that holds track id's of each
+	 * PersonObject This way the convertJsonToPerson() method can simply check
+	 * on track id, and fill the ArrayLists<PersonObject> with the correct
+	 * persons (same track id's)
+	 *
+	 * @param jsonList holding JsonObjects to be checked on track id
+	 * @return ArrayList<\Integer> holding unique track id's
+	 */
 	private ArrayList<Integer> calculateAmountPersons(ArrayList<JsonObject> jsonList) {
-		// geeft een array met alle unieke track_id's
+		// Returns an array with all unique track_ids.
 		ArrayList<Integer> first = new ArrayList<>();
 		ArrayList<Integer> all = new ArrayList<>();
 		first.add(0);
@@ -122,23 +127,39 @@ public class PersonController {
 				first.add(0);
 			}
 		}
+		// Filter out any person with less than three lines of activity.
 		for (Integer i : all) {
-			if (Collections.frequency(all, i) == 1) {
+			if (Collections.frequency(all, i) < 3) {
 				first.remove(i);
 			}
 		}
+		// Filter out any person with less than five seconds of activity.
+//		for (int i = 0; i < all.size(); i++) {
+//			int count = 0;
+//			for (Integer j : all) {
+//				if (all.get(i).equals(j)) {
+//					int k = jsonList.indexOf(all.get(i));
+//					count += jsonList.get(k).getTimestamp().secondsTotal();
+//				}
+//			}
+//			if (count < 5) {
+//				first.remove(all.get(i));
+//			}
+//		}
 		return first;
 	}
 
-        /**
-         * This method converts a giant JsonList of mixed track id's to sorted ArrayLists
-         * containing PersonObjects. A PersonObject is a collection of JsonObjects with
-         * the same track id, supported by a variety of methods to modify the data
-         * @param jsonList ArrayList<JsonObject> containing json lines
-         */
+	/**
+	 * This method converts a giant JsonList of mixed track IDs to sorted
+	 * ArrayLists containing PersonObjects. A PersonObject is a collection of
+	 * JsonObjects with the same track id, supported by a variety of methods to
+	 * modify the data
+	 *
+	 * @param jsonList ArrayList<\JsonObject> containing JSON lines
+	 */
 	public void convertJsonToPerson(ArrayList<JsonObject> jsonList) {
-		// Maakt een nieuwe PersonObject voor elke track_id
-		// Verdeelt alle Json lijnen per track_id over alle PersonObjects
+		// Creates a new PersonObject for every track_id.
+		// Distributes all JSON lines per track_id over all PersonObjects.
 		if (!jsonList.isEmpty()) {
 			ArrayList p = calculateAmountPersons(jsonList);
 			for (int i = 0; i < p.size() - 1; i++) {
@@ -156,10 +177,10 @@ public class PersonController {
 			System.out.println("convertJsonToPerson()" + ERROR);
 		}
 	}
-        
-        /**
-         * Sets Start and End time to the first and last time of each PersonObject
-         */
+
+	/**
+	 * Sets Start and End time to the first and last time of each PersonObject
+	 */
 	private void setStartEndTime() {
 		if (this.list.isEmpty()) {
 			System.out.println("setStartEndTime()" + ERROR);
@@ -178,39 +199,39 @@ public class PersonController {
 			this.start = s;
 		}
 	}
-        
-        /**
-     * nog niet af maar de basis voor de filter is er
-     *
-     * @param list a list of json objects
-     */
-    public void mergeTracksIfSimilar(ArrayList<JsonObject> list) {
-        ArrayList<Integer> idBlackList = new ArrayList<>();
 
-        for (JsonObject jo : list) {
-            ArrayList<JsonObject> result = new ArrayList<>();
-            JsonObject j = list.get(0);
-            Timestamp t = j.getTimestamp();
+	/**
+	 * Not yet finished, but the foundation for the filter is present.
+	 *
+	 * @param list a list of JSON objects
+	 */
+	public void mergeTracksIfSimilar(ArrayList<JsonObject> list) {
+		ArrayList<Integer> idBlackList = new ArrayList<>();
 
-            for (int i = 0; i < list.size(); i++) {
-                // is not the same person
-                if (jo.getTrack_id() != list.get(i).getTrack_id()) {
-                    //are the objects less than 5 seconds apart?
-                    if (t.secondsTotal() - list.get(i).getTimestamp().secondsTotal() <= 5) {
-                        // if new object is withiin certain radius
-                        if (j.getBbox().getX1() - list.get(i).getBbox().getX1() <= destroyRadius
-                                && j.getBbox().getY1() - list.get(i).getBbox().getY1() <= destroyRadius) {
-                            //remove object // assign same id?
-                            idBlackList.add(list.get(i).getTrack_id());
-                        }
-                    }
-                }
+		for (JsonObject jo : list) {
+			ArrayList<JsonObject> result = new ArrayList<>();
+			JsonObject j = list.get(0);
+			Timestamp t = j.getTimestamp();
 
-            }
+			for (int i = 0; i < list.size(); i++) {
+				// Is not the same person.
+				if (jo.getTrack_id() != list.get(i).getTrack_id()) {
+					// Are the objects less than 5 seconds apart?
+					if (t.secondsTotal() - list.get(i).getTimestamp().secondsTotal() <= 5) {
+						// If new object is within predefined radius.
+						if (j.getBbox().getX1() - list.get(i).getBbox().getX1() <= destroyRadius
+								&& j.getBbox().getY1() - list.get(i).getBbox().getY1() <= destroyRadius) {
+							// Remove object // assign same id?
+							idBlackList.add(list.get(i).getTrack_id());
+						}
+					}
+				}
 
-        }
+			}
 
-    }
+		}
+
+	}
 
 	@Override
 	public String toString() {
