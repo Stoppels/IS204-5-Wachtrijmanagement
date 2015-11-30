@@ -12,6 +12,10 @@ setTimeout(function () {
     img.onload = drawBackground();
 }, 1);
 
+// Adapt the 'Enter' button value to reflect animation state.
+function enterButtonValue() {
+    document.getElementsByClassName("enter")[0].value = playing ? "Pause" : "Play";
+}
 
 // adds lines to dropdown menu
 function addList() {
@@ -30,7 +34,11 @@ function addList() {
 function play(s, e) {
     if (playing === false) {
         playing = true;
+        enterButtonValue();
         playPersons(timeToMillis(s), timeToMillis(e));
+    } else {
+        playing = false; // Pauses the playPersons function.
+        enterButtonValue();
     }
 }
 
@@ -51,7 +59,7 @@ function playPersons(s, e) {
     if (s < e) {                // starttime has to be smaller than endtime
         function nextFrame(i) { // starts iterating trough frame
             drawPersons(s, i);  // draws frame with persons and background
-            if (s + i !== e)    // it its not starttime == endtime
+            if (playing && s + i !== e)    // it its not starttime == endtime
                 document.getElementById("time1").stepUp(1); // html input time++
             else
                 return;
@@ -70,19 +78,19 @@ function drawPersons(starttime, i) {
     for (j = 0; j < persons.length; j++) {
         if (persons[j].counter > 0) {
             // if iterator in person has started
-            drawTrack(j);
             drawPerson(j);
+            drawTrack(j);
         } else if (starttime + i == persons[j].t[0]) {
             // if iterator matches starttime
-            drawTrack(j);
             drawPerson(j);
+            drawTrack(j);
         } else if (starttime + i > persons[j].t[0]) {
             // if iterator has passed starttime
             for (k = 0; starttime + i > persons[j].t[k]; k++) {
                 persons[j].count();
             }
-            drawTrack(j);
             drawPerson(j);
+            drawTrack(j);
         }
     }
 }
@@ -96,10 +104,10 @@ function drawBackground() {
 // draws movement web
 function drawTrack(i) {
     if (document.getElementById('tracks').checked) {
-        drawLine((-90 * persons[i].x[persons[j].counter - 1]) + centerX,
-                (90 * -persons[i].y[persons[j].counter - 1]) + centerY,
-                (-90 * persons[i].x[persons[j].counter]) + centerX,
-                (90 * -persons[i].y[persons[j].counter]) + centerY
+        drawLine((-90 * persons[i].x[persons[j].counter - 2]) + centerX,
+                (90 * -persons[i].y[persons[j].counter - 2]) + centerY,
+                (-90 * persons[i].x[persons[j].counter - 1]) + centerX,
+                (90 * -persons[i].y[persons[j].counter - 1]) + centerY
                 , 3, '#606060');
 
     }
