@@ -11,10 +11,10 @@
  */
 
 var persons = new Array();
-var stats = new Array();
+var stats;
 var lines;
-getLines();
 var colors = [];
+getSessions();
 
 
 /*
@@ -22,12 +22,18 @@ var colors = [];
  * Otherwise this method will assign a new array
  * @returns void
  */
-function getLines() {
-    var ls = JSON.parse(localStorage.getItem('linesSession'));
-    if (ls !== null) {
-        lines = ls;
+function getSessions() {
+    var lineSsn = JSON.parse(localStorage.getItem('linesSession'));
+    var statSsn = JSON.parse(localStorage.getItem('statsSession'));
+    if (lineSsn !== null) {
+        lines = lineSsn;
     } else {
         lines = new Array();
+    }
+    if (statSsn !== null) {
+        stats = statSsn;
+    } else {
+        stats = new Array();
     }
 }
 
@@ -88,7 +94,10 @@ function createLine(x1, y1, x2, y2) {
     localStorage.setItem('linesSession', JSON.stringify(lines));
 }
 
-// draws all lines in lines array
+/*
+ * draws all lines in lines array
+ * @returns void
+ */
 function drawLines() {
     for (i = 0; i < lines.length; i++) {
         drawLine(lines[i].x1, lines[i].y1, lines[i].x2, lines[i].y2);
@@ -101,23 +110,45 @@ function drawLines() {
  * @data array holding ints of the data associated with the label
  */
 function createStats(id, name, labels, data) {
-    var index = stats.length;
-    stats[index] = new statistic();
-    stats[index].id = id;
-    stats[index].name = name;
-    stats[index].labels = labels;
-    stats[index].data = data;
+    console.log(id);
+    stats.push({
+        'id': id,
+        'name': name,
+        'labels': labels,
+        'data': data
+    });
+    localStorage.setItem('statsSession', JSON.stringify(stats));
 }
 
-// constructor of stat
-function statistic() {
-    this.id;
-    this.name;
-    this.labels;
-    this.data;
+/*
+ * Only imports stats from Java if the stats list is not containing them already
+ * @returns void
+ */
+function importStats(id, name, labels, data) {
+    if (!statsContainsId(stats, [0, 1, 2])) {
+        createStats(id, name, labels, data);
+    }
 }
 
-// takes time in format 00:00:00
+/*
+ * Checks if the stats array contains values id's to prevent the import of
+ * duplicate statistics from Java. 
+ */
+function statsContainsId(array, values) {
+    index = 0;
+    for (i = 0; i < array.length; i++) {
+        for (j = 0; j < values.length; j++) {
+            if (array[i].id === values[j]) {
+                index++;
+            }
+        }
+    }
+    return (index === values.length);
+}
+
+/*
+ * Takes time in format 00:00:00
+ */
 function timeToMillis(time) {
     return time.substring(0, 2) * 60 * 60 + time.substring(3, 5) * 60 + time.substring(6, 8) * 1;
 }

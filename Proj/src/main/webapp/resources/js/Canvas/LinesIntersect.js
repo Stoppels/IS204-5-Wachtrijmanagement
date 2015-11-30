@@ -8,25 +8,29 @@
  * Takes a line and checks if persons intersect using linesIntersect
  * Person[i].t[j-1] and Person[i].t[j] make up the second line
  */
-function checkIntersections(id, name, x3, y3, x4, y4) {
-
-    var totalIntersections;     // times crossed line
-    var totalReintersections;   // times crossed the same line
-    
+function checkIntersections(name, x3, y3, x4, y4) {
+    var labels = ['Total alerts'];
+    var data = [0];
     for (i = 0; i < persons.length; i++) {
+        var individual_person = 0;
         for (j = 1; j < persons[i].t.length; j++) {
-            console.log(linesIntersect(
-                    (-90 * persons[i].x[j - 1]) + centerX,
-                    (90 * -persons[i].y[j - 1]) + centerY,
-                    (-90 * persons[i].x[j]) + centerX,
-                    (90 * -persons[i].y[j]) + centerY,
-                    x3, y3, x4, y4));
+            crossed = linesIntersect((-90 * persons[i].x[j - 1]) + centerX, (90 * -persons[i].y[j - 1]) + centerY, (-90 * persons[i].x[j]) + centerX, (90 * -persons[i].y[j]) + centerY, x3, y3, x4, y4);
+            if (crossed) {
+                data[0]++;
+                individual_person++;
+            }
+            
+        }
+        if (individual_person !== 0) {
+            labels.push('Person ' + persons[i].id);
+            data.push(individual_person);
         }
     }
     /*
-     * TODO
+     * id = stats.length, name = select.options[select.options.length - 1].value,
+     * labels = labels array, data = data array.
      */
-//    createStats(id, name, labels, data);
+    createStats(stats.length, name, labels, data);
 }
 
 // Calculates whether two lines intersect

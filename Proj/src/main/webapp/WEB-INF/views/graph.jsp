@@ -15,6 +15,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp" />
+
         <div id="container">
             <div id="map">                
                 <canvas id="myCanvas">
@@ -28,7 +29,7 @@
 
             <c:forEach var="stat" items="${stats}">
                 <script>
-                    createStats(${stat.getStatId()},
+                    importStats(${stat.getStatId()},
                     ${stat.getStatName()},
                     ${stat.labelArray()},
                     ${stat.dataArray()});
@@ -37,17 +38,26 @@
 
             <div id="sidebar">
 
-                <table id="form">
-                    <form name="form">
-                        <span id="timeElements"><input type="time" step="1" id="time1" value="${starttime}">
-                            <input type="time" step="1" id="time2" value="${endtime}">
-                            <input type="button" value="Enter">
-                            <br>
-                            <p>Number of visitors: <span id="visitors"></p>
-                        </span>
-                        <body onload="loadStats();">
-                            Statistic: <select name="dropDown" id="dropDown" onChange="play();" />
-                    </form>
+                <!--BUGGY AS SHIT ###########################################--><!-- remove -->
+                <table id="form">                                               <!-- remove -->
+                        <span id="timeElements">                                <!-- remove -->
+                        </span>                                                 <!-- remove -->
+                    <form name="form">                                          <!-- remove -->
+                    </form>                                                     <!-- remove -->
+                <!--REMOVE THIS CRAP ########################################--><!-- remove -->    
+                    
+                    
+                    
+                    <input type="time" step="1" id="time1" value="${starttime}">
+                    <input type="time" step="1" id="time2" value="${endtime}">
+                    <input type="button" value="Enter">
+                    <body onload="loadStats();">
+                        <br><br>
+                        Statistic: 
+                        <br>
+                        <select name="dropDown" id="dropDown" onChange="play();" />
+                        <br>
+                        <input class="enter" type="button" value="Clear" onclick="clearLines();" />
                 </table>
 
                 <div id="stats">

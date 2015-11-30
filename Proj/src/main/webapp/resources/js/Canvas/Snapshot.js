@@ -40,12 +40,25 @@ function stop() {
     location.reload();
 }
 
+/*
+ * Clears the localStorage so that all data can be refilled. This means that
+ * lines and stats are all gone. The canvas is empty and charts has basic
+ * imported data from Java. The dropdown menu will also be reset
+ * @returns void
+ */
 function clearLines() {
-    localStorage.setItem('session', null);
-    lines = new Array();
-    clear();
-    drawBackground();
-    addList();
+    if (lines.length >= 1) {
+        var r = confirm('Do you wish to delete all lines?');
+        if (r === true) {
+            localStorage.setItem('linesSession', null);
+            localStorage.setItem('statsSession', null);
+            lines = new Array();
+            stats = new Array();
+            clear();
+            drawBackground();
+            addList();
+        }
+    }
 }
 
 
@@ -107,8 +120,8 @@ function drawTrack(i) {
     if (document.getElementById('tracks').checked) {
         drawLine((-90 * persons[i].x[persons[j].counter - 2]) + centerX,
                 (90 * -persons[i].y[persons[j].counter - 2]) + centerY,
-                (-90 * persons[i].x[persons[j].counter-1]) + centerX,
-                (90 * -persons[i].y[persons[j].counter-1]) + centerY
+                (-90 * persons[i].x[persons[j].counter - 1]) + centerX,
+                (90 * -persons[i].y[persons[j].counter - 1]) + centerY
                 , 3, '#606060');
 
     }

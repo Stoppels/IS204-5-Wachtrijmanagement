@@ -40,14 +40,14 @@ function getMousePos(canvas, evt) {
     };
 }
 
-// saves line
+// saves line and creates statistic of that line
 function saveLine() {
     var r = confirm('Do you wish to save this line?');
     if (r === true) {
         createLine(newline[0], newline[1], newline[2], newline[3]);
         addList();
         var select = document.getElementById("dropDown");
-        checkIntersections(select.options.length, select.options[select.options.length - 1].value,
+        checkIntersections(select.options[select.options.length - 1].value,
             newline[0], newline[1], newline[2], newline[3]);
     }
 }

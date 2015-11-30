@@ -17,6 +17,9 @@ loadStats = function () {
 // adds statistics to dropdown menu
 addList = function () {
     var select = document.getElementById("dropDown");
+    for (i = select.options.length - 1; i >= 0; i--) {
+        select.remove(i);
+    }
     for (i = 0; i < stats.length; i++) {
         var option = document.createElement('option');
         option.text = stats[i].name;
@@ -39,7 +42,6 @@ function personData(index) {
         labels[i] = stats[index].labels[i];
         data[i] = stats[index].data[i];
     }
-
     for (i = 0; i < 1; i++) {
         balken[i] = {
             fillColor: "rgba(0,153,255,0.75)",
@@ -49,8 +51,6 @@ function personData(index) {
             data: data
         };
     }
-    document.getElementById("visitors").innerHTML = data.length;
-
     if (window.myBar)
         window.myBar.destroy();
     addChart(new barChart(labels, balken));
