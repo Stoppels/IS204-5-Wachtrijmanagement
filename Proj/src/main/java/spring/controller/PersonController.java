@@ -114,49 +114,76 @@ public class PersonController {
         for (JsonObject jsonObject : jsonList) {
             all.add(jsonObject.getTrack_id());
             int count = 0;
+
             for (int i = 0; i < first.size(); i++) {
-                if (jsonObject.getTrack_id() != first.get(i)) count++;
+                if (jsonObject.getTrack_id() != first.get(i)) {
+                    count++;
+                }
             }
             if (count == first.size()) {
                 first.set(count - 1, jsonObject.getTrack_id());
                 first.add(0);
             }
         }
-        filter1(all, first);
+        filterLessThanThreeLines(all, first);
+        filterUnusualHeights(first, jsonList);
+//        filterShortDurations(first, jsonList);
         return first;
     }
 
-    /*
-     * FILTER 1
+    /**
      * Filter out any person with less than three lines of activity.
+     *
+     * @param all ArrayList <Integer>
+     * @param first ArrayList <Integer>
      */
-    private void filter1(ArrayList<Integer> all, ArrayList<Integer> first) {
+    private void filterLessThanThreeLines(ArrayList<Integer> all, ArrayList<Integer> first) {
         for (Integer i : all) {
-            if (Collections.frequency(all, i) < 3) first.remove(i);
+            if (Collections.frequency(all, i) < 3) {
+                first.remove(i);
+            }
         }
     }
-    
-    
-    
-    private void NICKANDCHRISSSUPERMETHODS() {
-                // Filter out any person with less than five seconds of activity.
-//		for (int i = 0; i < all.size(); i++) {
-//			int count = 0;
-//			for (Integer j : all) {
-//				if (all.get(i).equals(j)) {
-//					int k = jsonList.indexOf(all.get(i));
-//					count += jsonList.get(k).getTimestamp().secondsTotal();
-//				}
-//			}
-//			if (count < 5) {
-//				first.remove(all.get(i));
-//			}
-//		}
-        
-//                        && jsonObject.getBbox().getZ2() >= MIN_HEIGHT
-//                        && jsonObject.getBbox().getZ2() <= MAX_HEIGHT
+
+    /**
+     * #########---- TODO -- #############
+     * not sure if does what it has to do
+     *
+     * @param first
+     * @param jsonList Filter out any person with an unusual height
+     */
+    private void filterUnusualHeights(ArrayList<Integer> first, ArrayList<JsonObject> jsonList) {
+        // if bbox.z niet voldoet verwijder resultaat
+        // op dit moment zit de array first vol met unieke resultaten(track ids)
+        for (Integer i : first) {
+            int j = jsonList.get(i).getTrack_id();
+            if (!(jsonList.get(j).getBbox().getZ2() >= MIN_HEIGHT && jsonList.get(j).getBbox().getZ2() <= MAX_HEIGHT)) {
+                first.remove(i);
+            }
+        }
     }
 
+//#########---- TODO -- #############
+    /**
+     * probleem is array out of bounds, het is vast obvious maar ik zie t ff niet - Chris
+     * @param first
+     * @param jsonList 
+     */
+    private void filterShortDurations(ArrayList<Integer> first, ArrayList<JsonObject> jsonList) {
+// Filter out any person with less than five seconds of activity.
+        for(int k = 0; k < first.size(); k++){
+        int count = 0;
+         for (Integer i : first) {
+            int j = jsonList.get(i).getTrack_id();
+            if (first.get(i).equals(j)) {
+                count+= jsonList.get(i).getTimestamp().secondsTotal();
+            }         
+        }
+        if(count < 5){
+            first.remove(k);
+        }
+    }
+    }
     /**
      * This method converts a giant JsonList of mixed track IDs to sorted
      * ArrayLists containing PersonObjects. A PersonObject is a collection of
@@ -166,7 +193,7 @@ public class PersonController {
      * @param jsonList ArrayList<\JsonObject> containing JSON lines
      */
     public void convertJsonToPerson(ArrayList<JsonObject> jsonList) {
-		// Creates a new PersonObject for every track_id.
+        // Creates a new PersonObject for every track_id.
         // Distributes all JSON lines per track_id over all PersonObjects.
         if (!jsonList.isEmpty()) {
             ArrayList p = calculateAmountPersons(jsonList);

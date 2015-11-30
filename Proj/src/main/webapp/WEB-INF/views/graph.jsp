@@ -18,6 +18,7 @@
 
         <div id="container">
             <div id="sidebar" class="graph">
+                <!--<p>Number of visitors: <span id="visitors"></p>-- voorlopig behouden voor test>
                 <!--BUGGY AS SHIT ###########################################--><!-- remove -->
                 <table id="form">                                               <!-- remove -->
                     <span id="timeElements">                                <!-- remove -->

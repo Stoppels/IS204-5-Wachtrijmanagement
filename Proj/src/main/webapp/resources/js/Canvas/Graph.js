@@ -55,6 +55,8 @@ function personData(index) {
             data: data
         };
     }
+// voorlopig behouden voor test
+//    document.getElementById("visitors").innerHTML = data.length;
     if (window.myBar)
         window.myBar.destroy();
     addChart(new barChart(labels, balken));
