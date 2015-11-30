@@ -70,19 +70,19 @@ function drawPersons(starttime, i) {
     for (j = 0; j < persons.length; j++) {
         if (persons[j].counter > 0) {
             // if iterator in person has started
-            drawPerson(j);
             drawTrack(j);
+            drawPerson(j);
         } else if (starttime + i == persons[j].t[0]) {
             // if iterator matches starttime
-            drawPerson(j);
             drawTrack(j);
+            drawPerson(j);
         } else if (starttime + i > persons[j].t[0]) {
             // if iterator has passed starttime
             for (k = 0; starttime + i > persons[j].t[k]; k++) {
                 persons[j].count();
             }
-            drawPerson(j);
             drawTrack(j);
+            drawPerson(j);
         }
     }
 }
@@ -96,10 +96,10 @@ function drawBackground() {
 // draws movement web
 function drawTrack(i) {
     if (document.getElementById('tracks').checked) {
-        drawLine((-90 * persons[i].x[persons[j].counter - 2]) + centerX,
-                (90 * -persons[i].y[persons[j].counter - 2]) + centerY,
-                (-90 * persons[i].x[persons[j].counter - 1]) + centerX,
-                (90 * -persons[i].y[persons[j].counter - 1]) + centerY
+        drawLine((-90 * persons[i].x[persons[j].counter - 1]) + centerX,
+                (90 * -persons[i].y[persons[j].counter - 1]) + centerY,
+                (-90 * persons[i].x[persons[j].counter]) + centerX,
+                (90 * -persons[i].y[persons[j].counter]) + centerY
                 , 3, '#606060');
 
     }
