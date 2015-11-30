@@ -1,5 +1,5 @@
 /* 
- Document   : Snapshot.js
+ Document   : Dotmap.js
  Created on : Nov 5, 2015
  Author     : Stefan */
 
@@ -18,4 +18,3 @@ function drawPerson(j) {
     persons[j].text(persons[j].counter);
     persons[j].count();
 }
-

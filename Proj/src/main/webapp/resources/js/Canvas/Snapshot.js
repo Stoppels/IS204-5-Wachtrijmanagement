@@ -12,11 +12,6 @@ setTimeout(function () {
     img.onload = drawBackground();
 }, 1);
 
-// Adapt the 'Enter' button value to reflect animation state.
-function enterButtonValue() {
-    document.getElementsByClassName("enter")[0].value = playing ? "Pause" : "Play";
-}
-
 // adds lines to dropdown menu
 function addList() {
     var select = document.getElementById("dropDown");
@@ -28,6 +23,24 @@ function addList() {
         option.text = 'Line alert ' + (i + 1);
         select.add(option, i);
     }
+}
+
+// Adjust the speed depending on the selected button.
+function adjustSpeed() {
+    if (playspeed === 1000) { // If speed was set to slow, speed it up.
+        playspeed = 500;
+        document.getElementById("slowSpeed").disabled = false;
+        document.getElementById("highSpeed").disabled = true;
+    } else { // Speed the animation down (default state).
+        playspeed = 1000;
+        document.getElementById("slowSpeed").disabled = true;
+        document.getElementById("highSpeed").disabled = false;
+    }
+}
+
+// Adapt the 'Enter' button value to reflect animation state.
+function enterButtonValue() {
+    document.getElementsByClassName("enter")[0].value = playing ? "Pause" : "Play";
 }
 
 // starts the loop between start and end time
@@ -98,7 +111,8 @@ function drawPersons(starttime, i) {
 // draws background
 function drawBackground() {
     drawScene(document.getElementById('scenery').checked, img);
-    drawLines(); // user drawn lines
+    drawLines(); // Draws user drawn lines.
+    highlight(); // Highlights the selected line.
 }
 
 // draws movement web

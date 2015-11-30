@@ -22,16 +22,21 @@
                         <!--<label class="timeLabel">Time:</label>-->
                         <input class="start" type="time" step="1" id="time1" value="${starttime}">
                         <input class="end" type="time" step="1" id="time2" value="${endtime}">
-                        <input class="enter" type="button" value="Enter" onclick="play(
+                        <input class="enter" type="button" value="Start" onclick="play(
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);"  />
                         <input class="reset" type="button" value="Reset" onclick="stop();">
                         <br><br>
-                        Line:
+                        Play speed:
+                        <br>
+                        <input id="slowSpeed" type="button" value="Normal" onclick="adjustSpeed();" disabled="true">
+                        <input id="highSpeed" type="button" value="Fast" onclick="adjustSpeed();">
+                        <br><br>
+                        Line alert:
                         <br>
                         <select name="dropDown" id="dropDown" onChange="highlight();" />
                         <br>
-                        <input class="enter" type="button" value="Clear" onclick="clearSessions();" />
+                        <input class="enter" type="button" value="Clear lines" onclick="clearSessions();" />
                     </form>
                 </table>
                 <br>
