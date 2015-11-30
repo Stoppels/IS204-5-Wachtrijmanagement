@@ -57,7 +57,7 @@
                         <br>
                         <select name="dropDown" id="dropDown" onChange="play();" />
                         <br>
-                        <input class="enter" type="button" value="Clear" onclick="clearLines();" />
+                        <input class="enter" type="button" value="Clear" onclick="clearSessions();" />
                 </table>
 
                 <div id="stats">

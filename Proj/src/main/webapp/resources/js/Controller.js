@@ -38,6 +38,28 @@ function getSessions() {
 }
 
 /*
+ * Clears the localStorage so that all data can be refilled. This means that
+ * lines and stats are all gone. The canvas is empty and charts has basic
+ * imported data from Java. The dropdown menu will also be reset
+ * @returns void
+ */
+function clearSessions() {
+    if (lines.length >= 1) {
+        var r = confirm('Do you wish to delete all lines?');
+        console.log('confirm' + r);
+        if (r === true) {
+            localStorage.setItem('linesSession', null);
+            localStorage.setItem('statsSession', null);
+            lines = new Array();
+            stats = new Array();
+            addList();
+            clear();
+            drawBackground();
+        }
+    }
+}
+
+/*
  * Function to create a person object in Javascript used by Snapshot and Heatmap
  * @id int holds the track id of a person object converted from Java objects
  * @t int holds timestamp data in the following format 00:00:00, HH:MM:SS

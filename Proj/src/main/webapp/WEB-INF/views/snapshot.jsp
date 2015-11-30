@@ -31,7 +31,7 @@
                         <br>
                         <select name="dropDown" id="dropDown" onChange="highlight();" />
                         <br>
-                        <input class="enter" type="button" value="Clear" onclick="clearLines();" />
+                        <input class="enter" type="button" value="Clear" onclick="clearSessions();" />
                     </form>
                 </table>
                 <br>

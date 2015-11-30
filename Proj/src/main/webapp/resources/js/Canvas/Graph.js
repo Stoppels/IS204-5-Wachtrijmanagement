@@ -15,7 +15,7 @@ loadStats = function () {
 };
 
 // adds statistics to dropdown menu
-addList = function () {
+function addList() {
     var select = document.getElementById("dropDown");
     for (i = select.options.length - 1; i >= 0; i--) {
         select.remove(i);
@@ -26,6 +26,10 @@ addList = function () {
         select.add(option, i);
     }
 };
+
+function clear() {
+    location.reload();
+}
 
 // plays selected statistic as chart
 function play() {

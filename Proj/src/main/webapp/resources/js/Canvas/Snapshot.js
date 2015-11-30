@@ -40,28 +40,6 @@ function stop() {
     location.reload();
 }
 
-/*
- * Clears the localStorage so that all data can be refilled. This means that
- * lines and stats are all gone. The canvas is empty and charts has basic
- * imported data from Java. The dropdown menu will also be reset
- * @returns void
- */
-function clearLines() {
-    if (lines.length >= 1) {
-        var r = confirm('Do you wish to delete all lines?');
-        if (r === true) {
-            localStorage.setItem('linesSession', null);
-            localStorage.setItem('statsSession', null);
-            lines = new Array();
-            stats = new Array();
-            clear();
-            drawBackground();
-            addList();
-        }
-    }
-}
-
-
 /* iterates trough all person objects within start and end time
  * list = person array containing t timestamp, x Position, y Position
  * t = timestamp array

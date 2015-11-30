@@ -19,18 +19,14 @@ function checkIntersections(name, x3, y3, x4, y4) {
                 data[0]++;
                 individual_person++;
             }
-            
         }
         if (individual_person !== 0) {
             labels.push('Person ' + persons[i].id);
             data.push(individual_person);
         }
     }
-    /*
-     * id = stats.length, name = select.options[select.options.length - 1].value,
-     * labels = labels array, data = data array.
-     */
-    createStats(stats.length, name, labels, data);
+    nrImportedStats = 3;
+    createStats(stats.length + nrImportedStats, name, labels, data);
 }
 
 // Calculates whether two lines intersect
