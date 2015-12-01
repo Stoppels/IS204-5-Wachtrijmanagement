@@ -5,24 +5,23 @@
  */
 
 /*
- * Arrays of all the differen objects that are used troughout views
- * @persons holds data of person objects sent from Java objects
- * @lines holds data of user drawn lines on the Snapshot map
- * @stats holds statistical information of person objects
+ * Arrays of all the different objects that are used troughout views
+ * persons holds data of person objects sent from Java objects
+ * lines holds data of user drawn lines on the Snapshot map
+ * stats holds statistical information of person objects
  */
 
 var persons = new Array();
 var stats;
 var lines;
 var colors = [];
-var playspeed = 1000; // Framespeed in ms (1000 = 1 FPS)
 var linesExist;
 getSessions();
 
 
 /*
- * Gets all the line information and data if it exists
- * Otherwise this method will assign a new array
+ * Gets all the line information and data if it exists.
+ * Otherwise this method will assign a new array.
  * @returns void
  */
 function getSessions() {
@@ -45,7 +44,7 @@ function getSessions() {
 /*
  * Clears the localStorage so that all data can be refilled. This means that
  * lines and stats are all gone. The canvas is empty and charts has basic
- * imported data from Java. The dropdown menu will also be reset
+ * imported data from Java. The dropdown menu will also be reset.
  * @returns void
  */
 function clearSessions() {
@@ -65,7 +64,7 @@ function clearSessions() {
 }
 
 /*
- * Function to create a person object in Javascript used by Snapshot and Heatmap
+ * Function to create a person object in Javascript used by Snapshot and Heatmap.
  * @id int holds the track id of a person object converted from Java objects
  * @t int holds timestamp data in the following format 00:00:00, HH:MM:SS
  * @x int holds x[index] pos data aligned with timestamp of t[index]
@@ -102,7 +101,7 @@ function person() {
         drawDot(-scale * this.x[i], scale * this.y[i], this.color);
     };
     this.heat = function (i) {
-        drawHeat(-scale * this.x[i], scale * this.y[i]);
+        drawHeat(-scale * this.x[i], scale * this.y[i], this.color);
     };
     this.text = function (i) {
         drawInfo(this.id, -scale * this.x[i], scale * this.y[i], 15);
@@ -112,7 +111,7 @@ function person() {
     };
 }
 
-/* Function to create a line object in Javascript used by Snapshot and Graph
+/* Function to create a line object in Javascript used by Snapshot and Graph.
  * @x1 and @y1 int holding the starting position of the user drawn line
  * @x2 and @y2 int holding the end position of the user drawn line
  */
@@ -133,7 +132,7 @@ function drawLines() {
     }
 }
 
-/* Function to create a stat object in Javascript used by Snapshot and Graph
+/* Function to create a stat object in Javascript used by Snapshot and Graph.
  * @name String represents the name of the the statistic and information
  * @labels array holding Strings of corresponding names for each bar
  * @data array holding ints of the data associated with the label
@@ -150,7 +149,8 @@ function createStats(id, name, labels, data) {
 }
 
 /*
- * Only imports stats from Java if the stats list is not containing them already
+ * Only imports stats from Java if the list of stats does not already contain
+ * them.
  * @returns void
  */
 function importStats(id, name, labels, data) {

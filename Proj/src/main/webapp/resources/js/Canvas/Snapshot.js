@@ -12,6 +12,9 @@ img.src = 'resources/img/filmed.png';
 setTimeout(function () {
     img.onload = drawBackground();
 }, 1);
+var DEFAULT_DOTS_SPEED = 1000; // Framespeed in ms (1000 = 1 FPS), used as if constant.
+var DEFAULT_HEAT_SPEED = 50; // Framespeed in ms (20 = 50 FPS), used as if constant.
+var playSpeed; // The used and adjusted speed variable.
 
 // Adds default option to dropdown menu.
 function addDefaultOptionList() {
@@ -49,14 +52,27 @@ function addList() {
 
 // Adjust the speed depending on the selected button.
 function adjustSpeed() {
-    if (playspeed === 1000) { // If speed was set to slow, speed it up.
-        playspeed = 500;
-        document.getElementById("slowSpeed").disabled = false;
-        document.getElementById("highSpeed").disabled = true;
-    } else { // Speed the animation down (default state).
-        playspeed = 1000;
-        document.getElementById("slowSpeed").disabled = true;
-        document.getElementById("highSpeed").disabled = false;
+    var path = window.location.pathname;
+    if (path.indexOf('snapshot') > -1) {
+        if (playSpeed === DEFAULT_DOTS_SPEED) { // If speed was set to normal, speed it up.
+            playSpeed = 500;
+            document.getElementById("slowSpeed").disabled = false;
+            document.getElementById("highSpeed").disabled = true;
+        } else { // Speed the animation down (default state).
+            playSpeed = DEFAULT_DOTS_SPEED;
+            document.getElementById("slowSpeed").disabled = true;
+            document.getElementById("highSpeed").disabled = false;
+        }
+    } else if (path.indexOf('heatmap') > -1) {
+        if (playSpeed === DEFAULT_HEAT_SPEED) { // If speed was set to normal, speed it up.
+            playSpeed = 2;
+            document.getElementById("slowSpeed").disabled = false;
+            document.getElementById("highSpeed").disabled = true;
+        } else { // Speed the animation down (default state).
+            playSpeed = DEFAULT_HEAT_SPEED;
+            document.getElementById("slowSpeed").disabled = true;
+            document.getElementById("highSpeed").disabled = false;
+        }
     }
 }
 
@@ -100,7 +116,7 @@ function playPersons(s, e) {
                 return;
             setTimeout(function () {
                 nextFrame(i + 1);
-            }, playspeed);
+            }, playSpeed);
         }
         nextFrame(0);
     }
@@ -148,6 +164,15 @@ function drawTrack(i) {
     }
 }
 
+// highlights selected line
+function highlight() {
+    if (linesExist) {
+        var ln = document.getElementById('dropDown').selectedIndex;
+        if (ln !== -1)
+            drawLine(lines[ln].x1, lines[ln].y1, lines[ln].x2, lines[ln].y2, 17, 'rgba(100, 0, 200, 0.2)');
+    }
+}
+
 // resets timestamp position for every person
 function resetPersonCount() {
     for (i = 0; i < persons.length; i++) {
@@ -156,11 +181,12 @@ function resetPersonCount() {
     playing = false;
 }
 
-// highlights selected line
-function highlight() {
-    if (linesExist) {
-        var ln = document.getElementById('dropDown').selectedIndex;
-        if (ln !== -1)
-            drawLine(lines[ln].x1, lines[ln].y1, lines[ln].x2, lines[ln].y2, 17, 'rgba(100, 0, 200, 0.2)');
+// Sets the initial framerate speed for the snapshot and heatmap views.
+function setInitialSpeed() {
+    var path = window.location.pathname;
+    if (path.indexOf('snapshot') > -1) {
+        playSpeed = DEFAULT_DOTS_SPEED;
+    } else if (path.indexOf('heatmap') > -1) {
+        playSpeed = DEFAULT_HEAT_SPEED;
     }
 }

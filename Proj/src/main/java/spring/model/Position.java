@@ -32,43 +32,40 @@ package spring.model;
  */
 public class Position {
 
-        private double x;
-        private double y;
-        
-        public Position (String position){
-        position = position.replace("[","");
-        position = position.replace("]","");
-            x = Double.parseDouble(position.split(",")[0]);
-            y = Double.parseDouble(position.split(",")[1]);
-        }
+	private double x;
+	private double y;
 
-        public Position(double x, double y) {
-            this.x = x;
-            this.y = y;
-        }
+	public Position(String position) {
+		position = position.replace("[", "");
+		position = position.replace("]", "");
+		x = Double.parseDouble(position.split(",")[0]);
+		y = Double.parseDouble(position.split(",")[1]);
+	}
 
-        public double getX() {
-            return x;
-        }
+	public Position(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
 
-        public void setX(double x) {
-            this.x = x;
-        }
+	public double getX() {
+		return x;
+	}
 
-        public double getY() {
-            return y;
-        }
+	public void setX(double x) {
+		this.x = x;
+	}
 
-        public void setY(double y) {
-            this.y = y;
-        }
+	public double getY() {
+		return y;
+	}
 
-    @Override
-    public String toString() {
-        return "["+x +","+ y+"]";
-    }
-        
-        
+	public void setY(double y) {
+		this.y = y;
+	}
 
-        
-    }
+	@Override
+	public String toString() {
+		return "[" + x + "," + y + "]";
+	}
+
+}

@@ -4,7 +4,6 @@
  Author     : IS204-5
  */
 
-
 var canvas;
 var context;
 var centerX;
@@ -72,7 +71,7 @@ function drawLine(x1, y1, x2, y2, lineWidth, strokeStyle) {
     context.lineTo(x2, y2);
     context.lineWidth = 15;
     context.lineWidth = lineWidth;
-    context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
+//    context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
     context.strokeStyle = strokeStyle;
     context.stroke();
     context.restore();

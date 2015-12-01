@@ -3,6 +3,7 @@
     Created on : Nov 2, 2015
     Author     : IS204-5
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -16,28 +17,25 @@
         <jsp:include page="header.jsp" />
         <div id="container">
             <div id="sidebar">
-                <table id="form">
-                    <form name="form">
-                        <!--<label class="timeLabel">Time:</label>--> 
-                        <input class="start" type="time" step="1" id="time1" value="${starttime}">
-                        <input class="end" type="time" step="1" id="time2" value="${endtime}">
-                        <input class="enter" type="button" value="Start" onclick="play(
-                                        document.getElementById('time1').value,
-                                        document.getElementById('time2').value);"  />
-                        <input class="reset" type="button" value="Reset" onclick="stop();">
-                        <br><br>
-                        Play speed:
-                        <br>
-                        <input id="slowSpeed" type="button" value="Normal" onclick="adjustSpeed();" disabled="true">
-                        <input id="highSpeed" type="button" value="Fast" onclick="adjustSpeed();">
-                        <br><br>
-                        Line alert:
-                        <br>
-                        <select name="dropDown" id="dropDown" onChange="highlight();" />
-                        <br>
-                        <input class="enter" type="button" value="Clear lines" onclick="clearSessions();" />
-                    </form>
-                </table>
+                <form name="form">
+                    <input class="start" type="time" step="1" id="time1" value="${starttime}" />
+                    <input class="end" type="time" step="1" id="time2" value="${endtime}" />
+                    <input class="enter" type="button" value="Start" onclick="play(
+                                    document.getElementById('time1').value,
+                                    document.getElementById('time2').value);" />
+                    <input class="reset" type="button" value="Reset" onclick="stop();" />
+                    <br><br>
+                    Play speed:
+                    <br>
+                    <input id="slowSpeed" type="button" value="Normal" onclick="adjustSpeed();" disabled="true" />
+                    <input id="highSpeed" type="button" value="Fast" onclick="adjustSpeed();" />
+                    <br><br>
+                    Line alert:
+                    <br>
+                    <select name="dropDown" id="dropDown" onChange="highlight();" />
+                    <br>
+                    <input class="enter" type="button" value="Clear lines" onclick="clearSessions();" />
+                </form>
                 <br>
                 Scenery: <tab><input type="checkbox" id="scenery" checked></tab>
                 <br>
@@ -56,7 +54,7 @@
 
                 <c:forEach var="person" items="${list}">
                     <script>
-                            createPerson(${person.getPersonId()},
+                        createPerson(${person.getPersonId()},
                         ${person.timestampArray()},
                         ${person.xArray()},
                         ${person.yArray()});
