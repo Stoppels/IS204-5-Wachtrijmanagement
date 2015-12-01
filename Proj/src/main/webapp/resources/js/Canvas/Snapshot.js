@@ -161,6 +161,6 @@ function highlight() {
     if (linesExist) {
         var ln = document.getElementById('dropDown').selectedIndex;
         if (ln !== -1)
-            drawLine(lines[ln].x1, lines[ln].y1, lines[ln].x2, lines[ln].y2, 17, 'rgb(100, 0, 200)');
+            drawLine(lines[ln].x1, lines[ln].y1, lines[ln].x2, lines[ln].y2, 17, 'rgba(100, 0, 200, 0.2)');
     }
 }
