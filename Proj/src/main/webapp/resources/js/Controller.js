@@ -83,7 +83,6 @@ function createPerson(id, t, x, y) {
 
 // constructor of person
 function person() {
-    var scale = 90;
     this.id;
     this.t;
     this.x;

@@ -8,6 +8,7 @@ var canvas;
 var context;
 var centerX;
 var centerY;
+var scale;
 
 window.onload = init();
 
@@ -104,8 +105,8 @@ function showImage(img, xPos, yPos, width, height) {
 // scene with added scenery
 function drawScene(active, img) {
     if (active) {
-        showImage(img, 530, -330, 1400, 1400);
-        drawRectangle(555, -10, 650, 30, 14, '#0099FF', 0.6);
+        showImage(img, 0, 0, 728 * scale, 672 * scale);
+//        drawRectangle(555, -10, 650, 30, 14, '#0099FF', 0.6);
     }
 }
 
@@ -118,8 +119,9 @@ function clear() {
 function init() {
     canvas = document.getElementById("myCanvas");
     context = canvas.getContext("2d");
+    scale = 1.8;
     canvas.width = 1024;
     canvas.height = 768;
-    centerX = 100;
-    centerY = 100;
+    centerX = canvas.width / 2;
+    centerY = canvas.height / 2;
 }

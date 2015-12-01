@@ -6,8 +6,8 @@
 
 // clean canvas?
 function cleanCanvas() {
-    clear();
-    drawBackground();
+//    clear();
+//    drawBackground();
 }
 
 // draws dot and text while counting timestamp position

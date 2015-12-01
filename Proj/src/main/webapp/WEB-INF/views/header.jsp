@@ -9,7 +9,7 @@
 <header id="header">
     <ul id="nav">
         <li><a href="${pageContext.request.contextPath}/">Home</a></li> 
-        <li><a href="${pageContext.request.contextPath}/snapshot">Snapshot</a></li>
+        <li><a href="${pageContext.request.contextPath}/dotmap">Dotmap</a></li>
         <li><a href="${pageContext.request.contextPath}/heatmap">Heatmap</a></li>
         <li><a href="${pageContext.request.contextPath}/graph">Graph</a></li>
     </ul>

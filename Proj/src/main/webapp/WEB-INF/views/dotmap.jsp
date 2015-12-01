@@ -45,7 +45,8 @@
                 <canvas id="myCanvas">
                     <script src="<c:url value="${Controller}" />" type="text/javascript"></script>
                     <script src="<c:url value="${Canvas}" />" type="text/javascript"></script>
-                    <script src="<c:url value="${Snapshot}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${Interface}" />" type="text/javascript"></script>
+                    <script src="<c:url value="${Player}" />" type="text/javascript"></script>
                     <script src="<c:url value="${Dotmap}" />" type="text/javascript"></script>
                     <script src="<c:url value="${Draw}" />" type="text/javascript"></script>
                     <script src="<c:url value="${LinesIntersect}" />" type="text/javascript"></script>

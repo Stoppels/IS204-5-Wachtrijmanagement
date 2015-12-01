@@ -39,117 +39,119 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-	final String random = "?version=" + Math.random() * 10;
-	JsonController JC;
-	PersonController PC;
-	StatController SC;
-	String filename;
-	String file = "no file";
-	String starttime;
-	String endtime;
+    final String random = "?version=" + Math.random() * 10;
+    JsonController JC;
+    PersonController PC;
+    StatController SC;
+    String filename;
+    String file = "no file";
+    String starttime;
+    String endtime;
 
-	@RequestMapping(value = "/")
-	public ModelAndView home() throws IOException {
-		ModelAndView view = new ModelAndView("index");
-		init();
+    @RequestMapping(value = "/")
+    public ModelAndView home() throws IOException {
+        ModelAndView view = new ModelAndView("index");
+        init();
 
-		view.addObject("filename", file);
+        view.addObject("filename", file);
 
-		view.addObject("Controller", "/resources/js/Controller.js" + random);
-		view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
-		view.addObject("Home", "/resources/js/Canvas/Home.js" + random);
+        view.addObject("Controller", "/resources/js/Controller.js" + random);
+        view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
+        view.addObject("Home", "/resources/js/Canvas/Home.js" + random);
 
-		view.addObject("stylesheet", "/resources/css/style.css" + random);
-		view.addObject("starttime", starttime);
-		view.addObject("endtime", endtime);
-		return view;
-	}
+        view.addObject("stylesheet", "/resources/css/style.css" + random);
+        view.addObject("starttime", starttime);
+        view.addObject("endtime", endtime);
+        return view;
+    }
 
-	@RequestMapping(value = "/snapshot")
-	public ModelAndView snapshot() throws IOException {
-		ModelAndView view = new ModelAndView("snapshot");
+    @RequestMapping(value = "/dotmap")
+    public ModelAndView snapshot() throws IOException {
+        ModelAndView view = new ModelAndView("dotmap");
 
-		view.addObject("filename", file);
-		view.addObject("list", PC.getList());
+        view.addObject("filename", file);
+        view.addObject("list", PC.getList());
 
-		view.addObject("Controller", "/resources/js/Controller.js" + random);
-		view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
-		view.addObject("Snapshot", "/resources/js/Canvas/Snapshot.js" + random);
-		view.addObject("Dotmap", "/resources/js/Canvas/Dotmap.js" + random);
-		view.addObject("Draw", "/resources/js/Canvas/Draw.js" + random);
-		view.addObject("LinesIntersect", "/resources/js/Canvas/LinesIntersect.js" + random);
+        view.addObject("Controller", "/resources/js/Controller.js" + random);
+        view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
+        view.addObject("Interface", "/resources/js/Canvas/Interface.js" + random);
+        view.addObject("Player", "/resources/js/Canvas/Player.js" + random);
+        view.addObject("Dotmap", "/resources/js/Canvas/Dotmap.js" + random);
+        view.addObject("Draw", "/resources/js/Canvas/Draw.js" + random);
+        view.addObject("LinesIntersect", "/resources/js/Canvas/LinesIntersect.js" + random);
 
-		view.addObject("stylesheet", "/resources/css/style.css" + random);
-		view.addObject("starttime", starttime);
-		view.addObject("endtime", endtime);
-		return view;
-	}
+        view.addObject("stylesheet", "/resources/css/style.css" + random);
+        view.addObject("starttime", starttime);
+        view.addObject("endtime", endtime);
+        return view;
+    }
 
-	@RequestMapping(value = "/heatmap")
-	public ModelAndView heatmap() throws IOException {
-		ModelAndView view = new ModelAndView("heatmap");
+    @RequestMapping(value = "/heatmap")
+    public ModelAndView heatmap() throws IOException {
+        ModelAndView view = new ModelAndView("heatmap");
 
-		view.addObject("filename", file);
-		view.addObject("list", PC.getList());
+        view.addObject("filename", file);
+        view.addObject("list", PC.getList());
 
-		view.addObject("Controller", "/resources/js/Controller.js" + random);
-		view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
-		view.addObject("Snapshot", "/resources/js/Canvas/Snapshot.js" + random);
-		view.addObject("Heatmap", "/resources/js/Canvas/Heatmap.js" + random);
-		view.addObject("Draw", "/resources/js/Canvas/Draw.js" + random);
-		view.addObject("LinesIntersect", "/resources/js/Canvas/LinesIntersect.js" + random);
+        view.addObject("Controller", "/resources/js/Controller.js" + random);
+        view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
+        view.addObject("Interface", "/resources/js/Canvas/Interface.js" + random);
+        view.addObject("Player", "/resources/js/Canvas/Player.js" + random);
+        view.addObject("Heatmap", "/resources/js/Canvas/Heatmap.js" + random);
+        view.addObject("Draw", "/resources/js/Canvas/Draw.js" + random);
+        view.addObject("LinesIntersect", "/resources/js/Canvas/LinesIntersect.js" + random);
 
-		view.addObject("stylesheet", "/resources/css/style.css" + random);
-		view.addObject("starttime", starttime);
-		view.addObject("endtime", endtime);
-		return view;
-	}
+        view.addObject("stylesheet", "/resources/css/style.css" + random);
+        view.addObject("starttime", starttime);
+        view.addObject("endtime", endtime);
+        return view;
+    }
 
-	@RequestMapping(value = "/graph")
-	public ModelAndView graph() throws IOException {
-		ModelAndView view = new ModelAndView("graph");
+    @RequestMapping(value = "/graph")
+    public ModelAndView graph() throws IOException {
+        ModelAndView view = new ModelAndView("graph");
 
-		view.addObject("filename", file);
-		view.addObject("stats", SC.getList());
+        view.addObject("filename", file);
+        view.addObject("stats", SC.getList());
 
-		view.addObject("Controller", "/resources/js/Controller.js" + random);
-		view.addObject("Chart", "/resources/js/Chart/Chart.js" + random);
-		view.addObject("ChartBar", "/resources/js/Chart/Chart.Bar.js" + random);
-		view.addObject("ChartCore", "/resources/js/Chart/Chart.Core.js" + random);
-		view.addObject("Graph", "/resources/js/Canvas/Graph.js" + random);
+        view.addObject("Controller", "/resources/js/Controller.js" + random);
+        view.addObject("Chart", "/resources/js/Chart/Chart.js" + random);
+        view.addObject("ChartBar", "/resources/js/Chart/Chart.Bar.js" + random);
+        view.addObject("ChartCore", "/resources/js/Chart/Chart.Core.js" + random);
+        view.addObject("Graph", "/resources/js/Canvas/Graph.js" + random);
 
-		view.addObject("stylesheet", "/resources/css/style.css" + random);
-		view.addObject("starttime", starttime);
-		view.addObject("endtime", endtime);
-		return view;
-	}
+        view.addObject("stylesheet", "/resources/css/style.css" + random);
+        view.addObject("starttime", starttime);
+        view.addObject("endtime", endtime);
+        return view;
+    }
 
-	@RequestMapping(value = "/error")
-	public ModelAndView error() throws IOException {
-		ModelAndView view = new ModelAndView("error");
+    @RequestMapping(value = "/error")
+    public ModelAndView error() throws IOException {
+        ModelAndView view = new ModelAndView("error");
 
-		view.addObject("Error", "/resources/js/Canvas/Error.js" + random);
-		view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
-		view.addObject("Controller", "/resources/js/Controller.js" + random);
+        view.addObject("Error", "/resources/js/Canvas/Error.js" + random);
+        view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
+        view.addObject("Controller", "/resources/js/Controller.js" + random);
 
-		view.addObject("stylesheet", "/resources/css/style.css" + random);
-		return view;
-	}
+        view.addObject("stylesheet", "/resources/css/style.css" + random);
+        return view;
+    }
 
-	// instantiates
-	private void init() {
-		Main temporaryProblemSolverSeeTrello = new Main();
-		this.filename = temporaryProblemSolverSeeTrello.getPath();
-		this.file = temporaryProblemSolverSeeTrello.file;
+    // instantiates
+    private void init() {
+        Main temporaryProblemSolverSeeTrello = new Main();
+        this.filename = temporaryProblemSolverSeeTrello.getPath();
+        this.file = temporaryProblemSolverSeeTrello.file;
 
-		JC = new JsonController(temporaryProblemSolverSeeTrello.getPath());
-		PC = new PersonController();
-		SC = new StatController();
+        JC = new JsonController(temporaryProblemSolverSeeTrello.getPath());
+        PC = new PersonController();
+        SC = new StatController();
 
-		PC.convertJsonToPerson(JC.getList());
-		SC.extractStatistics(PC.getList());
+        PC.convertJsonToPerson(JC.getList());
+        SC.extractStatistics(PC.getList());
 
-		starttime = PC.getStartTime().hourMinuteSecond();
-		endtime = PC.getEndTime().hourMinuteSecond();
-	}
+        starttime = PC.getStartTime().hourMinuteSecond();
+        endtime = PC.getEndTime().hourMinuteSecond();
+    }
 }
