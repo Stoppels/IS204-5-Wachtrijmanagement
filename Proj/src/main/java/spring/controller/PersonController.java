@@ -127,7 +127,7 @@ public class PersonController {
         }
         filterLessThanThreeLines(all, first);
         filterUnusualHeights(first, jsonList);
-//        filterShortDurations(first, jsonList);
+        filterShortDurations(first, jsonList);
         return first;
     }
 
@@ -175,9 +175,9 @@ public class PersonController {
         int count = 0;
          for (Integer i : first) {
             int j = jsonList.get(i).getTrack_id();
-            if (first.get(i).equals(j)) {
+            if (first.get(k).equals(j)) {
                 count+= jsonList.get(i).getTimestamp().secondsTotal();
-            }         
+            }
         }
         if(count < 5){
             first.remove(k);
@@ -196,13 +196,13 @@ public class PersonController {
         // Creates a new PersonObject for every track_id.
         // Distributes all JSON lines per track_id over all PersonObjects.
         if (!jsonList.isEmpty()) {
-            ArrayList p = calculateAmountPersons(jsonList);
-            for (int i = 0; i < p.size() - 1; i++) {
+            ArrayList <Integer> p = calculateAmountPersons(jsonList);
+            for (int i = 0; i < p.size(); i++) {
                 list.add(new PersonObject(new ArrayList<JsonObject>()));
             }
             for (JsonObject jsonObject : jsonList) {
                 for (int i = 0; i < p.size(); i++) {
-                    if (jsonObject.getTrack_id() == (int) p.get(i)) {
+                    if (jsonObject.getTrack_id() == p.get(i)) {
                         list.get(i).add(jsonObject);
                     }
                 }
