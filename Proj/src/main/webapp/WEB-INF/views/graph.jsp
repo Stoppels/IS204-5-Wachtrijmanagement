@@ -19,13 +19,18 @@
         <div id="container">
             <div id="sidebar" class="graph">
                 <table id="form">
-                    <input type="time" step="1" id="time1" value="${starttime}" />
-                    <input type="time" step="1" id="time2" value="${endtime}" />
-                    <input class="enter" type="button" value="Update graph" onclick="play(
+                    <p>
+                        <label>Time:</label>
+                        <br>
+                        <input type="time" step="1" id="time1" value="${starttime}" />
+                        <input type="time" step="1" id="time2" value="${endtime}" />
+                        <input class="enter" type="button" value="Update graph" onclick="play(
                                     document.getElementById('time1').value,
                                     document.getElementById('time2').value);"  />
+                    </p>
                     <p>
-                        <label>Statistic:</label> 
+                        <label>Statistic:</label>
+                        <br>
                         <select name="dropDown" id="dropDown" onChange="play();" />
                         <input class="enter" type="button" value="Clear lines" onclick="clearSessions();" />
                     </p>

@@ -9,9 +9,9 @@ img.src = 'resources/img/counterview.png';
 
 // shows home page content
 window.onload = function showLogo() {
-    var xOffset = 840;
-    var yOffset = -300;
-    showImage(img, 300, -350, img.width / 2, img.height / 2);
+    var xOffset = 425;
+    var yOffset = 0;
+    showImage(img, -160, -150, img.width / 2, img.height / 2);
     drawRectangle(0 + xOffset, 200 + yOffset, 190, 50, 45, '#FF0000');
     drawRectangle(0 + xOffset, 200 + yOffset, 190, 50, 135, '#FF0000');
     drawRectangle(0 + xOffset, 0 + yOffset, 190, 50, 45, '#FF0000');
