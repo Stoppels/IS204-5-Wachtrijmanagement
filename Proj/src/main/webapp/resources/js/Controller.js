@@ -61,7 +61,6 @@ function getSessions() {
 function clearSessions() {
     if (lines.length >= 1) {
         var r = confirm('Do you wish to delete all lines?');
-        console.log('confirm' + r);
         if (r === true) {
             localStorage.setItem('linesSession', null);
             localStorage.setItem('statsSession', null);
