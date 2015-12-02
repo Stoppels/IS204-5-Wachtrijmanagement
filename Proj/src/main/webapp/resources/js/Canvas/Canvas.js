@@ -101,14 +101,6 @@ function showImage(img, xPos, yPos, width, height) {
     context.drawImage(imageObj, (xPos + centerX) - width / 2, (-yPos + centerY) - height / 2, width, height);
 }
 
-// scene with added scenery
-function drawScene(active, img) {
-    if (active) {
-        showImage(img, 0, 0, 728 * scale, 672 * scale);
-        drawRectangle(10, -10, -10, 10, 14, '#0099FF', 0.6);
-    }
-}
-
 // clears canvas
 function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);

@@ -51,6 +51,8 @@ function stop() {
  * i, j = iterators within loops
  */
 function playPersons(s, e) {
+    clear();
+    drawBackground();
     if (s < e) {                // starttime has to be smaller than endtime
         function nextFrame(i) { // starts iterating trough frame
             drawPersons(s, i);  // draws frame with persons and background
@@ -91,9 +93,12 @@ function drawPersons(starttime, i) {
     }
 }
 
-// draws background
+// scene with added scenery
 function drawBackground() {
-    drawScene(document.getElementById('scenery').checked, img);
+    if (document.getElementById('scenery').checked) {
+        showImage(img, 0, 0, 728 * scale, 672 * scale);
+        drawRectangle(10, -10, -10, 10, 14, '#0099FF', 0.6);
+    }
     drawLines(); // Draws user drawn lines.
 }
 

@@ -19,6 +19,10 @@ function drawPerson(j) {
 }
 
 // draws movement web
+// ######################### IF THIS DOESN'T WORK ##############################
+// ####################### FIND SOMETHING TRANSPARENT ##########################
+// ############################ THAT DOES WORK #################################
+// ####################### DON'T REPLACE WITH '#xxxxxx' ########################
 function drawTrack(i) {
     if (document.getElementById('tracks').checked) {
         persons[i].track(i, 10, 'rgba(250, 0, 0, 0.08)');

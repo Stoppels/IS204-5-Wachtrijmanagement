@@ -45,7 +45,7 @@
                 <p>
                     <label>Scenery: </label><tab><input type="checkbox" id="scenery" checked></tab>
                     <br>
-                    <label>Tracks: </label><tab><input type="checkbox" id="tracks" checked></tab>
+                    <label>Tracks: </label><tab><input type="checkbox" id="tracks"></tab>
                 </p>
 
             </div>

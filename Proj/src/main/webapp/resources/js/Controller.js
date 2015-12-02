@@ -117,6 +117,10 @@ function person() {
         hue = '#606060';
         width = adjustedWidth;
         hue = adjustedHue;
+        // ######################### IF THIS DOESN'T WORK ##############################
+        // ####################### FIND SOMETHING TRANSPARENT ##########################
+        // ############################ THAT DOES WORK #################################
+        // ####################### DON'T REPLACE WITH '#xxxxxx' ########################
         drawLine(xscale * persons[i].x[persons[i].counter - 1] + xoffset,
                 -(yscale * persons[i].y[persons[i].counter - 1] + yoffset),
                 xscale * persons[i].x[persons[i].counter] + xoffset,
@@ -146,7 +150,7 @@ function drawLines() {
         drawLine(lines[i].x1 - centerX,
                 lines[i].y1 - centerY,
                 lines[i].x2 - centerX,
-                lines[i].y2 - centerY, 
+                lines[i].y2 - centerY,
                 14, 'rgba(250, 0, 0, 0.4)');
     }
 }
