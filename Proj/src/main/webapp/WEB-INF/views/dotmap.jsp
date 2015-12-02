@@ -23,16 +23,16 @@
                         <br>
                         <input class="start" type="time" step="1" id="time1" value="${starttime}" />
                         <input class="end" type="time" step="1" id="time2" value="${endtime}" />
-                        <input class="enter" type="button" value="Start" onclick="play(
+                        <input class="enter" id="Start" type="button" value="Start" onclick="play(
                                         document.getElementById('time1').value,
                                         document.getElementById('time2').value);" />
                         <input class="reset" type="button" value="Reset" onclick="stop();" />
                     </p>
                     <p>
-                        <label>Play speed:</label>
+                        <label>Play speed: <label id="speed">1000</label> ms</label>
                         <br>
-                        <input id="slowSpeed" type="button" value="Normal" onclick="adjustSpeed();" disabled="true" />
-                        <input id="highSpeed" type="button" value="Fast" onclick="adjustSpeed();" />
+                        <input id="slowSpeed" type="button" value="Slow down" onclick="slowDown();" />
+                        <input id="highSpeed" type="button" value="Speed up" onclick="speedUp();" />
                     </p>
                     <p>
                         <label>Line alert:</label>

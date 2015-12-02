@@ -12,7 +12,4 @@
     <c:if test="${x == '/graph'}">
         <script>loadStats();</script>
     </c:if>
-    <c:if test="${x == '/snapshot' || x == '/heatmap'}">
-        <script>setInitialSpeed();</script>
-    </c:if>
 </footer>

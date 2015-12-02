@@ -20,15 +20,11 @@ canvas.onmouseup = function (e) {
     var pos = getMousePos(canvas, e);
     newline[2] = pos.x;
     newline[3] = pos.y;
-
-    context.save();
-    context.beginPath();
-    context.moveTo(newline[0], newline[1]);
-    context.lineTo(newline[2], newline[3]);
-    context.lineWidth = 15;
-    context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
-    context.stroke();
-    context.restore();
+    drawLine(newline[0] - centerX,
+            newline[1] - centerY,
+            newline[2] - centerX,
+            newline[3] - centerY,
+            15, 'rgba(250, 0, 0, 0.5)');
     saveLine();
 };
 

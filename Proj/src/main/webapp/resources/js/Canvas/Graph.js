@@ -17,7 +17,7 @@ loadStats = function () {
 // adds statistics to dropdown menu
 function addList() {
     var select = document.getElementById("dropDown");
-    for (i = select.options.length - 1; i >= 0; i--) {
+    for (i = select.options.length; i >= 0; i--) {
         select.remove(i);
     }
     for (i = 0; i < stats.length; i++) {
@@ -25,6 +25,7 @@ function addList() {
         option.text = stats[i].name;
         select.add(option, i);
     }
+    clearButtonValue(stats);
 }
 
 function clear() {

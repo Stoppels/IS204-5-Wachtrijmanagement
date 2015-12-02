@@ -15,12 +15,12 @@ function checkIntersections(name, x3, y3, x4, y4) {
     for (i = 0; i < persons.length; i++) {
         var individual_person = 0;
         for (j = 1; j < persons[i].t.length; j++) {
-            x1 = ((-xscale * persons[i].x[j - 1]) + centerX) + xoffset;
+            x1 = ((xscale * persons[i].x[j - 1]) + centerX) + xoffset;
             y1 = ((yscale * -persons[i].y[j - 1]) + centerY) - yoffset;
-            x2 = ((-xscale * persons[i].x[j]) + centerX) + xoffset;
+            x2 = ((xscale * persons[i].x[j]) + centerX) + xoffset;
             y2 = ((yscale * -persons[i].y[j]) + centerY) - yoffset;
             crossed = linesIntersect(x1, y1, x2, y2, x3, y3, x4, y4);
-            console.log(y2 + " | " + y4);
+            console.log(x1 + " | " + x3);
             if (crossed) {
                 data[0]++;
                 individual_person++;

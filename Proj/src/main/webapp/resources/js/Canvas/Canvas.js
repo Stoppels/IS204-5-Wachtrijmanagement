@@ -30,16 +30,16 @@ function drawDot(xPos, yPos, color) {
 }
 
 // heat dot for heatmap.js
-function drawHeat(xPos, yPos, color) {
-    var dotSize = 8;
+function drawHeat(xPos, yPos) {
+    var dotSize = 4;
     context.beginPath();
-    context.arc((xPos + centerX), (-yPos + centerY), dotSize, 0, 2 * Math.PI);
+    context.arc((xPos + centerX), (-yPos + centerY), dotSize + 4, 0, 2 * Math.PI);
     context.closePath();
 
     context.save();
     context.shadowColor = '#FFFF00';
     context.shadowBlur = 45;
-    context.fillStyle = color;
+    context.fillStyle = 'rgba(250, 0, 0, 0.2)';
     context.fill();
     context.restore();
 }
@@ -68,11 +68,10 @@ function drawText(text, xPos, yPos, size) {
 function drawLine(x1, y1, x2, y2, lineWidth, strokeStyle) {
     context.beginPath();
     context.save();
-    context.moveTo(x1 + centerX, -y1 + centerY);
-    context.lineTo(x2 + centerX, -y2 + centerY);
+    context.moveTo(x1 + centerX, y1 + centerY);
+    context.lineTo(x2 + centerX, y2 + centerY);
     context.lineWidth = 15;
     context.lineWidth = lineWidth;
-//    context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
     context.strokeStyle = strokeStyle;
     context.stroke();
     context.restore();
@@ -106,7 +105,7 @@ function showImage(img, xPos, yPos, width, height) {
 function drawScene(active, img) {
     if (active) {
         showImage(img, 0, 0, 728 * scale, 672 * scale);
-//        drawRectangle(10, -10, -10, 10, 14, '#0099FF', 0.6);
+        drawRectangle(10, -10, -10, 10, 14, '#0099FF', 0.6);
     }
 }
 

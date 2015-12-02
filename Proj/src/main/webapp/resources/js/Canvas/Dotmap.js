@@ -4,6 +4,8 @@
  Author     : IS204-5
  */
 
+var playSpeed = 1000;
+
 // clean canvas?
 function cleanCanvas() {
     clear();
@@ -20,6 +22,6 @@ function drawPerson(j) {
 // draws movement web
 function drawTrack(i) {
     if (document.getElementById('tracks').checked) {
-        persons[i].track(i);
+        persons[i].track(i, 3, '#606060');
     }
 }
