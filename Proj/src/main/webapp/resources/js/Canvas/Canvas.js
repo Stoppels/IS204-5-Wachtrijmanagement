@@ -68,8 +68,8 @@ function drawText(text, xPos, yPos, size) {
 function drawLine(x1, y1, x2, y2, lineWidth, strokeStyle) {
     context.beginPath();
     context.save();
-    context.moveTo(x1, y1);
-    context.lineTo(x2, y2);
+    context.moveTo(x1 + centerX, -y1 + centerY);
+    context.lineTo(x2 + centerX, -y2 + centerY);
     context.lineWidth = 15;
     context.lineWidth = lineWidth;
 //    context.strokeStyle = 'rgba(250, 0, 0, 0.5)';
@@ -106,7 +106,7 @@ function showImage(img, xPos, yPos, width, height) {
 function drawScene(active, img) {
     if (active) {
         showImage(img, 0, 0, 728 * scale, 672 * scale);
-//        drawRectangle(555, -10, 650, 30, 14, '#0099FF', 0.6);
+//        drawRectangle(10, -10, -10, 10, 14, '#0099FF', 0.6);
     }
 }
 

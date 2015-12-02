@@ -5,12 +5,23 @@
  */
 
 /*
+ * ############################# CALIBRATION ###################################
+ * Standard: 90, 
+ * Pixel(tracking_data_X, tracking_data_Y) = 
+ * [364,336] + 31.8671128*[tracking_data_X, tracking_data_Y]
+ * Volgens mij moet de tracking data nog gespiegeld worden in de Y-as.
+ */
+var xscale = 80;          // pixel scale
+var yscale = -xscale;          // invert
+var xoffset = -390;     // offset x-axe
+var yoffset = -270;      // offset y-axe
+
+/*
  * Arrays of all the different objects that are used troughout views
  * persons holds data of person objects sent from Java objects
  * lines holds data of user drawn lines on the Snapshot map
  * stats holds statistical information of person objects
  */
-
 var persons = new Array();
 var stats;
 var lines;
@@ -83,6 +94,7 @@ function createPerson(id, t, x, y) {
 
 // constructor of person
 function person() {
+
     this.id;
     this.t;
     this.x;
@@ -97,13 +109,27 @@ function person() {
         this.counter = 0;
     };
     this.dot = function (i) {
-        drawDot(-scale * this.x[i], scale * this.y[i], this.color);
+        drawDot(-xscale * this.x[i] + xoffset,
+                yscale * this.y[i] + yoffset,
+                this.color);
     };
     this.heat = function (i) {
-        drawHeat(-scale * this.x[i], scale * this.y[i], this.color);
+        drawHeat(-xscale * this.x[i] + xoffset,
+                yscale * this.y[i] + yoffset,
+                this.color);
     };
     this.text = function (i) {
-        drawInfo(this.id, -scale * this.x[i], scale * this.y[i], 15);
+        drawInfo(this.id,
+                -xscale * this.x[i] + xoffset,
+                yscale * this.y[i] + yoffset,
+                15);
+    };
+    this.track = function (i) {
+        drawLine((-xscale * persons[i].x[persons[i].counter - 2] + xoffset),
+                (yscale * persons[i].y[persons[i].counter - 2] + yoffset),
+                (-xscale * persons[i].x[persons[i].counter - 1] + xoffset),
+                (yscale * persons[i].y[persons[i].counter - 1] + yoffset)
+                , 3, '#606060');
     };
     this.totalTime = function () {
         return timeToMillis(t[t.length - 1]) - timeToMillis(t[0]);

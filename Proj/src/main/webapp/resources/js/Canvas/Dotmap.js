@@ -16,3 +16,10 @@ function drawPerson(j) {
     persons[j].text(persons[j].counter);
     persons[j].count();
 }
+
+// draws movement web
+function drawTrack(i) {
+    if (document.getElementById('tracks').checked) {
+        persons[i].track(i);
+    }
+}

@@ -103,17 +103,6 @@ function drawPersons(starttime, i) {
     }
 }
 
-// draws movement web
-function drawTrack(i) {
-    if (document.getElementById('tracks').checked) {
-        drawLine((-90 * persons[i].x[persons[j].counter - 2]) + centerX,
-                (90 * -persons[i].y[persons[j].counter - 2]) + centerY,
-                (-90 * persons[i].x[persons[j].counter - 1]) + centerX,
-                (90 * -persons[i].y[persons[j].counter - 1]) + centerY
-                , 3, '#606060');
-    }
-}
-
 // resets timestamp position for every person
 function resetPersonCount() {
     for (i = 0; i < persons.length; i++) {
