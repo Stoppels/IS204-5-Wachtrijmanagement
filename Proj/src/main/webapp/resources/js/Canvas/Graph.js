@@ -10,8 +10,8 @@ window.onload = init();
 
 // loads statistics from first position in array
 loadStats = function () {
-    personData(0);
     addList();
+    loadData(0);
 };
 
 // adds statistics to dropdown menu
@@ -25,7 +25,7 @@ function addList() {
         option.text = stats[i].name;
         select.add(option, i);
     }
-    clearButtonValue(stats);
+    disableClearButtonIf(stats.length <= 3, false);
 }
 
 function clear() {
@@ -34,11 +34,11 @@ function clear() {
 
 // plays selected statistic as chart
 function play() {
-    personData(document.getElementById('dropDown').selectedIndex);
+    loadData(document.getElementById('dropDown').selectedIndex);
 }
 
 // retrieves data from statistic
-function personData(index) {
+function loadData(index) {
     var balken = [];
     var labels = [];
     var data = [];
@@ -72,7 +72,6 @@ addChart = function (barChartData) {
     window.myBar = new Chart(context).Bar(barChartData, {
         responsive: true
     });
-
 };
 
 // Initializes canvas

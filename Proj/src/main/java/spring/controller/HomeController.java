@@ -119,6 +119,7 @@ public class HomeController {
         view.addObject("ChartBar", "/resources/js/Chart/Chart.Bar.js" + random);
         view.addObject("ChartCore", "/resources/js/Chart/Chart.Core.js" + random);
         view.addObject("Graph", "/resources/js/Canvas/Graph.js" + random);
+        view.addObject("Interface", "/resources/js/Canvas/Interface.js" + random);
 
         view.addObject("stylesheet", "/resources/css/style.css" + random);
         view.addObject("starttime", starttime);

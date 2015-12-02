@@ -29,7 +29,7 @@
                         <input class="reset" type="button" value="Reset" onclick="stop();" />
                     </p>
                     <p>
-                        <label>Play speed: <label id="speed">1000</label> ms</label>
+                        <label>Play speed: <label id="speed">10</label></label>
                         <br>
                         <input id="slowSpeed" type="button" value="Slow down" onclick="slowDown();" />
                         <input id="highSpeed" type="button" value="Speed up" onclick="speedUp();" />

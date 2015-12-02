@@ -44,6 +44,7 @@
                 <script src="<c:url value="${ChartCore}" />" type="text/javascript"></script>
                 <script src="<c:url value="${Chart}" />" type="text/javascript"></script>
                 <script src="<c:url value="${Graph}" />" type="text/javascript"></script>
+                <script src="<c:url value="${Interface}" />" type="text/javascript"></script>
             </canvas>
         </div>
         <c:forEach var="stat" items="${stats}">

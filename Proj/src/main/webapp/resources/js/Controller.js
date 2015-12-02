@@ -6,17 +6,15 @@
 
 /*
  * ############################# CALIBRATION ###################################
- * Standard: 80, 
+ * Standard: x -80, y -80, x -390, y -270
  * Pixel(tracking_data_X, tracking_data_Y) = 
  * [364,336] + 31.8671128*[tracking_data_X, tracking_data_Y]
  * Volgens mij moet de tracking data nog gespiegeld worden in de Y-as.
  */
 var xscale = -80;          // pixel scale
-var yscale = xscale;          // invert
+var yscale = -80;          // invert
 var xoffset = -390;     // offset x-axe
 var yoffset = -270;      // offset y-axe
-//var xoffset = 0;     // offset x-axe
-//var yoffset = 0;      // offset y-axe
 
 /*
  * Arrays of all the different objects that are used troughout views
@@ -161,7 +159,6 @@ function drawLines() {
  * @data array holding ints of the data associated with the label
  */
 function createStats(id, name, labels, data) {
-    console.log(id);
     stats.push({
         'id': id,
         'name': name,

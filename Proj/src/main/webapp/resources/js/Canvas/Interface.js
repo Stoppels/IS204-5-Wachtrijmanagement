@@ -7,14 +7,16 @@
 function slowDown() {
     if (playSpeed < 1950) {
         playSpeed += 100;
-        document.getElementById("speed").innerHTML = playSpeed;
+        displaySpeed = Math.abs((playSpeed / 100) -20);
+        document.getElementById("speed").innerHTML = displaySpeed;
     }
 }
 
 function speedUp() {
     if (playSpeed > 50) {
         playSpeed -= 100;
-        document.getElementById("speed").innerHTML = playSpeed;
+        displaySpeed = Math.abs((playSpeed / 100) -20);
+        document.getElementById("speed").innerHTML = displaySpeed;
     }
 }
 
@@ -24,15 +26,17 @@ function enterButtonValue() {
     playing ? button.value = "Pause" : button.value = "Start";
 }
 
-function clearButtonValue(list) {
+function disableClearButtonIf(argument, dropDownDisabled) {
     var clearButton = document.getElementsByClassName("enter")[1];
     var select = document.getElementById('dropDown');
     var option = document.createElement('option');
-    if (list.length <= 0) {
+    if (argument) {
         clearButton.disabled = true;
-        select.disabled = true;
-        option.text = '-- Draw a line first --';
-        select.add(option, 0);
+        if (dropDownDisabled) {
+            select.disabled = true;
+            option.text = '-- Draw a line first --';
+            select.add(option, 0);
+        }
     } else {
         clearButton.disabled = false;
         select.disabled = false;

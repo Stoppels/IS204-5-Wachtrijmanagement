@@ -20,7 +20,6 @@ function checkIntersections(name, x3, y3, x4, y4) {
             x2 = ((xscale * persons[i].x[j]) + centerX) + xoffset;
             y2 = ((yscale * -persons[i].y[j]) + centerY) - yoffset;
             crossed = linesIntersect(x1, y1, x2, y2, x3, y3, x4, y4);
-            console.log(x1 + " | " + x3);
             if (crossed) {
                 data[0]++;
                 individual_person++;
