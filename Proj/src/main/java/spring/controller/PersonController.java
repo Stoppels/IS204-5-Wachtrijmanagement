@@ -125,8 +125,8 @@ public class PersonController {
 			}
 		}
 		filterLessThanThreeLines(all, first);
-		filterUnusualHeights(first, jsonList);
-		filterShortDurations(first, jsonList);
+//		filterShortDurations(first, jsonList);
+                first.trimToSize();
 		return first;
 	}
 
@@ -145,21 +145,6 @@ public class PersonController {
 	}
 
 	/**
-	 * Filter out any person with an unusual height.
-	 *
-	 * @param first
-	 * @param jsonList
-	 */
-	private void filterUnusualHeights(ArrayList<Integer> first, ArrayList<JsonObject> jsonList) {
-		for (Integer i : first) {
-			int j = jsonList.get(i).getTrack_id();
-			if (!(jsonList.get(j).getBbox().getZ2() >= MIN_HEIGHT && jsonList.get(j).getBbox().getZ2() <= MAX_HEIGHT)) {
-				first.remove(i);
-			}
-		}
-	}
-
-	/**
 	 * Filter out any person with less than five seconds of activity.
 	 *
 	 * @param first
@@ -169,7 +154,7 @@ public class PersonController {
 		for (int k = 0; k < first.size(); k++) {
 			int count = 0;
 			for (Integer i : first) {
-				int j = jsonList.get(i).getTrack_id();
+				int j = jsonList.get(k).getTrack_id();
 				if (first.get(k).equals(j)) {
 					count += jsonList.get(i).getTimestamp().secondsTotal();
 				}
@@ -203,7 +188,8 @@ public class PersonController {
 					}
 				}
 			}
-			setStartEndTime();
+			//setStartEndTime();
+                        list.trimToSize();
 		} else {
 			System.out.println("convertJsonToPerson()" + ERROR);
 		}

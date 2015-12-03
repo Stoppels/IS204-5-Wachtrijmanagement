@@ -43,7 +43,8 @@ import spring.model.Timestamp;
  * @version 1.0
  */
 public class JsonController {
-
+	private final double MIN_HEIGHT = 0.4;
+	private final double MAX_HEIGHT = 1.7;
 	private final String filename;
 	private ArrayList<JsonObject> jsonList;
 
@@ -88,6 +89,11 @@ public class JsonController {
 				j = jsonObject;
 			}
 		}
+                for (JsonObject o:list){
+                    if (!(o.getBbox().getZ2()>MIN_HEIGHT&&o.getBbox().getZ2()<MAX_HEIGHT)){
+                        result.remove(o);
+                    }
+                }
 		result.add(j);
 		jsonList = result;
 		return result;
