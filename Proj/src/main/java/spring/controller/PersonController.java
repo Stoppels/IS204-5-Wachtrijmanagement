@@ -125,7 +125,7 @@ public class PersonController {
 			}
 		}
 		filterLessThanThreeLines(all, first);
-//		filterShortDurations(first, jsonList);
+		filterShortDurations(first, jsonList);
                 first.trimToSize();
 		return first;
 	}
@@ -155,8 +155,8 @@ public class PersonController {
 			int count = 0;
 			for (Integer i : first) {
 				int j = jsonList.get(k).getTrack_id();
-				if (first.get(k).equals(j)) {
-					count += jsonList.get(i).getTimestamp().secondsTotal();
+				if (i.equals(j)) {
+					count += jsonList.get(k).getTimestamp().secondsTotal();
 				}
 			}
 			if (count < 5) {
