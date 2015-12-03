@@ -126,7 +126,6 @@ public class PersonController {
 		}
 		filterLessThanThreeLines(all, first);
 		filterShortDurations(first, jsonList);
-                first.trimToSize();
 		return first;
 	}
 
@@ -188,7 +187,7 @@ public class PersonController {
 					}
 				}
 			}
-			//setStartEndTime();
+			setStartEndTime();
                         list.trimToSize();
 		} else {
 			System.out.println("convertJsonToPerson()" + ERROR);
