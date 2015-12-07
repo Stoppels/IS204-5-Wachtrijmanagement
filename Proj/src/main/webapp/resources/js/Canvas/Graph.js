@@ -5,6 +5,7 @@
  */
 var canvas;
 var context;
+var currentChart;
 
 window.onload = init();
 
@@ -56,9 +57,8 @@ function loadData(index) {
             data: data
         };
     }
-    if (window.myBar)
-        window.myBar.destroy();
-    addChart(new barChart(labels, balken));
+    currentChart = new barChart(labels, balken);
+    addChart(currentChart);
 }
 
 // initialises chart with retrieved data
