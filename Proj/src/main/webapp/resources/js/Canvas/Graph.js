@@ -7,8 +7,6 @@ var canvas;
 var context;
 var currentChart;
 
-window.onload = init();
-
 // loads statistics from first position in array
 loadStats = function () {
     addList();
@@ -57,8 +55,16 @@ function loadData(index) {
             data: data
         };
     }
-    currentChart = new barChart(labels, balken);
-    addChart(currentChart);
+    if (currentChart) currentChart.destroy();
+    
+    canvas = document.getElementById("myCanvas");
+    context = canvas.getContext("2d");
+    canvas.width = 1200;
+    canvas.height = 450;
+    
+    currentChart = new Chart(context).Bar(new barChart(labels, balken), {
+        responsive: true
+    });
 }
 
 // initialises chart with retrieved data
@@ -73,11 +79,3 @@ addChart = function (barChartData) {
         responsive: true
     });
 };
-
-// Initializes canvas
-function init() {
-    canvas = document.getElementById("myCanvas");
-    context = canvas.getContext("2d");
-    canvas.width = 1200;
-    canvas.height = 450;
-}
