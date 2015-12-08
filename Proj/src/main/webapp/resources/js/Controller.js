@@ -11,10 +11,24 @@
  * [364,336] + 31.8671128*[tracking_data_X, tracking_data_Y]
  * Volgens mij moet de tracking data nog gespiegeld worden in de Y-as.
  */
-var xscale = -80;          // pixel scale
-var yscale = -80;          // invert
-var xoffset = -390;     // offset x-axe
-var yoffset = -270;      // offset y-axe
+var oldJsonCalibration = {
+    'xscale': -80,
+    'yscale': -80,
+    'xoffset': -390,
+    'yoffset': -279
+};
+
+var newJsonCalibration = {
+    'xscale': -31.87,
+    'yscale': -31.87,
+    'xoffset': 364,
+    'yoffset': 336
+};
+
+var xscale = newJsonCalibration.xscale;         // x pixel scale
+var yscale = newJsonCalibration.yscale;         // y pixel scale
+var xoffset = newJsonCalibration.xoffset;       // offset x-axe
+var yoffset = newJsonCalibration.yoffset;       // offset y-axe
 
 /*
  * Arrays of all the different objects that are used troughout views
