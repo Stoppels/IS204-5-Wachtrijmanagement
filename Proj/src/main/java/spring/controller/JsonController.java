@@ -47,7 +47,19 @@ public class JsonController {
 	private final double MAX_HEIGHT = 1.7;
 	private final String filename;
 	private ArrayList<JsonObject> jsonList;
-
+        
+//         TODO:
+//         json file moet worden vervangen met live db
+//        als volgt: mongoTemplate.getCollection("20151001") 20151001 = collectionname
+//        je moet hem wel aangeven in de class
+//        dmv
+//        @Autowired
+//        MongoTemplate mongoTemplate;
+//        in elke klas waar je het wil gebruiken
+//        als je loopt over alle info in een mongo collection krijg je een Document terug
+//        die Document bevat verschillende .get() functies waar je de info uit kan lezen
+//        voorbeeld: voor string gebruik je .getString()
+        
 	/**
 	 * Constructs a JsonController that immediately reads a .json file.
 	 *

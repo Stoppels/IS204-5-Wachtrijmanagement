@@ -31,6 +31,8 @@ package spring.controller;
  * @version 1.0
  */
 import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +41,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
+    @Autowired
+    private MongoTemplate mongoTemplate;
+    
     final String random = "?version=" + Math.random() * 10;
     JsonController JC;
     PersonController PC;
@@ -88,6 +93,9 @@ public class HomeController {
 
     @RequestMapping(value = "/heatmap")
     public ModelAndView heatmap() throws IOException {
+//        laten zien dat het werkt met mongo data
+//        System.out.println(mongoTemplate.getCollection("20151001").count());
+        
         ModelAndView view = new ModelAndView("heatmap");
 
         view.addObject("filename", file);
