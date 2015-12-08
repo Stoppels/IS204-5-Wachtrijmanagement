@@ -108,27 +108,28 @@ public class PersonController {
 	 * @param jsonList holding JsonObjects to be checked on track id
 	 * @return ArrayList<\Integer> filled with unique track IDs
 	 */
-	private ArrayList<Integer> calculateAmountPersons(ArrayList<JsonObject> jsonList) {
-		ArrayList<Integer> first = new ArrayList<>();
-		ArrayList<Integer> all = new ArrayList<>();
-		first.add(0);
+	private ArrayList<Integer> calculateAmountTrackIds(ArrayList<JsonObject> jsonList) {
+		ArrayList<Integer> temp = new ArrayList<>();
+		ArrayList<Integer> result = new ArrayList<>();
+		temp.add(0);
 		for (JsonObject jsonObject : jsonList) {
-			all.add(jsonObject.getTrack_id());
+			result.add(jsonObject.getTrack_id());
 			int count = 0;
 
-			for (int i = 0; i < first.size(); i++) {
-				if (jsonObject.getTrack_id() != first.get(i)) {
+			for (int i = 0; i < temp.size(); i++) {
+				if (jsonObject.getTrack_id() != temp.get(i)) {
 					count++;
 				}
 			}
-			if (count == first.size()) {
-				first.set(count - 1, jsonObject.getTrack_id());
-				first.add(0);
+			if (count == temp.size()) {
+				temp.set(count - 1, jsonObject.getTrack_id());
+				temp.add(0);
 			}
 		}
-		filterLessThanThreeLines(all, first);
-		filterShortDurations(first, jsonList);
-		return first;
+		filterLessThanThreeLines(result, temp);
+		filterShortDurations(temp, jsonList);
+                temp.remove(temp.size() - 1);
+		return temp;
 	}
 
 	/**
@@ -178,19 +179,19 @@ public class PersonController {
 		// Creates a new PersonObject for every track_id.
 		// Distributes all JSON lines per track_id over all PersonObjects.
 		if (!jsonList.isEmpty()) {
-			ArrayList<Integer> p = calculateAmountPersons(jsonList);
-			for (int i = 0; i < p.size(); i++) {
-				list.add(new PersonObject(new ArrayList<JsonObject>()));
+			ArrayList<Integer> trackIdList = calculateAmountTrackIds(jsonList);
+			for (int i = 0; i < trackIdList.size(); i++) {
+                            list.add(new PersonObject(new ArrayList<JsonObject>()));
 			}
 			for (JsonObject jsonObject : jsonList) {
-				for (int i = 0; i < p.size(); i++) {
-					if (jsonObject.getTrack_id() == p.get(i)) {
+				for (int i = 0; i < trackIdList.size(); i++) {
+					if (jsonObject.getTrack_id() == trackIdList.get(i)) {
 						list.get(i).add(jsonObject);
 					}
 				}
 			}
-			setStartEndTime();
                         list.trimToSize();
+			setStartEndTime();
 		} else {
 			System.out.println("convertJsonToPerson()" + ERROR);
 		}

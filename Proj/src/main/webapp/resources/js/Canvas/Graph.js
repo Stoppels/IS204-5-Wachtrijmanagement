@@ -5,8 +5,7 @@
  */
 var canvas;
 var context;
-
-window.onload = init();
+var currentChart;
 
 // loads statistics from first position in array
 loadStats = function () {
@@ -56,28 +55,26 @@ function loadData(index) {
             data: data
         };
     }
-    if (window.myBar)
-        window.myBar.destroy();
-    addChart(new barChart(labels, balken));
+    if (currentChart)
+        currentChart.destroy();
+    addChart(labels, balken);
 }
 
 // initialises chart with retrieved data
 function barChart(labels, data) {
-    this.labels = labels,
-            this.datasets = data;
+    this.labels = labels, this.datasets = data;
 }
 
 // adds chart to window.myBar
-addChart = function (barChartData) {
-    window.myBar = new Chart(context).Bar(barChartData, {
+addChart = function (labels, balken) {
+    HORMARGIN = 510;
+    VERMARGIN = 750;
+    canvas = document.getElementById("myCanvas");
+    context = canvas.getContext("2d");
+    canvas.width = window.innerWidth - VERMARGIN;
+    canvas.height = window.innerHeight - HORMARGIN;
+
+    currentChart = new Chart(context).Bar(new barChart(labels, balken), {
         responsive: true
     });
 };
-
-// Initializes canvas
-function init() {
-    canvas = document.getElementById("myCanvas");
-    context = canvas.getContext("2d");
-    canvas.width = 1200;
-    canvas.height = 450;
-}
