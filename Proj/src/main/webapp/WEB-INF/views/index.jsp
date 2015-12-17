@@ -18,7 +18,6 @@
         <div id="container">
             <div id="sidebar">
                 <div id="stats">
-                    <p>${filename}</p>
                 </div>
             </div>
             <div id="map">

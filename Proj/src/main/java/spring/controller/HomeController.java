@@ -54,8 +54,6 @@ public class HomeController {
         ModelAndView view = new ModelAndView("index");
         init();
 
-        view.addObject("filename", file);
-
         view.addObject("Controller", "/resources/js/Controller.js" + random);
         view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
         view.addObject("Home", "/resources/js/Canvas/Home.js" + random);
@@ -67,10 +65,29 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/dotmap", method = RequestMethod.GET)
-    public ModelAndView snapshot() throws IOException {
+    public ModelAndView getsnapshot() throws IOException {
         ModelAndView view = new ModelAndView("dotmap");
 
-        view.addObject("filename", file);
+        view.addObject("list", PC.getList());
+
+        view.addObject("Controller", "/resources/js/Controller.js" + random);
+        view.addObject("Canvas", "/resources/js/Canvas/Canvas.js" + random);
+        view.addObject("Interface", "/resources/js/Canvas/Interface.js" + random);
+        view.addObject("Player", "/resources/js/Canvas/Player.js" + random);
+        view.addObject("Dotmap", "/resources/js/Canvas/Dotmap.js" + random);
+        view.addObject("Draw", "/resources/js/Canvas/Draw.js" + random);
+        view.addObject("LinesIntersect", "/resources/js/Canvas/LinesIntersect.js" + random);
+
+        view.addObject("stylesheet", "/resources/css/style.css" + random);
+        view.addObject("starttime", starttime);
+        view.addObject("endtime", endtime);
+        return view;
+    }
+    
+    @RequestMapping(value = "/dotmap", method = RequestMethod.POST)
+    public ModelAndView postsnapshot() throws IOException {
+        ModelAndView view = new ModelAndView("dotmap");
+
         view.addObject("list", PC.getList());
 
         view.addObject("Controller", "/resources/js/Controller.js" + random);
@@ -92,7 +109,6 @@ public class HomeController {
         
         ModelAndView view = new ModelAndView("heatmap");
 
-        view.addObject("filename", file);
         view.addObject("list", PC.getList());
 
         view.addObject("Controller", "/resources/js/Controller.js" + random);
@@ -113,7 +129,6 @@ public class HomeController {
     public ModelAndView graph() throws IOException {
         ModelAndView view = new ModelAndView("graph");
 
-        view.addObject("filename", file);
         view.addObject("stats", SC.getList());
 
         view.addObject("Controller", "/resources/js/Controller.js" + random);
