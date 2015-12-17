@@ -66,7 +66,7 @@ public class PersonSerializer {
     }
     rs.close();
     pstmt.close();
-    System.out.println("writeJavaObject: done serializing: " + className);
+    System.out.println("writeJavaObject: done serializing:");
     return id;
   }
 
@@ -76,11 +76,10 @@ public class PersonSerializer {
     ResultSet rs = pstmt.executeQuery();
     rs.next();
     Object object = rs.getObject(1);
-    String className = object.getClass().getName();
 
     rs.close();
     pstmt.close();
-    System.out.println("readJavaObject: done de-serializing: " + className);
+    System.out.println("readJavaObject: done de-serializing: ");
     return object;
   } 
 }
