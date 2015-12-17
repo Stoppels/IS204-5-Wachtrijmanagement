@@ -19,10 +19,10 @@ var oldJsonCalibration = {
 };
 
 var newJsonCalibration = {
-    'xscale': -31.87,
-    'yscale': -31.87,
-    'xoffset': 364,
-    'yoffset': 336
+    'xscale': -58,
+    'yscale': -58,
+    'xoffset': 0,
+    'yoffset': 0
 };
 
 var xscale = newJsonCalibration.xscale;         // x pixel scale
