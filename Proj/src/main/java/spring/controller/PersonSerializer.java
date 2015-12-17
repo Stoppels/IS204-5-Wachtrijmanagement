@@ -31,6 +31,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import spring.model.PersonObject;
 
 /**
  *
@@ -38,11 +39,14 @@ import java.util.List;
  */
 public class PersonSerializer {
     
-  static final String WRITE_OBJECT_SQL = "INSERT INTO personObject(file) VALUES (?)";
+  static final String WRITE_OBJECT_SQL = "INSERT INTO personObject(start,eind,file) VALUES (?,?,?)";
   static final String READ_OBJECT_SQL = "SELECT object_value FROM java_objects WHERE id = ?";
 
   public static Connection getConnection() throws Exception {
     String driver = "com.mysql.jdbc.Driver";
+//    String url = "10.3.1.2";
+//    String username = "chrisfv152_test";
+//    String password = "MUBRs6Kds";
     String url = "jdbc:mysql://oege.ie.hva.nl:3306/zshayann001";
     String username = "shayann001";
     String password = "UGZbYm/GX/KM$/";
@@ -51,23 +55,25 @@ public class PersonSerializer {
     return conn;
   }
 
-  public static long writeJavaObject(Connection conn, Object object) throws Exception {
+  public static void writeJavaObject(Connection conn, PersonObject object) throws Exception {
     PreparedStatement pstmt = conn.prepareStatement(WRITE_OBJECT_SQL);
 
     // set input parameters
-    pstmt.setObject(1, object);
+    pstmt.setString(1, object.getStart().toString());
+    pstmt.setString(2, object.getEnd().toString());
+    pstmt.setObject(3, object);
     pstmt.executeUpdate();
 
     // get the generated key for the id
-    ResultSet rs = pstmt.getGeneratedKeys();
-    int id = -1;
-    if (rs.next()) {
-      id = rs.getInt(1);
-    }
-    rs.close();
+//    ResultSet rs = pstmt.getGeneratedKeys();
+//    int id = -1;
+//    if (rs.next()) {
+//      id = rs.getInt(1);
+//    }
+//    rs.close();
     pstmt.close();
     System.out.println("writeJavaObject: done serializing:");
-    return id;
+//    return id;
   }
 
   public static Object readJavaObject(Connection conn, long id) throws Exception {

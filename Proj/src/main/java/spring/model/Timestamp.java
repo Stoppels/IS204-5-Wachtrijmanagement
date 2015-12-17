@@ -25,6 +25,7 @@
  */
 package spring.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -33,7 +34,7 @@ import java.util.TimeZone;
  * @author IS204-5
  * @version 1.0
  */
-public class Timestamp implements Comparable<Timestamp> {
+public class Timestamp implements Comparable<Timestamp>,Serializable {
 
 	private int year;   // - the year minus 1900
 	private int month;  // - 0 to 11
