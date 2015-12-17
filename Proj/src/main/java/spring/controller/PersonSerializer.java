@@ -42,10 +42,10 @@ public class PersonSerializer {
   static final String READ_OBJECT_SQL = "SELECT object_value FROM java_objects WHERE id = ?";
 
   public static Connection getConnection() throws Exception {
-    String driver = "com.jdbc.mysql.Driver";
+    String driver = "com.mysql.jdbc.Driver";
     String url = "jdbc:mysql://oege.ie.hva.nl:3306/zshayann001";
     String username = "shayann001";
-    String password = "";
+    String password = "UGZbYm/GX/KM$/";
     Class.forName(driver);
     Connection conn = DriverManager.getConnection(url, username, password);
     return conn;
