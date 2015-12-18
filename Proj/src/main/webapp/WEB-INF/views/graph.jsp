@@ -24,15 +24,16 @@
                         <br>
                         <input type="time" step="1" id="time1" value="${starttime}" />
                         <input type="time" step="1" id="time2" value="${endtime}" />
-                        <input class="enter" type="button" value="Update graph" onclick="play(
-                                    document.getElementById('time1').value,
-                                    document.getElementById('time2').value);"  />
+                        <input class="get" type="submit" formmethod="post" value="Set time" />
                     </p>
                     <p>
                         <label>Statistic:</label>
                         <br>
                         <select name="dropDown" id="dropDown" onChange="play();" />
                         <input class="enter" type="button" value="Clear lines" onclick="clearSessions();" />
+                        <input class="enter" type="button" value="Update graph" onclick="play(
+                                        document.getElementById('time1').value,
+                                        document.getElementById('time2').value);"  />
                     </p>
                 </table>
             </div>
