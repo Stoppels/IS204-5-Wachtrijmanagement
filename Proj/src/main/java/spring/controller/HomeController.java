@@ -35,6 +35,7 @@ import java.io.IOException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -91,7 +92,7 @@ public class HomeController {
     public ModelAndView getsnapshot() throws IOException {
         ModelAndView view = new ModelAndView("dotmap");
         addDotmapResources(view);
-        
+
         view.addObject("list", PC.getList());   // TODO this will be deleted
         view.addObject("starttime", starttime); // TODO this will be deleted
         view.addObject("endtime", endtime);     // TODO this will be deleted
@@ -100,21 +101,20 @@ public class HomeController {
 
     /**
      *
+     * @param start
+     * @param end
      * @return ModelAndView view by POST request
      * @throws IOException
      */
     @RequestMapping(value = "/dotmap", method = RequestMethod.POST)
-    public ModelAndView postsnapshot() throws IOException {
+    public ModelAndView postsnapshot(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException {
         ModelAndView view = new ModelAndView("dotmap");
-
-                                                //        do query based on given start and end time
-                                                //        pass starttime and endtime to view
-                                                //        view.addObject("list", query result);
-        view.addObject("list", "query");        // TODO add query result here (needs to be list of PersonObjects)
-        view.addObject("starttime", starttime); // TODO takes user starttime input
-        view.addObject("endtime", endtime);     // TODO takes user endtime input
-        
         addDotmapResources(view);
+
+        view.addObject("list", PC.getList());   // TODO add query result here (needs to be list of PersonObjects)
+        view.addObject("starttime", start);     // TODO takes user starttime input
+        view.addObject("endtime", end);         // TODO takes user endtime input
+
         return view;
     }
 
@@ -133,22 +133,22 @@ public class HomeController {
         view.addObject("endtime", endtime);     // TODO this will be deleted
         return view;
     }
-    
+
     /**
      *
+     * @param start
+     * @param end
      * @return ModelAndView view by POST request
      * @throws IOException
      */
     @RequestMapping(value = "/heatmap", method = RequestMethod.POST)
-    public ModelAndView postheatmap() throws IOException {
+    public ModelAndView postheatmap(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException {
         ModelAndView view = new ModelAndView("heatmap");
         addHeatmapResources(view);
-                                                //        do query based on given start and end time
-                                                //        pass starttime and endtime to view
-                                                //        view.addObject("list", query result);
-        view.addObject("list", "query");        // TODO add query result here (needs to be list of PersonObjects)
-        view.addObject("starttime", starttime); // TODO takes user starttime input
-        view.addObject("endtime", endtime);     // TODO takes user endtime input
+
+        view.addObject("list", PC.getList());   // TODO add query result here (needs to be list of PersonObjects)
+        view.addObject("starttime", start);     // TODO takes user starttime input
+        view.addObject("endtime", end);         // TODO takes user endtime input
         return view;
     }
 
@@ -167,22 +167,22 @@ public class HomeController {
         view.addObject("endtime", endtime);     // TODO this will be deleted
         return view;
     }
-    
+
     /**
      *
+     * @param start
+     * @param end
      * @return ModelAndView view by POST request
      * @throws IOException
      */
     @RequestMapping(value = "/graph", method = RequestMethod.POST)
-    public ModelAndView postgraph() throws IOException {
+    public ModelAndView postgraph(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException {
         ModelAndView view = new ModelAndView("graph");
         addGraphResources(view);
-                                                //        do query based on given start and end time
-                                                //        pass starttime and endtime to view
-                                                //        view.addObject("list", query result);
-        view.addObject("list", "query");        // TODO add query result here (needs to be list of PersonObjects)
-        view.addObject("starttime", starttime); // TODO takes user starttime input
-        view.addObject("endtime", endtime);     // TODO takes user endtime input
+        
+        view.addObject("list", PC.getList());   // TODO add query result here (needs to be list of PersonObjects)
+        view.addObject("starttime", start);     // TODO takes user starttime input
+        view.addObject("endtime", end);         // TODO takes user endtime input
         return view;
     }
 
@@ -220,7 +220,7 @@ public class HomeController {
         view.addObject("Home", "/resources/js/Canvas/Home.js" + random);
         view.addObject("stylesheet", "/resources/css/style.css" + random);
     }
-    
+
     // Adds Heatmap Resources to the view
     private void addHeatmapResources(ModelAndView view) {
         view.addObject("Controller", "/resources/js/Controller.js" + random);
@@ -232,7 +232,7 @@ public class HomeController {
         view.addObject("LinesIntersect", "/resources/js/Canvas/LinesIntersect.js" + random);
         view.addObject("stylesheet", "/resources/css/style.css" + random);
     }
-    
+
     // Adds Graph Resources to the view
     private void addGraphResources(ModelAndView view) {
         view.addObject("Controller", "/resources/js/Controller.js" + random);
@@ -243,7 +243,7 @@ public class HomeController {
         view.addObject("Interface", "/resources/js/Canvas/Interface.js" + random);
         view.addObject("stylesheet", "/resources/css/style.css" + random);
     }
-    
+
     // instantiates
     private void loadJsonFile() {
         Main temporaryProblemSolverSeeTrello = new Main();

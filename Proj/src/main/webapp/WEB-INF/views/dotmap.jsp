@@ -21,8 +21,8 @@
                     <p>
                         <label>Time:</label>
                         <br>
-                        <input class="start" type="time" step="1" id="time1" value="${starttime}" />
-                        <input class="end" type="time" step="1" id="time2" value="${endtime}" />
+                        <input class="start" type="time" step="1" id="time1" name="time1" value="${starttime}" />
+                        <input class="end" type="time" step="1" id="time2" name="time2" value="${endtime}" />
                         <input class="get" type="submit" formmethod="post" value="Set time" />
                         <input class="enter" id="Start" type="button" value="Start" onclick="play(
                                         document.getElementById('time1').value,

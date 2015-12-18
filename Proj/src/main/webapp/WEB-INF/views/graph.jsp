@@ -22,8 +22,8 @@
                     <p>
                         <label>Time:</label>
                         <br>
-                        <input type="time" step="1" id="time1" value="${starttime}" />
-                        <input type="time" step="1" id="time2" value="${endtime}" />
+                        <input type="time" step="1" id="time1"  name="time1" value="${starttime}" />
+                        <input type="time" step="1" id="time2"  name="time2" value="${endtime}" />
                         <input class="get" type="submit" formmethod="post" value="Set time" />
                     </p>
                     <p>
