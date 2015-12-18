@@ -31,12 +31,14 @@ package spring.controller;
  * @version 1.0
  */
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import spring.model.PersonObject;
 
 /**
  * Controls the POST and GET requests to serve views
@@ -114,7 +116,6 @@ public class HomeController {
         view.addObject("list", PC.getList());   // TODO add query result here (needs to be list of PersonObjects)
         view.addObject("starttime", start);     // TODO takes user starttime input
         view.addObject("endtime", end);         // TODO takes user endtime input
-
         return view;
     }
 
@@ -260,5 +261,13 @@ public class HomeController {
         starttime = PC.getStartTime().hourMinuteSecond();
         endtime = PC.getEndTime().hourMinuteSecond();
     }
-
+    
+    /*
+     * Deze methode moet alle PersonObjects tussen twee timestamps ophalen
+     * We kunnen van String start en String end ook timestamps gebruiken,
+     * dan moeten ze worden omgezet.
+     */
+    private ArrayList<PersonObject> doQuery(String start, String end) {
+        return new ArrayList(); // dit moeten de PersonObjects uit de database zijn
+    }
 }
