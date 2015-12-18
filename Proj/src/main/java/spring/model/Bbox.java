@@ -25,12 +25,14 @@
  */
 package spring.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author IS204-5
  * @version 1.0
  */
-public class Bbox {
+public class Bbox implements Serializable {
 
 	private float x1;
 	private float y1;

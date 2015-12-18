@@ -25,6 +25,7 @@
  */
 package spring.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +33,7 @@ import java.util.ArrayList;
  * @author IS204-5
  * @version 1.0
  */
-public class PersonObject {
+public class PersonObject implements Serializable {
 
 	private Timestamp start;
 	private Timestamp end;

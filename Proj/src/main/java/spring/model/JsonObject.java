@@ -25,14 +25,16 @@
  */
 package spring.model;
 
+import java.io.Serializable;
 /**
  * A JsonLine object represents one line of JSON from an EAGLE JSON file.
  *
  * @author IS204-5
  * @version 1.0
  */
-public class JsonObject {
 
+public class JsonObject implements Serializable {
+    
 	int track_id;
 	Timestamp timestamp;
 	int event_type;
@@ -126,5 +128,5 @@ public class JsonObject {
 	public void mergeJsonObject(JsonObject jsonObject) {
 		this.position.setX((this.position.getX() + jsonObject.getPosition().getX()) / 2);
 		this.position.setY((this.position.getY() + jsonObject.getPosition().getY()) / 2);
-	}
+        }
 }

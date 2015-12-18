@@ -25,13 +25,18 @@
  */
 package spring.model;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  *
  * @author IS204-5
  * @version 1.0
  */
-public class Position {
 
+public class Position implements Serializable {
+    
 	private double x;
 	private double y;
 
