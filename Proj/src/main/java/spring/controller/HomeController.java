@@ -180,7 +180,7 @@ public class HomeController {
     public ModelAndView postgraph(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException {
         ModelAndView view = new ModelAndView("graph");
         addGraphResources(view);
-        
+
         view.addObject("list", PC.getList());   // TODO add query result here (needs to be list of PersonObjects)
         view.addObject("starttime", start);     // TODO takes user starttime input
         view.addObject("endtime", end);         // TODO takes user endtime input
@@ -261,13 +261,36 @@ public class HomeController {
         starttime = PC.getStartTime().hourMinuteSecond();
         endtime = PC.getEndTime().hourMinuteSecond();
     }
-    
+
     /*
      * Deze methode moet alle PersonObjects tussen twee timestamps ophalen
      * We kunnen van String start en String end ook timestamps gebruiken,
      * dan moeten ze worden omgezet.
      */
     private ArrayList<PersonObject> doQuery(String start, String end) {
+        // start en end in de App zien er uit als: 11:03:44
+        // start en end in de DB zien er uit als: 20151126T080935992000
+        // ik denk dat we van de DB versie enkel dit nodig hebben 080935
+        
+        //DB start en end opsplitsen in datum en tijd?
+        //explode op T?
+        //omdat er anders geen vergelijking gemaakt kan worden??
+        //not sure of t zo moet tho
+
+        // weer toevoegen indien nodig, hier bestaat geen functie voor:
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < split.length; i++) {
+//            sb.append(split[i]);
+//            if (i != split.length - 1) {
+//                sb.append(" ");
+//            }
+//        }
+//        String joined = sb.toString();
+        
+        String[] startSplit = start.split("T"); // nu heb je een array van de delen voor en na de 'T'
+        String[] endSplit = end.split("T"); // nu heb je een array van de delen voor en na de 'T'
+
+
         return new ArrayList(); // dit moeten de PersonObjects uit de database zijn
     }
 }

@@ -44,9 +44,6 @@ public class PersonSerializer {
 
   public static Connection getConnection() throws Exception {
     String driver = "com.mysql.jdbc.Driver";
-//    String url = "10.3.1.2";
-//    String username = "chrisfv152_test";
-//    String password = "MUBRs6Kds";
     String url = "jdbc:mysql://oege.ie.hva.nl:3306/zshayann001";
     String username = "shayann001";
     String password = "UGZbYm/GX/KM$/";
