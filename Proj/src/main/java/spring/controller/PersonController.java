@@ -27,8 +27,6 @@ package spring.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import spring.model.Bbox;
 import spring.model.JsonObject;
 import spring.model.PersonObject;
