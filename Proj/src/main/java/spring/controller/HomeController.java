@@ -31,6 +31,9 @@ package spring.controller;
  * @version 1.0
  */
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
@@ -57,6 +60,9 @@ public class HomeController {
     String file = "no file";
     String starttime;
     String endtime;
+
+    DBController dbCon;
+    ResultSet rs;
 
     /**
      * Homepage
@@ -267,30 +273,32 @@ public class HomeController {
      * We kunnen van String start en String end ook timestamps gebruiken,
      * dan moeten ze worden omgezet.
      */
-    private ArrayList<PersonObject> doQuery(String start, String end) {
-        // start en end in de App zien er uit als: 11:03:44
-        // start en end in de DB zien er uit als: 20151126T080935992000
-        // ik denk dat we van de DB versie enkel dit nodig hebben 080935
+    private ArrayList<PersonObject> doPersonObjectQuery(String start, String end) throws Exception {
+        int startTimeRequest = Integer.valueOf(start.replace(":", "")); //Requested start time from app formatted to an int of 6 chars
+        int endTimeRequest = Integer.valueOf(end.replace(":", "")); //Requested end time from app formatted to an int of 6 chars
         
-        //DB start en end opsplitsen in datum en tijd?
-        //explode op T?
-        //omdat er anders geen vergelijking gemaakt kan worden??
-        //not sure of t zo moet tho
+        ArrayList<PersonObject> po = new ArrayList();
+        String query = "SELECT * FROM `personObject` "
+                + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + startTimeRequest
+                + " AND CAST(SUBSTR(`start`, 10,6) AS INT) <= " + endTimeRequest
+                + ") AND (CAST(SUBSTR(`end`, 10,6) AS SIGNED) >= " + startTimeRequest
+                + " AND (CAST(SUBSTR(`end`, 10,6) AS SIGNED) <= " + endTimeRequest;
+        dbCon.openConnection();
+        try {
 
-        // weer toevoegen indien nodig, hier bestaat geen functie voor:
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < split.length; i++) {
-//            sb.append(split[i]);
-//            if (i != split.length - 1) {
-//                sb.append(" ");
-//            }
-//        }
-//        String joined = sb.toString();
+        rs = dbCon.doQuery(query);
+        while(rs.next()){
+            // hier moet wat aan de array list toegevoegd worden
+            // ik snap even niet hoe
+        }
+
+        } catch (SQLException | NullPointerException e) {
+            System.err.println(e.getLocalizedMessage());
+        } finally {
+            dbCon.closeConnection();
+            rs = null;
+        }
         
-        String[] startSplit = start.split("T"); // nu heb je een array van de delen voor en na de 'T'
-        String[] endSplit = end.split("T"); // nu heb je een array van de delen voor en na de 'T'
-
-
-        return new ArrayList(); // dit moeten de PersonObjects uit de database zijn
+        return new ArrayList(); // personObjects from database
     }
 }

@@ -24,13 +24,10 @@
  * THE SOFTWARE.
  */
 package spring.controller;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import spring.model.PersonObject;
 
 /**
@@ -38,51 +35,56 @@ import spring.model.PersonObject;
  * @author Ryan
  */
 public class PersonSerializer {
-    
-  static final String WRITE_OBJECT_SQL = "INSERT INTO personObject(start,eind,file) VALUES (?,?,?)";
-  static final String READ_OBJECT_SQL = "SELECT object_value FROM java_objects WHERE id = ?";
 
-  public static Connection getConnection() throws Exception {
-    String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://oege.ie.hva.nl:3306/zshayann001";
-    String username = "shayann001";
-    String password = "UGZbYm/GX/KM$/";
-    Class.forName(driver);
-    Connection conn = DriverManager.getConnection(url, username, password);
-    return conn;
-  }
+    static final String WRITE_OBJECT_SQL = "INSERT INTO personObject(start,eind,file) VALUES (?,?,?)";
+    static final String READ_OBJECT_SQL = "SELECT object_value FROM java_objects WHERE id = ?";
 
-  public static void writeJavaObject(Connection conn, PersonObject object) throws Exception {
-    PreparedStatement pstmt = conn.prepareStatement(WRITE_OBJECT_SQL);
+//  public static Connection getConnection() throws Exception {
+//    String driver = "com.mysql.jdbc.Driver";
+//    String url = "jdbc:mysql://oege.ie.hva.nl:3306/zshayann001";
+//    String username = "shayann001";
+//    String password = "UGZbYm/GX/KM$/";
+//    Class.forName(driver);
+//    Connection conn = DriverManager.getConnection(url, username, password);
+//    return conn;
+//  }
+    public static void writeJavaObject(Connection conn, PersonObject object) throws Exception {
+        PreparedStatement pstmt = conn.prepareStatement(WRITE_OBJECT_SQL);
 
-    // set input parameters
-    pstmt.setString(1, object.getStart().toString());
-    pstmt.setString(2, object.getEnd().toString());
-    pstmt.setObject(3, object);
-    pstmt.executeUpdate();
+        // set input parameters
+        pstmt.setString(1, object.getStart().toString());
+        pstmt.setString(2, object.getEnd().toString());
+        pstmt.setObject(3, object);
+        pstmt.executeUpdate();
 
-    // get the generated key for the id
+        // get the generated key for the id
 //    ResultSet rs = pstmt.getGeneratedKeys();
 //    int id = -1;
 //    if (rs.next()) {
 //      id = rs.getInt(1);
 //    }
 //    rs.close();
-    pstmt.close();
-    System.out.println("writeJavaObject: done serializing:");
+        pstmt.close();
+        System.out.println("writeJavaObject: done serializing:");
 //    return id;
-  }
+    }
 
-  public static Object readJavaObject(Connection conn, long id) throws Exception {
-    PreparedStatement pstmt = conn.prepareStatement(READ_OBJECT_SQL);
-    pstmt.setLong(1, id);
-    ResultSet rs = pstmt.executeQuery();
-    rs.next();
-    Object object = rs.getObject(1);
+    public static Object readJavaObject(Connection conn, long id) throws Exception {
+        PreparedStatement pstmt = conn.prepareStatement(READ_OBJECT_SQL);
+        pstmt.setLong(1, id);
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        Object object = rs.getObject(4);
 
-    rs.close();
-    pstmt.close();
-    System.out.println("readJavaObject: done de-serializing: ");
-    return object;
-  } 
+        rs.close();
+        pstmt.close();
+        System.out.println("readJavaObject: done de-serializing: ");
+        return object;
+    }
+
+//    public static PersonObject readLocalJavaObject(ResultSet rs) throws Exception {
+//        PersonObject po = (PersonObject) rs.getObject(4);
+//
+//        return po;
+//    }
 }
