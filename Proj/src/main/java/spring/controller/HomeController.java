@@ -273,6 +273,13 @@ public class HomeController {
      * We kunnen van String start en String end ook timestamps gebruiken,
      * dan moeten ze worden omgezet.
      */
+    /**
+     * 
+     * @param start
+     * @param end
+     * @return
+     * @throws Exception 
+     */
     private ArrayList<PersonObject> doPersonObjectQueryTime(String start, String end) throws Exception {
         int startTimeRequest = Integer.valueOf(start.replace(":", "")); //Requested start time from app formatted to an int of 6 chars
         int endTimeRequest = Integer.valueOf(end.replace(":", "")); //Requested end time from app formatted to an int of 6 chars
