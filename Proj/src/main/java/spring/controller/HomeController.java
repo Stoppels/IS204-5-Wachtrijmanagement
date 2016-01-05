@@ -273,10 +273,10 @@ public class HomeController {
      * We kunnen van String start en String end ook timestamps gebruiken,
      * dan moeten ze worden omgezet.
      */
-    private ArrayList<PersonObject> doPersonObjectQuery(String start, String end) throws Exception {
+    private ArrayList<PersonObject> doPersonObjectQueryTime(String start, String end) throws Exception {
         int startTimeRequest = Integer.valueOf(start.replace(":", "")); //Requested start time from app formatted to an int of 6 chars
         int endTimeRequest = Integer.valueOf(end.replace(":", "")); //Requested end time from app formatted to an int of 6 chars
-        
+
         ArrayList<PersonObject> po = new ArrayList();
         String query = "SELECT * FROM `personObject` "
                 + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + startTimeRequest
@@ -286,11 +286,11 @@ public class HomeController {
         dbCon.openConnection();
         try {
 
-        rs = dbCon.doQuery(query);
-        while(rs.next()){
-            // hier moet wat aan de array list toegevoegd worden
-            // ik snap even niet hoe
-        }
+            rs = dbCon.doQuery(query);
+            while (rs.next()) {
+                // hier moet wat aan de array list toegevoegd worden
+                // ik snap even niet hoe
+            }
 
         } catch (SQLException | NullPointerException e) {
             System.err.println(e.getLocalizedMessage());
@@ -298,7 +298,48 @@ public class HomeController {
             dbCon.closeConnection();
             rs = null;
         }
-        
+
         return new ArrayList(); // personObjects from database
+    }
+
+    /**
+     * deze method is voor als we ook een datum veld in de App hebben
+     *
+     * @param start
+     * @param end
+     * @param date
+     * @return
+     * @throws Exception
+     */
+    private ArrayList<PersonObject> doPersonObjectQueryDateTime(String start, String end, String date) throws Exception {
+        int startTimeRequest = Integer.valueOf(start.replace(":", "")); //Requested start time from app formatted to an int of 6 chars
+        int endTimeRequest = Integer.valueOf(end.replace(":", "")); //Requested end time from app formatted to an int of 6 chars
+        int dateRequest = Integer.valueOf(date.replace("-", "")); // graag als xx-xx-xxxx invoeren in de App
+
+        ArrayList<PersonObject> po = new ArrayList();
+        String query = "SELECT * FROM `personObject` "
+                + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + startTimeRequest
+                + " AND CAST(SUBSTR(`start`, 10,6) AS INT) <= " + endTimeRequest
+                + ") AND (CAST(SUBSTR(`end`, 10,6) AS SIGNED) >= " + startTimeRequest
+                + " AND (CAST(SUBSTR(`end`, 10,6) AS SIGNED) <= " + endTimeRequest
+                + "AND CAST(SUBSTR(`start`, 0,8) AS SIGNED) == " + dateRequest;
+
+        dbCon.openConnection();
+        try {
+
+            rs = dbCon.doQuery(query);
+            while (rs.next()) {
+                // hier moet wat aan de array list toegevoegd worden
+                // ik snap even niet hoe
+            }
+
+        } catch (SQLException | NullPointerException e) {
+            System.err.println(e.getLocalizedMessage());
+        } finally {
+            dbCon.closeConnection();
+            rs = null;
+        }
+
+        return new ArrayList();
     }
 }
