@@ -268,12 +268,9 @@ public class HomeController {
         endtime = PC.getEndTime().hourMinuteSecond();
     }
 
-    /*
-     * Deze methode moet alle PersonObjects tussen twee timestamps ophalen
-     * We kunnen van String start en String end ook timestamps gebruiken,
-     * dan moeten ze worden omgezet.
-     */
+
     /**
+     * This metod executes a query to get all the data within the specified timeframe 
      * 
      * @param start
      * @param end
@@ -310,7 +307,8 @@ public class HomeController {
     }
 
     /**
-     * deze method is voor als we ook een datum veld in de App hebben
+     * This method can be used in the future when there will also be a date field.
+     * This metod executes a query to get all the data within the specified timeframe on the specified date
      *
      * @param start
      * @param end
