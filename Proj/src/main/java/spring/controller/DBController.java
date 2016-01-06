@@ -93,7 +93,7 @@ public class DBController {
     public ResultSet getAllData() throws SQLException {
         ResultSet result = null;
         ps = connection.prepareStatement(null);
-
+        
         String query = "SELECT * FROM personObject";
         result = ps.executeQuery(query);
 

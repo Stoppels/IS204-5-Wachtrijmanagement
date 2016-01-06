@@ -61,7 +61,7 @@ public class HomeController {
     // random generates a String that appends to resources to prevent caching
     final String random = "?version=" + Math.random() * 10;
     JsonController JC;
-    PersonController PC;
+    PersonController PC = new PersonController();
     StatController SC;
     String filename;
     String file = "no file";
@@ -290,15 +290,15 @@ public class HomeController {
 
         ArrayList<PersonObject> po = new ArrayList();
         String query = "SELECT * FROM `personObject` "
-                + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + startTimeRequest
+                + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) >= " + startTimeRequest
                 + " AND CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + endTimeRequest
                 + ") AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) >= " + startTimeRequest
                 + " AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) <= " + endTimeRequest+"));";
         
         dbCon.openConnection();
         try {
-
             rs = dbCon.doQuery(query);
+            rs.beforeFirst();
             while (rs.next()) {
                ByteArrayInputStream in = new ByteArrayInputStream(rs.getBytes("file"));
                ObjectInputStream inp = new ObjectInputStream(in);
@@ -331,7 +331,7 @@ public class HomeController {
 
         ArrayList<PersonObject> po = new ArrayList();
 String query = "SELECT * FROM `personObject` "
-                + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + startTimeRequest
+                + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) >= " + startTimeRequest
                 + " AND CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + endTimeRequest
                 + ") AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) >= " + startTimeRequest
                 + " AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) <= " + endTimeRequest
