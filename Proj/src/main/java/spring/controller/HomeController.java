@@ -30,7 +30,13 @@ package spring.controller;
  * @author IS204-5
  * @version 1.0
  */
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,6 +47,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import spring.model.JsonObject;
 import spring.model.PersonObject;
 
 /**
@@ -61,7 +68,7 @@ public class HomeController {
     String starttime;
     String endtime;
 
-    DBController dbCon;
+    DBController dbCon = new DBController();
     ResultSet rs;
 
     /**
@@ -280,23 +287,25 @@ public class HomeController {
      * @return
      * @throws Exception 
      */
-    private ArrayList<PersonObject> doPersonObjectQueryTime(String start, String end) throws Exception {
+    public ArrayList<PersonObject> doPersonObjectQueryTime(String start, String end) throws Exception {
         int startTimeRequest = Integer.valueOf(start.replace(":", "")); //Requested start time from app formatted to an int of 6 chars
         int endTimeRequest = Integer.valueOf(end.replace(":", "")); //Requested end time from app formatted to an int of 6 chars
 
         ArrayList<PersonObject> po = new ArrayList();
         String query = "SELECT * FROM `personObject` "
                 + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + startTimeRequest
-                + " AND CAST(SUBSTR(`start`, 10,6) AS INT) <= " + endTimeRequest
-                + ") AND (CAST(SUBSTR(`end`, 10,6) AS SIGNED) >= " + startTimeRequest
-                + " AND (CAST(SUBSTR(`end`, 10,6) AS SIGNED) <= " + endTimeRequest;
+                + " AND CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + endTimeRequest
+                + ") AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) >= " + startTimeRequest
+                + " AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) <= " + endTimeRequest+"));";
+        
         dbCon.openConnection();
         try {
 
             rs = dbCon.doQuery(query);
             while (rs.next()) {
-                // hier moet wat aan de array list toegevoegd worden
-                // ik snap even niet hoe
+               ByteArrayInputStream in = new ByteArrayInputStream(rs.getBytes("file"));
+               ObjectInputStream inp = new ObjectInputStream(in);
+               po.add((PersonObject)inp.readObject());
             }
 
         } catch (SQLException | NullPointerException e) {
@@ -305,8 +314,7 @@ public class HomeController {
             dbCon.closeConnection();
             rs = null;
         }
-
-        return new ArrayList(); // personObjects from database
+        return po; // personObjects from database
     }
 
     /**
@@ -324,20 +332,22 @@ public class HomeController {
         int dateRequest = Integer.valueOf(date.replace("-", "")); // graag als xx-xx-xxxx invoeren in de App
 
         ArrayList<PersonObject> po = new ArrayList();
-        String query = "SELECT * FROM `personObject` "
+String query = "SELECT * FROM `personObject` "
                 + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + startTimeRequest
-                + " AND CAST(SUBSTR(`start`, 10,6) AS INT) <= " + endTimeRequest
-                + ") AND (CAST(SUBSTR(`end`, 10,6) AS SIGNED) >= " + startTimeRequest
-                + " AND (CAST(SUBSTR(`end`, 10,6) AS SIGNED) <= " + endTimeRequest
-                + "AND CAST(SUBSTR(`start`, 0,8) AS SIGNED) == " + dateRequest;
+                + " AND CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + endTimeRequest
+                + ") AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) >= " + startTimeRequest
+                + " AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) <= " + endTimeRequest
+                + "AND CAST(SUBSTR(`start`, 0,8) AS SIGNED) == " + dateRequest+"));";
 
         dbCon.openConnection();
         try {
 
             rs = dbCon.doQuery(query);
+            rs.beforeFirst();
             while (rs.next()) {
-                // hier moet wat aan de array list toegevoegd worden
-                // ik snap even niet hoe
+               ByteArrayInputStream in = new ByteArrayInputStream(rs.getBytes("file"));
+               ObjectInputStream inp = new ObjectInputStream(in);
+               po.add((PersonObject)inp.readObject());
             }
 
         } catch (SQLException | NullPointerException e) {
@@ -347,6 +357,6 @@ public class HomeController {
             rs = null;
         }
 
-        return new ArrayList();
+        return po;
     }
 }
