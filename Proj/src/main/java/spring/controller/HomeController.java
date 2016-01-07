@@ -107,9 +107,9 @@ public class HomeController {
         ModelAndView view = new ModelAndView("dotmap");
         addDotmapResources(view);
 
-//        view.addObject("list", PC.getList());   // TODO this will be deleted
-//        view.addObject("starttime", starttime); // TODO this will be deleted
-//        view.addObject("endtime", endtime);     // TODO this will be deleted
+        view.addObject("list", new ArrayList());
+        view.addObject("starttime", "00:00:00");
+        view.addObject("endtime", "00:00:00");
         return view;
     }
 
@@ -124,6 +124,7 @@ public class HomeController {
     public ModelAndView postsnapshot(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException, Exception {
         ModelAndView view = new ModelAndView("dotmap");
         addDotmapResources(view);
+        
         view.addObject("list", doPersonObjectQueryTime(start,end));   // TODO add query result here (needs to be list of PersonObjects)
         view.addObject("starttime", start);     // TODO takes user starttime input
         view.addObject("endtime", end);         // TODO takes user endtime input
@@ -140,9 +141,9 @@ public class HomeController {
         ModelAndView view = new ModelAndView("heatmap");
         addHeatmapResources(view);
 
-        view.addObject("list", PC.getList());   // TODO this will be deleted
-        view.addObject("starttime", starttime); // TODO this will be deleted
-        view.addObject("endtime", endtime);     // TODO this will be deleted
+        view.addObject("list", new ArrayList());
+        view.addObject("starttime", "00:00:00");
+        view.addObject("endtime", "00:00:00");
         return view;
     }
 
@@ -154,11 +155,11 @@ public class HomeController {
      * @throws IOException
      */
     @RequestMapping(value = "/heatmap", method = RequestMethod.POST)
-    public ModelAndView postheatmap(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException {
+    public ModelAndView postheatmap(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException, Exception {
         ModelAndView view = new ModelAndView("heatmap");
         addHeatmapResources(view);
 
-        view.addObject("list", PC.getList());   // TODO add query result here (needs to be list of PersonObjects)
+        view.addObject("list", doPersonObjectQueryTime(start,end));   // TODO add query result here (needs to be list of PersonObjects)
         view.addObject("starttime", start);     // TODO takes user starttime input
         view.addObject("endtime", end);         // TODO takes user endtime input
         return view;
@@ -174,9 +175,9 @@ public class HomeController {
         ModelAndView view = new ModelAndView("graph");
         addGraphResources(view);
 
-        view.addObject("stats", SC.getList());  // TODO this will be deleted
-        view.addObject("starttime", starttime); // TODO this will be deleted
-        view.addObject("endtime", endtime);     // TODO this will be deleted
+        view.addObject("list", new ArrayList());
+        view.addObject("starttime", "00:00:00");
+        view.addObject("endtime", "00:00:00");
         return view;
     }
 
@@ -188,11 +189,11 @@ public class HomeController {
      * @throws IOException
      */
     @RequestMapping(value = "/graph", method = RequestMethod.POST)
-    public ModelAndView postgraph(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException {
+    public ModelAndView postgraph(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException, Exception {
         ModelAndView view = new ModelAndView("graph");
         addGraphResources(view);
 
-        view.addObject("list", PC.getList());   // TODO add query result here (needs to be list of PersonObjects)
+        view.addObject("list", doPersonObjectQueryTime(start,end));   // TODO add query result here (needs to be list of PersonObjects)
         view.addObject("starttime", start);     // TODO takes user starttime input
         view.addObject("endtime", end);         // TODO takes user endtime input
         return view;
