@@ -70,7 +70,7 @@ public class HomeController {
 
     DBController dbCon = new DBController();
     ResultSet rs;
-    
+
     /**
      * Homepage
      *
@@ -124,8 +124,8 @@ public class HomeController {
     public ModelAndView postsnapshot(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException, Exception {
         ModelAndView view = new ModelAndView("dotmap");
         addDotmapResources(view);
-        
-        view.addObject("list", doPersonObjectQueryTime(start,end));   // TODO add query result here (needs to be list of PersonObjects)
+
+        view.addObject("list", doPersonObjectQueryTime(start, end));   // TODO add query result here (needs to be list of PersonObjects)
         view.addObject("starttime", start);     // TODO takes user starttime input
         view.addObject("endtime", end);         // TODO takes user endtime input
         return view;
@@ -159,7 +159,7 @@ public class HomeController {
         ModelAndView view = new ModelAndView("heatmap");
         addHeatmapResources(view);
 
-        view.addObject("list", doPersonObjectQueryTime(start,end));   // TODO add query result here (needs to be list of PersonObjects)
+        view.addObject("list", doPersonObjectQueryTime(start, end));   // TODO add query result here (needs to be list of PersonObjects)
         view.addObject("starttime", start);     // TODO takes user starttime input
         view.addObject("endtime", end);         // TODO takes user endtime input
         return view;
@@ -193,7 +193,7 @@ public class HomeController {
         ModelAndView view = new ModelAndView("graph");
         addGraphResources(view);
 
-        view.addObject("list", doPersonObjectQueryTime(start,end));   // TODO add query result here (needs to be list of PersonObjects)
+        view.addObject("list", doPersonObjectQueryTime(start, end));   // TODO add query result here (needs to be list of PersonObjects)
         view.addObject("starttime", start);     // TODO takes user starttime input
         view.addObject("endtime", end);         // TODO takes user endtime input
         return view;
@@ -274,14 +274,14 @@ public class HomeController {
         endtime = PC.getEndTime().hourMinuteSecond();
     }
 
-
     /**
-     * This metod executes a query to get all the data within the specified timeframe 
-     * 
+     * This metod executes a query to get all the data within the specified
+     * timeframe
+     *
      * @param start
      * @param end
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     public ArrayList<PersonObject> doPersonObjectQueryTime(String start, String end) throws Exception {
         int startTimeRequest = Integer.valueOf(start.replace(":", "")); //Requested start time from app formatted to an int of 6 chars
@@ -289,19 +289,18 @@ public class HomeController {
 
         ArrayList<PersonObject> po = new ArrayList();
         String query = "SELECT * FROM `personObject` "
-                + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) >= " + startTimeRequest
-                + " AND CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + endTimeRequest
+                + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + endTimeRequest
                 + ") AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) >= " + startTimeRequest
-                + " AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) <= " + endTimeRequest+"));";
-        
+                + ");";
+
         dbCon.openConnection();
         try {
             rs = dbCon.doQuery(query);
             rs.beforeFirst();
             while (rs.next()) {
-               ByteArrayInputStream in = new ByteArrayInputStream(rs.getBytes("file"));
-               ObjectInputStream inp = new ObjectInputStream(in);
-               po.add((PersonObject)inp.readObject());
+                ByteArrayInputStream in = new ByteArrayInputStream(rs.getBytes("file"));
+                ObjectInputStream inp = new ObjectInputStream(in);
+                po.add((PersonObject) inp.readObject());
             }
 
         } catch (SQLException | NullPointerException e) {
@@ -315,8 +314,9 @@ public class HomeController {
     }
 
     /**
-     * This method can be used in the future when there will also be a date field.
-     * This metod executes a query to get all the data within the specified timeframe on the specified date
+     * This method can be used in the future when there will also be a date
+     * field. This metod executes a query to get all the data within the
+     * specified timeframe on the specified date
      *
      * @param start
      * @param end
@@ -330,12 +330,12 @@ public class HomeController {
         int dateRequest = Integer.valueOf(date.replace("-", "")); // graag als xx-xx-xxxx invoeren in de App
 
         ArrayList<PersonObject> po = new ArrayList();
-String query = "SELECT * FROM `personObject` "
+        String query = "SELECT * FROM `personObject` "
                 + "WHERE (CAST(SUBSTR(`start`, 10,6) AS SIGNED) >= " + startTimeRequest
                 + " AND CAST(SUBSTR(`start`, 10,6) AS SIGNED) <= " + endTimeRequest
                 + ") AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) >= " + startTimeRequest
                 + " AND (CAST(SUBSTR(`eind`, 10,6) AS SIGNED) <= " + endTimeRequest
-                + "AND CAST(SUBSTR(`start`, 0,8) AS SIGNED) == " + dateRequest+"));";
+                + "AND CAST(SUBSTR(`start`, 0,8) AS SIGNED) == " + dateRequest + "));";
 
         dbCon.openConnection();
         try {
@@ -343,9 +343,9 @@ String query = "SELECT * FROM `personObject` "
             rs = dbCon.doQuery(query);
             rs.beforeFirst();
             while (rs.next()) {
-               ByteArrayInputStream in = new ByteArrayInputStream(rs.getBytes("file"));
-               ObjectInputStream inp = new ObjectInputStream(in);
-               po.add((PersonObject)inp.readObject());
+                ByteArrayInputStream in = new ByteArrayInputStream(rs.getBytes("file"));
+                ObjectInputStream inp = new ObjectInputStream(in);
+                po.add((PersonObject) inp.readObject());
             }
 
         } catch (SQLException | NullPointerException e) {
