@@ -61,7 +61,7 @@ public class HomeController {
     // random generates a String that appends to resources to prevent caching
     final String random = "?version=" + Math.random() * 10;
     JsonController JC;
-    PersonController PC = new PersonController();
+    PersonController PC;
     StatController SC;
     String filename;
     String file = "no file";
@@ -70,7 +70,7 @@ public class HomeController {
 
     DBController dbCon = new DBController();
     ResultSet rs;
-
+    
     /**
      * Homepage
      *
@@ -93,7 +93,6 @@ public class HomeController {
     @RequestMapping(value = "/loadjson")
     public ModelAndView loadjson() throws IOException {
         ModelAndView view = new ModelAndView("index");
-        loadJsonFile();
         addHomeResources(view);
         return view;
     }
@@ -108,9 +107,9 @@ public class HomeController {
         ModelAndView view = new ModelAndView("dotmap");
         addDotmapResources(view);
 
-        view.addObject("list", PC.getList());   // TODO this will be deleted
-        view.addObject("starttime", starttime); // TODO this will be deleted
-        view.addObject("endtime", endtime);     // TODO this will be deleted
+//        view.addObject("list", PC.getList());   // TODO this will be deleted
+//        view.addObject("starttime", starttime); // TODO this will be deleted
+//        view.addObject("endtime", endtime);     // TODO this will be deleted
         return view;
     }
 
@@ -122,11 +121,10 @@ public class HomeController {
      * @throws IOException
      */
     @RequestMapping(value = "/dotmap", method = RequestMethod.POST)
-    public ModelAndView postsnapshot(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException {
+    public ModelAndView postsnapshot(@RequestParam("time1") String start, @RequestParam("time2") String end) throws IOException, Exception {
         ModelAndView view = new ModelAndView("dotmap");
         addDotmapResources(view);
-
-        view.addObject("list", PC.getList());   // TODO add query result here (needs to be list of PersonObjects)
+        view.addObject("list", doPersonObjectQueryTime(start,end));   // TODO add query result here (needs to be list of PersonObjects)
         view.addObject("starttime", start);     // TODO takes user starttime input
         view.addObject("endtime", end);         // TODO takes user endtime input
         return view;
@@ -311,6 +309,7 @@ public class HomeController {
             dbCon.closeConnection();
             rs = null;
         }
+        PC = new PersonController(po);
         return po; // personObjects from database
     }
 

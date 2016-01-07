@@ -53,6 +53,10 @@ public class PersonController {
 	public PersonController() {
 		this.list = new ArrayList<>();
 	}
+        
+        public PersonController(ArrayList <PersonObject> list){
+            this.list=list;
+        }
 
 	/**
 	 * Returns start time of a PersonObject.
